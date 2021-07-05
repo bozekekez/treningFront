@@ -3,17 +3,16 @@ import React, { useState, useEffect, useContext, useImperativeHandle } from 'rea
 import './Search.css'
 
 const Search = () => {
-    const [searchField, setSearchField] = useState('')
     const [name, setName] = useState()
     const [polovno, setPolovno] = useState(false)
     const [servis, setServirs] = useState(false)
     const [cijena, setCijena] = useState()
     const [klima, setKlima] = useState(false)
     const [message, setMessage] = useState('')
+    const [auto, setAuto] = useState()
     
     const handleChange = (e) => {
         setName(e.target.value);
-        e.preventDefault();
     }
 
     const handlePolovno = () => {
@@ -28,7 +27,8 @@ const Search = () => {
         setKlima(true)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         fetch('http://localhost:3000/search', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
@@ -40,15 +40,11 @@ const Search = () => {
                 cijena: cijena
 			})
 		}).then(resopnse => resopnse.json())
-		// .then(user =>{
-		// 	if (user.id){
-		// 		history.push('/');
-        //         setLoggedIn(true);
-        //         setUser(user);
-        //         setTempEmail('');
-        //         setTempPassword('');
-		// 	}
-		// })
+        .then(temporary => {
+            // console.log(prazno)
+            setAuto(temporary)
+            console.log(auto)
+        })
         .catch(setMessage('Nije pronađeno ništa po tim kriterijima'))
     }
 
@@ -60,7 +56,7 @@ return(
     <div className="search">
         <form onSubmit={handleSubmit}>
         <label>Pretraživanje:</label>
-        <input className='inputSearch' type='text' placeholder='Search items' value={searchField} onChange={handleChange} ></input>
+        <input className='inputSearch' type='text' placeholder='Search items' value={name} onChange={handleChange} ></input>
         <div>
             <input type="checkbox" onClick={handlePolovno}></input>
             <label>Polovno</label>
@@ -79,6 +75,7 @@ return(
         </div>
         <label>Cijena do:</label>
         <input className='inputSearch' type='text' placeholder='cijena do' value={cijena} onChange={handleCijena}/>
+        <button onClick={handleSubmit}>submit</button>
         </form>
     </div>
 )
