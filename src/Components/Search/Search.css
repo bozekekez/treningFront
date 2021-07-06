@@ -1,6 +1,38 @@
 .search{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     margin-top: 5rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchChild{
+    display: flex;
+    flex-direction: column;
     width: 10rem;
 }
+
+.kartica{
+    height: 7rem;
+    width: 7rem;
+    border: 1px solid gray;
+    margin: 1rem;
+    border-radius: 10px;
+    background-color: rgb(215, 235, 130);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.karticeParent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+/* .forma{
+    width: 10rem;
+    justify-self: center;
+} */

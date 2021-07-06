@@ -21,6 +21,7 @@
     height: 2rem;
     margin-top: 0.5rem;
     border-radius: 5px;
-    background-color: rgb(110, 160, 95);
+    background-color: rgb(196, 231, 140);
     cursor: pointer;
+    width: 5rem;
 }
