@@ -101,6 +101,11 @@ return(
         <input type="text" onChange={handleName}></input>
         <label>Cijena</label>
         <input type="text" onChange={handleCijena}></input>
+        <label>Motor</label>
+        <select name="motors" id="cars">
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
         <div>
             <input type="checkbox" defaultChecked={polovno} onClick={handlePolovno}></input>
             <label>Polovno</label>
