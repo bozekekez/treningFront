@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 import React, { useState, useEffect, useContext, useImperativeHandle } from 'react';
-import './Search.css'
+import '../Search/Search.css'
 
-const Search = () => {
-    const [name, setName] = useState('')
+const Query = ({location}) => {
+    const [name, setName] = useState()
     const [polovno, setPolovno] = useState(true)
     const [servis, setServirs] = useState(false)
     const [cijena, setCijena] = useState()
@@ -64,20 +64,14 @@ const Search = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/search', {
-			method: 'post',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({
-				name: name,
+        fetch('http://localhost:3000/query?' + new URLSearchParams({
+                name: name,
 				polovno: polovno,
                 servis: servis,
-                klima: klima,
-                cijena: cijena,
-                dodatno: {
-                    senzor: senzor,
-                    kamera: kamera
-                }
-			})
+                klima: klima,  
+        }), {
+			method: 'get',
+			headers: {'Content-Type': 'application/json'},
 		}).then(resopnse => resopnse.json())
         .then(temporary => {
             setAuto(temporary)
@@ -87,7 +81,6 @@ const Search = () => {
                 setMessage('')
             }
         })
-        
         // .catch(setMessage('Nije pronađeno ništa po tim kriterijima'))
     }
 
@@ -108,7 +101,7 @@ const Search = () => {
 return(
     <div className="search">
         <div className="searchChild">
-        <form onSubmit={handleSubmit} className="forma">
+        <form onSubmit={handleSubmit} className="forma" method="GET">
         <label>Pretraživanje:</label>
         <input className='inputSearch' type='text' placeholder='Search items' value={name} onChange={handleChange} ></input>
         <div>
@@ -143,4 +136,4 @@ return(
     </div>
 )
 }
-export default Search;
+export default Query;
