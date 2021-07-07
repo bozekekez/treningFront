@@ -28,8 +28,8 @@ return(
     <div className="navbar">
         <button className="botun" onClick={handleClick}>Home</button>
         <button className="botun" onClick={handleSearch}>Search</button>
-        <button className="botun" onClick={handleList}>List</button>
         <button className="botun" onClick={handleQuery}>Query</button>
+        <button className="botun" onClick={handleList}>List</button>
         <button className="botun" onClick={handleMotori}>Motori</button>
     </div>
 )

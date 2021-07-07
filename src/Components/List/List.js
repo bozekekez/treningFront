@@ -11,6 +11,9 @@ const List = () => {
     const [message, setMessage] = useState();
     const [senzor, setSenzor] = useState(false);
     const [kamera, setKamera] = useState(false);
+    const [motori, setMotori] = useState([]);
+    const [motoriLoaded, setMotoriLoaded] = useState(false)
+    const [selectMotor, setSelectMotor] = useState();
 
     const handleName = (e) =>{
         setNaziv(e.target.value);
@@ -18,6 +21,10 @@ const List = () => {
 
     const handleCijena = (e) => {
         setCijena(e.target.value);
+    }
+
+    const handleMotor = (e) => {
+        setSelectMotor(e.target.value);
     }
 
     const handlePolovno = (e) =>{
@@ -65,12 +72,9 @@ const List = () => {
         }
     }
 
-    console.log(senzor)
-    
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(naziv);
-
         fetch('http://localhost:3000/list', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -83,6 +87,9 @@ const List = () => {
                 dodatno:{
                     senzor: senzor,
                     kamera: kamera
+                },
+                motor:{
+                    name: selectMotor
                 }
             })
         })
@@ -94,6 +101,31 @@ const List = () => {
         })
     }
 
+    const getMotors = (e) =>{
+        e.preventDefault();
+        if(motoriLoaded === false)
+        {
+            fetch('http://localhost:3000/list', {
+            method: 'get',
+            headers: {'Content-Type': 'application/json'}
+            }).then(resopnse => resopnse.json())
+            .then(temporary => {
+                setMotori(temporary)
+                setMotoriLoaded(true)
+            })
+        }
+    }
+
+    let render = [];
+
+    render = motori.map((member) => {
+        return(
+            <option value={member.name}>{member.name}</option>
+        )
+    })
+    
+    console.log('1', motori)
+
 return(
     <div className="list">
        <form onSubmit={handleSubmit} className="forma">
@@ -102,9 +134,8 @@ return(
         <label>Cijena</label>
         <input type="text" onChange={handleCijena}></input>
         <label>Motor</label>
-        <select name="motors" id="cars">
-            <option value="1">1</option>
-            <option value="2">2</option>
+        <select value={selectMotor} name="motors" id="cars" onChange={handleMotor} onClick={getMotors}>
+           {render}
         </select>
         <div>
             <input type="checkbox" defaultChecked={polovno} onClick={handlePolovno}></input>

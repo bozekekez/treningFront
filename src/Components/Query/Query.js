@@ -64,12 +64,29 @@ const Query = ({location}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/query?' + new URLSearchParams({
+        let url
+        if(!cijena){
+            url = new URLSearchParams ({
                 name: name,
-				polovno: polovno,
+                polovno: polovno,
                 servis: servis,
                 klima: klima,  
-        }), {
+                dodatno:{
+                    senzor: senzor,
+                    kamera: kamera
+                }
+            })
+        }
+        if(cijena){
+            url = new URLSearchParams ({
+                name: name,
+                polovno: polovno,
+                servis: servis,
+                klima: klima,  
+                cijena: cijena
+            })
+        }
+        fetch('http://localhost:3000/query?' + url, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
 		}).then(resopnse => resopnse.json())
