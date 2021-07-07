@@ -4,6 +4,8 @@ import Search from './Components/Search/Search';
 import List from './Components/List/List';
 import Query from './Components/Query/Query';
 import Motori from './Components/Motori/Motori';
+import Home from './Components/Home/Home';
+import Item from './Components/Item/Item';
 
 import { BrowserRouter as Router, Switch, Route, Link, Redirect, HashRouter, useHistory, useParams } from "react-router-dom";
 
@@ -24,6 +26,13 @@ function App() {
         <Route exact={true} path="/motori" render={() =>(
           <Motori />
         )}/>
+        <Route exact={true} path="/" render={() =>(
+          <Home />
+        )}/>
+        <Route path="/item" render={() =>(
+          <Item />
+        )}/>
+        
       </div>
     </Router>
   );

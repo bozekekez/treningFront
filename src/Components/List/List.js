@@ -120,7 +120,7 @@ const List = () => {
 
     render = motori.map((member) => {
         return(
-            <option value={member.name}>{member.name}</option>
+            <option value={member}>{member.name}</option>
         )
     })
     
