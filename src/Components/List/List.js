@@ -13,7 +13,7 @@ const List = () => {
     const [kamera, setKamera] = useState(false);
     const [motori, setMotori] = useState([]);
     const [motoriLoaded, setMotoriLoaded] = useState(false)
-    const [selectMotor, setSelectMotor] = useState();
+    const [selectMotor, setSelectMotor] = useState("");
 
     const handleName = (e) =>{
         setNaziv(e.target.value);
@@ -25,6 +25,7 @@ const List = () => {
 
     const handleMotor = (e) => {
         setSelectMotor(e.target.value);
+        console.log('3', selectMotor)
     }
 
     const handlePolovno = (e) =>{
@@ -120,11 +121,12 @@ const List = () => {
 
     render = motori.map((member) => {
         return(
-            <option value={member}>{member.name}</option>
+            <option value={member._id}>{member.name}</option>
         )
     })
     
     console.log('1', motori)
+    console.log('2', selectMotor)
 
 return(
     <div className="list">
@@ -134,7 +136,7 @@ return(
         <label>Cijena</label>
         <input type="text" onChange={handleCijena}></input>
         <label>Motor</label>
-        <select value={selectMotor} name="motors" id="cars" onChange={handleMotor} onClick={getMotors}>
+        <select name="motors" id="cars" onChange={handleMotor} onClick={getMotors}>
            {render}
         </select>
         <div>

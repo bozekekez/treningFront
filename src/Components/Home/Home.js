@@ -7,6 +7,7 @@ const Home = () =>{
     const [loaded, setLoaded] = useState(false);
     let history = useHistory();
 
+    
     useEffect(() => {
         fetch('http://localhost:3000/', {
             method: 'get',
@@ -14,8 +15,8 @@ const Home = () =>{
             })
             .then(resopnse => resopnse.json())
             .then(temporary => {
-                setAuti(temporary)
-                setLoaded(true)
+                    setAuti(temporary)
+                    setLoaded(true)   
             })
     }, [loaded]);
 
@@ -25,19 +26,36 @@ const Home = () =>{
 
     console.log(auti)        
 
-    const render = auti.map(member =>{
-        return (
-            <div className="kartica" onClick={() => nameLink(member._id)}>
-                <h3>{member.name}</h3>
-                <p>{member.cijena}</p>
-            </div>
-        )
-    })
-    
+    // let render;
 
+    // if(loaded === true)
+    // {
+    //     render = auti.map(member =>{
+    //         return (
+    //             <div key={member._id} className="kartica" onClick={() => nameLink(member._id)}>
+    //                 <h3>{member.name}</h3>
+    //                 <p>{member.cijena}</p>
+    //             </div>
+    //         )
+    //     })
+    // }
+    
     return(
         <div className="karticeHome">
-            {render}
+            { loaded === false ?
+            <div className="spiner">
+            <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            :
+            auti.map(member =>{
+                return (
+                    <div key={member._id} className="kartica" onClick={() => nameLink(member._id)}>
+                        <h3>{member.name}</h3>
+                        <p>{member.cijena}</p>
+                    </div>
+                )
+                })
+            }
         </div>
     )
 }

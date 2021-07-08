@@ -13,8 +13,8 @@
 }
 
 .kartica{
-    height: 7rem;
-    width: 7rem;
+    height: 9rem;
+    width: 9rem;
     border: 1px solid gray;
     margin: 1rem;
     border-radius: 10px;
@@ -22,6 +22,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .karticeParent{
@@ -30,6 +32,12 @@
     flex-wrap: wrap;
     margin-left: 15%;
     margin-right: 15%;
+    justify-content: space-between;
+}
+
+.karticeParent::after{
+    content: "";
+    flex: auto;
 }
 
 /* .forma{

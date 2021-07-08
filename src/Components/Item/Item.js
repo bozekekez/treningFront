@@ -1,16 +1,18 @@
 import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams } from "react-router-dom";
 import React, { useState, useEffect, useContext } from 'react';
+import './Item.css'
 
 const Item = () =>{
     const [auti, setAuti] = useState([])
     const [loadedItem, setLoadedItem] = useState(false);
+    let render = [];
 
-    const params = new URLSearchParams(window.location.search);
+    const params = window.location.pathname;
     
     console.log('1', params)
     
     useEffect(() => {
-        fetch(`http://localhost:3000/item/${params}`, {
+        fetch(`http://localhost:3000${params}`, {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -22,9 +24,9 @@ const Item = () =>{
     }, [loadedItem]);
     console.log(auti)        
 
-    // const render = auti.map(member =>{
+    // render = auti.map(member =>{
     //     return (
-    //         <div className="kartica" >
+    //         <div className="item" >
     //             <h3>{member.name}</h3>
     //             <p>{member.cijena}</p>
     //         </div>
@@ -33,8 +35,19 @@ const Item = () =>{
     
 
     return(
-        <div className="karticeHome">
-            {/* {render} */}
+        <div className="itemDiv">
+            { loadedItem === false ?
+            <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            :
+            auti.map(member =>{
+                return (
+                    <div className="item" >
+                        <h3>{member.name}</h3>
+                        <p>{member.cijena}</p>
+                    </div>
+                )
+            })
+            }  
         </div>
     )
 }

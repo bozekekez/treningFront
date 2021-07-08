@@ -12,6 +12,7 @@ const Search = () => {
     const [auto, setAuto] = useState([])
     const [senzor, setSenzor] = useState(false);
     const [kamera, setKamera] = useState(false);
+    let history = useHistory();
     
     const handleChange = (e) => {
         setName(e.target.value);
@@ -97,9 +98,13 @@ const Search = () => {
         setCijena(e.target.value)
     }
 
+    const nameLink = (_id) =>{
+        history.push(`/item/${_id}`);
+    }
+
     const render = auto.map(member =>{
         return (
-            <div className="kartica">
+            <div className="kartica" onClick={() => nameLink(member._id)}>
                 <h3>{member.name}</h3>
                 <p>{member.cijena}</p>
             </div>

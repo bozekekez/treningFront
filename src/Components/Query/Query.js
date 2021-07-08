@@ -12,6 +12,7 @@ const Query = ({location}) => {
     const [auto, setAuto] = useState([])
     const [senzor, setSenzor] = useState(false);
     const [kamera, setKamera] = useState(false);
+    let history = useHistory();
     
     const handleChange = (e) => {
         setName(e.target.value);
@@ -71,10 +72,8 @@ const Query = ({location}) => {
                 polovno: polovno,
                 servis: servis,
                 klima: klima,  
-                dodatno:{
-                    senzor: senzor,
-                    kamera: kamera
-                }
+                senzor: senzor,
+                kamera: kamera
             })
         }
         if(cijena){
@@ -83,7 +82,21 @@ const Query = ({location}) => {
                 polovno: polovno,
                 servis: servis,
                 klima: klima,  
-                cijena: cijena
+                cijena: cijena,
+                senzor: senzor,
+                kamera: kamera
+            })
+        }
+        if(!name && cijena){
+            url = new URLSearchParams ({
+                polovno: polovno,
+                servis: servis,
+                klima: klima,  
+                cijena: cijena,
+                dodatno:{
+                    senzor: senzor,
+                    kamera: kamera
+                }
             })
         }
         fetch('http://localhost:3000/query?' + url, {
@@ -107,9 +120,13 @@ const Query = ({location}) => {
         setCijena(e.target.value)
     }
 
+    const nameLink = (_id) =>{
+        history.push(`/item/${_id}`);
+    }
+
     const render = auto.map(member =>{
         return (
-            <div className="kartica">
+            <div className="kartica" onClick={() => nameLink(member._id)}>
                 <h3>{member.name}</h3>
                 <p>{member.cijena}</p>
             </div>
