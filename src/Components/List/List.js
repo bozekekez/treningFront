@@ -121,7 +121,7 @@ const List = () => {
 
     render = motori.map((member) => {
         return(
-            <option value={member._id}>{member.name}</option>
+            <option value={member.motoName}>{member.motoName}</option>
         )
     })
     

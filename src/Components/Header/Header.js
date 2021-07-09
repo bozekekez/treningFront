@@ -24,6 +24,10 @@ const Header = () => {
     const handleMotori = () =>{
         history.push('/motori');
     }
+
+    const handleDelete = () =>{
+        history.push('/delete');
+    }
 return(
     <div className="navbar">
         <button className="botun" onClick={handleClick}>Home</button>
@@ -31,6 +35,7 @@ return(
         <button className="botun" onClick={handleQuery}>Query</button>
         <button className="botun" onClick={handleList}>List</button>
         <button className="botun" onClick={handleMotori}>Motori</button>
+        <button className="botun" onClick={handleDelete}>Delete</button>
     </div>
 )
 }

@@ -6,6 +6,7 @@ import Query from './Components/Query/Query';
 import Motori from './Components/Motori/Motori';
 import Home from './Components/Home/Home';
 import Item from './Components/Item/Item';
+import Delete from './Components/Delete/Delete';
 
 import { BrowserRouter as Router, Switch, Route, Link, Redirect, HashRouter, useHistory, useParams } from "react-router-dom";
 
@@ -32,7 +33,9 @@ function App() {
         <Route path="/item" render={() =>(
           <Item />
         )}/>
-        
+        <Route exact={true} path="/delete" render={() =>(
+          <Delete />
+        )}/>
       </div>
     </Router>
   );
