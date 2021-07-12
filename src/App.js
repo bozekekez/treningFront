@@ -7,14 +7,25 @@ import Motori from './Components/Motori/Motori';
 import Home from './Components/Home/Home';
 import Item from './Components/Item/Item';
 import Delete from './Components/Delete/Delete';
-
+import HeaderKnjige from './Components/Header/HeaderKnjige'
+import AddBook from './Components/Adding/AddBook'
+import { ItemContext } from './Components/Context/Context';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect, HashRouter, useHistory, useParams } from "react-router-dom";
+import { useState } from 'react';
 
 function App() {
+  const [header, setHeader] = useState('auti');
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div >
-        <Header/>
+      <ItemContext.Provider value={{header, setHeader}}>
+        { header === 'auti' ?
+          <Header/>
+        : header === 'knjige' ?
+          <HeaderKnjige/>
+        :
+          <Header/>
+        }
         <Route exact={true} path="/search" render={() =>(
           <Search />
         )}/>
@@ -36,6 +47,13 @@ function App() {
         <Route exact={true} path="/delete" render={() =>(
           <Delete />
         )}/>
+        <Route exact={true} path="/books" render={() =>(
+          <p>books</p>
+        )}/>
+        <Route exact={true} path="/books/addbook" render={() => (
+          <AddBook/>
+        )}/>
+      </ItemContext.Provider>
       </div>
     </Router>
   );
