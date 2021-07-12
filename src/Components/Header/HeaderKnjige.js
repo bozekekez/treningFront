@@ -11,6 +11,11 @@ const Header = () => {
         history.push('/books/addbook');
     }
 
+    const handleAddAuthor = () =>{
+        history.push('/books/addauthor');
+    }
+
+
     const handleAuti = () =>{
         setHeader('auti')
         history.push('/');
@@ -19,6 +24,7 @@ const Header = () => {
 return(
     <div className="navbarKnjige">
         <button className="botunKnjige" onClick={handleAdd}>Add Book</button>
+        <button className="botunKnjige" onClick={handleAddAuthor}>Add Author</button>
         <button className="botun1Knjige" onClick={handleAuti}>Auti</button>
     </div>
 )

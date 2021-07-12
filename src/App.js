@@ -12,6 +12,7 @@ import AddBook from './Components/Adding/AddBook'
 import { ItemContext } from './Components/Context/Context';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect, HashRouter, useHistory, useParams } from "react-router-dom";
 import { useState } from 'react';
+import AddAuthor from './Components/Adding/AddAuthor';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -52,6 +53,9 @@ function App() {
         )}/>
         <Route exact={true} path="/books/addbook" render={() => (
           <AddBook/>
+        )}/>
+        <Route exact={true} path="/books/addauthor" render={() => (
+          <AddAuthor/>
         )}/>
       </ItemContext.Provider>
       </div>
