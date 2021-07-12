@@ -8,6 +8,7 @@ const Delete = () =>{
     const [message, setMessage] = useState('');
     let history = useHistory();
     const [check, setCheck] = useState(false)
+    const [selected, setSelected] = useState()
 
     useEffect(() => {
         fetch('http://localhost:3000/delete', {
@@ -40,12 +41,13 @@ const Delete = () =>{
 
     console.log(auti)        
 
-    const provjera = () => {
+    const provjera = (_id) => {
         // setCheck(true)
+        setSelected(_id)
         if(check === false){
             setCheck(true)
         }
-        if(check === true){
+        if(check === true && selected === _id){
             setCheck(false)
         }
     }
@@ -66,8 +68,11 @@ const Delete = () =>{
                     <div key={member._id} className="delKartica" >
                         <h3>{member.name}</h3>
                         <p>{member.cijena}</p>
-                        {check === false ?
-                        <button onClick={provjera}>x</button>
+                        { check === false ?
+                        <button onClick={() => provjera(member._id)}>x</button>
+                        :
+                        member._id !== selected ?
+                        <button onClick={() => provjera(member._id)}>x</button>
                         :
                         <div>
                             <button onClick={() => nameLink(member._id, member.name)}>Da</button>
