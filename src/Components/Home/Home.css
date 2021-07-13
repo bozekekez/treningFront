@@ -11,13 +11,11 @@
 .karticeHome::after{
     content: "";
     flex: auto;
-
 }
 
 .spiner{
     position: absolute;
-    justify-self: center;
-    align-self: center;
+    left: 47%
 }
 
 .lds-default {

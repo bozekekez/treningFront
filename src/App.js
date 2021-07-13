@@ -13,18 +13,25 @@ import { ItemContext } from './Components/Context/Context';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect, HashRouter, useHistory, useParams } from "react-router-dom";
 import { useState } from 'react';
 import AddAuthor from './Components/Adding/AddAuthor';
-import Filter from './Components/Filter/Filter'
+import Filter from './Components/Filter/Filter';
+import HeaderMarket from './Components/Header/HeaderMarket';
+import Login from './Components/Login/Login'
+import Market from './Components/Market/Market';
+import Sell from './Components/Market/Sell'
 
 function App() {
   const [header, setHeader] = useState('auti');
+  const [logged, setLogged] = useState('');
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div >
-      <ItemContext.Provider value={{header, setHeader}}>
+      <ItemContext.Provider value={{header, setHeader, logged, setLogged}}>
         { header === 'auti' ?
           <Header/>
         : header === 'knjige' ?
           <HeaderKnjige/>
+        : header === 'market' ?
+          <HeaderMarket/>
         :
           <Header/>
         }
@@ -60,6 +67,15 @@ function App() {
         )}/>
         <Route exact={true} path="/books/filter" render={() => (
           <Filter/>
+        )}/>
+        <Route exact={true} path="/market/login" render={() => (
+          <Login/>
+        )}/>
+        <Route exact={true} path="/market" render={() => (
+          <Market/>
+        )}/>
+        <Route exact={true} path="/market/sell" render={() => (
+          <Sell/>
         )}/>
       </ItemContext.Provider>
       </div>

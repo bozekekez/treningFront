@@ -33,11 +33,19 @@ const Header = () => {
 
     const handleKnjige = () =>{
         setHeader('knjige');
+        document.body.style = 'background: rgb(198, 242, 248)';
         history.push('/books');
+    }
+
+    const handleLogin = () => {
+        setHeader('market');
+        document.body.style = 'background: #e6e6ff';
+        history.push('/market');
     }
 
 return(
     <div className="navbar">
+        <button className="botun2" onClick={handleLogin}>Market</button>
         <button className="botun" onClick={handleClick}>Home</button>
         <button className="botun" onClick={handleSearch}>Search</button>
         <button className="botun" onClick={handleQuery}>Query</button>
