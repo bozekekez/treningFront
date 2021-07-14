@@ -1,8 +1,13 @@
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 import React, { useState, useEffect, useContext } from 'react';
+import { ItemContext } from '../Context/Context'
 import './Home.css'
+import car from './car.png'
+import books from './books.png'
+import market from './market.png'
 
 const Home = () =>{
+    const {header, setHeader, isHome, setIsHome} = useContext(ItemContext);
     const [auti, setAuti] = useState([])
     const [loaded, setLoaded] = useState(false);
     let history = useHistory();
@@ -26,21 +31,33 @@ const Home = () =>{
 
     console.log(auti)        
 
-    // let render;
+    const handleAuti = () =>{
+        setIsHome(true)
+    }
 
-    // if(loaded === true)
-    // {
-    //     render = auti.map(member =>{
-    //         return (
-    //             <div key={member._id} className="kartica" onClick={() => nameLink(member._id)}>
-    //                 <h3>{member.name}</h3>
-    //                 <p>{member.cijena}</p>
-    //             </div>
-    //         )
-    //     })
-    // }
-    
+    const handleKnjige = () =>{
+        setHeader('knjige');
+        document.body.style = 'background: rgb(198, 242, 248)';
+        history.push(`/knjige`);
+        setIsHome(true)
+    }
+
+    const handleMarket = () =>{
+        setHeader('market');
+        document.body.style = 'background: #e6e6ff';
+        history.push('/market');
+        setIsHome(true)
+    }
+
     return(
+        <div>
+        { isHome === false?
+        <div className="landing">
+        <button className="landingButton" onClick={handleAuti}><img src={car} className="slika"></img></button>
+        <button className="landingButton" onClick={handleKnjige}><img src={books} className="slika"></img></button>
+        <button className="landingButton" onClick={handleMarket}><img src={market} className="slika"></img></button>
+        </div>
+        :
         <div className="karticeHome">
             { loaded === false ?
             <div className="spiner">
@@ -56,6 +73,8 @@ const Home = () =>{
                 )
                 })
             }
+        </div>
+        }
         </div>
     )
 }

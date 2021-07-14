@@ -1,0 +1,28 @@
+.karticaMarket{
+    height: 9rem;
+    width: 9rem;
+    border: 1px solid gray;
+    margin: 1rem;
+    border-radius: 10px;
+    background-color: rgb(185, 236, 228);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-basis: auto;
+}
+
+.market{
+    margin-top: 3rem;
+}
+
+.marketSelect{
+    top: 4rem;
+    position: absolute;
+    left: 45%;
+}
+
+.marketChild{
+    margin: 5%;
+}

@@ -22,10 +22,11 @@ import Sell from './Components/Market/Sell'
 function App() {
   const [header, setHeader] = useState('auti');
   const [logged, setLogged] = useState('');
+  const [isHome, setIsHome] = useState(false);
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div >
-      <ItemContext.Provider value={{header, setHeader, logged, setLogged}}>
+      <ItemContext.Provider value={{header, setHeader, logged, setLogged, isHome, setIsHome}}>
         { header === 'auti' ?
           <Header/>
         : header === 'knjige' ?

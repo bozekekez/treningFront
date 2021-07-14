@@ -33,12 +33,18 @@ const Login = () => {
             })
         })
         .then(resopnse => resopnse.json())
-        .then(article =>{
-            if (article){
-                    console.log(article)
-                    setLogged(article);
-                    history.push('/market');
-                }
+        .then(article => {
+            if(article === "Username not found"){
+                setMessage("Username not found")
+            }
+            else if(article === 'Wrong password'){
+                setMessage("Incorect password")
+            }
+            else if (article){
+                console.log('1', article)
+                setLogged(article);
+                history.push('/market');
+            }
         })
     }
 
@@ -84,6 +90,7 @@ const Login = () => {
     }
 return(
     <div className="list">
+        {message}
         { register === false ?
         <>
             <form onSubmit={handleSubmit} className="forma">
@@ -109,7 +116,6 @@ return(
             </form>
             <button onClick={handleBack}>Back</button>
         </>
-
         }
        
     </div>

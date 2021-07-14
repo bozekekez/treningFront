@@ -35,6 +35,10 @@ const HeaderMarket = () => {
         history.push('/market/sell');
     }
 
+    const handleMarket = () => {
+        history.push('/market');
+    }
+
     console.log(logged)
 return (
     <div className="navbarMarket">
@@ -50,6 +54,7 @@ return (
         :
             <button className="botunMarket" onClick={handleLogin}>Login</button>
         }
+        <button className="botunMarket" onClick={handleMarket}>Market</button>
         <button className="botunMarket" onClick={handleAddAuthor}>Search</button>
         <button className="botun1Market" onClick={handleAuti}>Auti</button>
     </div>

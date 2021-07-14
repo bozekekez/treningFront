@@ -13,9 +13,34 @@
     flex: auto;
 }
 
+.landing{
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 10rem;
+    justify-content: space-between;
+}
+
 .spiner{
     position: absolute;
     left: 47%
+}
+
+.slika{
+  width: 20rem;
+}
+
+.landingButton{
+  border-radius: 20px;
+  background-color: rgba(233, 236, 56, 0.589);
+  cursor: pointer;
+  transition: 1.5s;
+}
+
+.landingButton:hover{
+  transform: scale(1.2)
 }
 
 .lds-default {
