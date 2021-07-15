@@ -15,9 +15,10 @@ import { useState } from 'react';
 import AddAuthor from './Components/Adding/AddAuthor';
 import Filter from './Components/Filter/Filter';
 import HeaderMarket from './Components/Header/HeaderMarket';
-import Login from './Components/Login/Login'
+import Login from './Components/Login/Login';
 import Market from './Components/Market/Market';
-import Sell from './Components/Market/Sell'
+import Sell from './Components/Market/Sell';
+import Article from './Components/Article/Article';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -77,6 +78,9 @@ function App() {
         )}/>
         <Route exact={true} path="/market/sell" render={() => (
           <Sell/>
+        )}/>
+        <Route path="/market/article" render={() => (
+          <Article/>
         )}/>
       </ItemContext.Provider>
       </div>

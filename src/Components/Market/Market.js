@@ -11,6 +11,9 @@ const Market = () =>{
     const [authorsLoaded, setAuthorsLoaded] = useState(false)
     const [allAuthors, setAllAuthors] = useState([]);
     const [filter, setFilter] = useState(false);
+    const [message, setMessage] = useState();
+    const [search, setSearch] = useState([]);
+    const [searchLoaded, setSearchLoaded] = useState(false);
     
     let url = new URLSearchParams ({
         user: author
@@ -43,7 +46,7 @@ const Market = () =>{
     }, [loaded]);
 
     const nameLink = (_id) =>{
-        history.push(`/item/${_id}`);
+        history.push(`/market/article/${_id}`);
     }
 
     const handleAutor = (e) => {
@@ -70,20 +73,63 @@ const Market = () =>{
             })
         }
     }
+
+     const handleSearch = (e) => {
+        // setSearchField({article: e.target.value})
+        // let url = new URLSearchParams ({
+        //     article: e.target.value
+        // })
+        if(e.target.value.length > 2)
+        {
+            fetch('http://localhost:3000/market?' + new URLSearchParams ({
+                article: e.target.value
+            }), {
+			method: 'get',
+			headers: {'Content-Type': 'application/json'},
+            }).then(resopnse => resopnse.json())
+            .then(temporary => {
+            setSearch(temporary)
+            if(!temporary[0]) {
+                //setMessage('Nije pronađeno ništa po tim kriterijima')
+            } if(temporary[0]) {
+                setMessage('')
+                setSearchLoaded(true)
+            }
+        })
+        }
+    }
     
+    console.log(searchLoaded)
+    console.log(search)
+
     let render = allAuthors.map((member) => {
         return(
             <option key={member._id} value={member.username}>{member.username}</option>
         )
     })
     
+    let autoComplete;
+
+    if(searchLoaded === true ){
+        autoComplete = search.map(member => {
+            return(
+                <p className="auto" key={member._id} onClick={() => nameLink(member._id)}>{member.article} by: {member.user}</p>
+            )
+        })
+    }
+
     return(
+        <div className="marketParent">
+            {message}
         <div className="market">
-        <select className="marketSelect" name="users" id="users" onChange={handleAutor} onClick={getAuthors}>
-            <option value='reset'>Reset</option>
-            {render}
-        </select>
-        <div className="karticeHome">
+            <select className="marketSelect" name="users" id="users" onChange={handleAutor} onClick={getAuthors}>
+                <option value='reset'>Reset</option>
+                {render}
+            </select>
+            <input  type="search" onChange={handleSearch}></input>
+            {autoComplete}
+            </div>
+        <div className="karticeMarket">
             { loaded === false ?
             <div className="spiner">
             <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -102,6 +148,7 @@ const Market = () =>{
             }
         </div>
         </div>
+        
     )
 }
 
