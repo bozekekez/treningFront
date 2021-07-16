@@ -35,6 +35,10 @@ const HeaderMarket = () => {
         history.push('/market');
     }
 
+    const handleProfil = () =>{
+        history.push(`/profile/${logged}`)
+    }
+
     console.log(logged)
 return (
     <div className="navbarMarket">
@@ -43,7 +47,7 @@ return (
             <button className="botunMarket" onClick={handleLogin}>Login</button>
         :logged !== ''?
             <div>
-            <button className="botunMarket" >{logged}</button>
+            <button className="botunMarket" onClick={handleProfil}>{logged}</button>
             <button className="botunMarket" onClick={handleSignOut}>Log out</button>
             <button className="botunMarket" onClick={handleSell}>Sell</button>
             </div>

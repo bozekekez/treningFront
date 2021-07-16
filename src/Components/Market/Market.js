@@ -14,6 +14,7 @@ const Market = () =>{
     const [message, setMessage] = useState();
     const [search, setSearch] = useState([]);
     const [searchLoaded, setSearchLoaded] = useState(false);
+    const [criteria, setCriteria] = useState('name')
     
     let url = new URLSearchParams ({
         user: author
@@ -76,14 +77,12 @@ const Market = () =>{
 
      const handleSearch = (e) => {
         // setSearchField({article: e.target.value})
-        // let url = new URLSearchParams ({
-        //     article: e.target.value
-        // })
-        if(e.target.value.length > 2)
-        {
-            fetch('http://localhost:3000/market?' + new URLSearchParams ({
+
+        if(criteria === 'name' && e.target.value.length > 2){
+            let url = new URLSearchParams ({
                 article: e.target.value
-            }), {
+            })
+            fetch('http://localhost:3000/market?' + url, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
             }).then(resopnse => resopnse.json())
@@ -97,10 +96,47 @@ const Market = () =>{
             }
         })
         }
+        if(criteria === 'price'){
+            url = new URLSearchParams ({
+                price: e.target.value
+            })
+            fetch('http://localhost:3000/market?' + url, {
+			method: 'get',
+			headers: {'Content-Type': 'application/json'},
+            }).then(resopnse => resopnse.json())
+            .then(temporary => {
+            setAuti(temporary)
+            if(!temporary[0]) {
+                //setMessage('Nije pronađeno ništa po tim kriterijima')
+            } if(temporary[0]) {
+                setMessage('')
+                setSearchLoaded(true)
+            }
+            })
+        }
+        // if(e.target.value.length > 2)
+        // {
+        //     fetch('http://localhost:3000/market?' + url, {
+		// 	method: 'get',
+		// 	headers: {'Content-Type': 'application/json'},
+        //     }).then(resopnse => resopnse.json())
+        //     .then(temporary => {
+        //     setSearch(temporary)
+        //     if(!temporary[0]) {
+        //         //setMessage('Nije pronađeno ništa po tim kriterijima')
+        //     } if(temporary[0]) {
+        //         setMessage('')
+        //         setSearchLoaded(true)
+        //     }
+        // })
+        // }
     }
     
-    console.log(searchLoaded)
-    console.log(search)
+    const handleCriteria = (e) =>{
+        setCriteria(e.target.value);
+    }
+
+    console.log(criteria)
 
     let render = allAuthors.map((member) => {
         return(
@@ -125,6 +161,10 @@ const Market = () =>{
             <select className="marketSelect" name="users" id="users" onChange={handleAutor} onClick={getAuthors}>
                 <option value='reset'>Reset</option>
                 {render}
+            </select>
+            <select name="krizeriji" id="krizeriji" onChange={handleCriteria}>
+                <option value='name'>By article</option>
+                <option value='price'>By price</option>
             </select>
             <input  type="search" onChange={handleSearch}></input>
             {autoComplete}

@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams } from "react-router-dom";
 import React, { useState, useEffect, useContext } from 'react';
+import { ItemContext } from '../Context/Context'
 
 const Article = () =>{
+    const {basket, setBasket} = useContext(ItemContext);
     const [auti, setAuti] = useState([])
     const [loadedItem, setLoadedItem] = useState(false);
     let render = [];
@@ -21,7 +23,12 @@ const Article = () =>{
                 setLoadedItem(true)
             })
     }, [loadedItem]);
-    console.log(auti)        
+    console.log(auti)       
+    
+    const bascet = (price) => {
+        setBasket(basket + parseInt(price));
+        console.log(basket)
+    }
 
     return(
         <div className="itemDiv">
@@ -34,6 +41,7 @@ const Article = () =>{
                         <h3>{member.article}</h3>
                         <p>{member.price}</p>
                         <p>{member.user}</p>
+                        <button onClick={() => bascet(member.price)}>Add</button>
                     </div>
                 )
             })
