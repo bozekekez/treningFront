@@ -3,14 +3,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ItemContext } from '../Context/Context'
 
 const Article = () =>{
-    const {basket, setBasket} = useContext(ItemContext);
+    const {basket, setBasket, setCart, cart} = useContext(ItemContext);
     const [auti, setAuti] = useState([])
     const [loadedItem, setLoadedItem] = useState(false);
     let render = [];
 
     const params = window.location.pathname;
-    
-    console.log('1', params)
     
     useEffect(() => {
         fetch(`http://localhost:3000${params}`, {
@@ -22,13 +20,22 @@ const Article = () =>{
                 setAuti(temporary)
                 setLoadedItem(true)
             })
-    }, [loadedItem]);
-    console.log(auti)       
-    
-    const bascet = (price) => {
-        setBasket(basket + parseInt(price));
-        console.log(basket)
+    }, [loadedItem]);     
+
+    const add = (price, user, article) => {
+        let sum;
+        let tempCart = {
+            article: article,
+            price: price,
+            user: user
+        }
+        setCart(cart => [...cart, tempCart])
+        sum = parseFloat(basket) + parseFloat(price)
+        setBasket(sum.toFixed(2));
     }
+
+    console.log(basket)
+    console.log(cart)
 
     return(
         <div className="itemDiv">
@@ -41,7 +48,7 @@ const Article = () =>{
                         <h3>{member.article}</h3>
                         <p>{member.price}</p>
                         <p>{member.user}</p>
-                        <button onClick={() => bascet(member.price)}>Add</button>
+                        <button onClick={() => add(member.price, member.article, member.user)}>Add</button>
                     </div>
                 )
             })

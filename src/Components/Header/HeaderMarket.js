@@ -4,7 +4,7 @@ import { ItemContext } from '../Context/Context'
 import './Header.css'
 
 const HeaderMarket = () => {
-    const {header, setHeader, logged, setLogged} = useContext(ItemContext);
+    const {header, setHeader, logged, setLogged, basket} = useContext(ItemContext);
     let history = useHistory();
 
     const handleLogin = () =>{
@@ -39,6 +39,10 @@ const HeaderMarket = () => {
         history.push(`/profile/${logged}`)
     }
 
+    const handleCart = () =>{
+        history.push('/market/cart')
+    }
+
     console.log(logged)
 return (
     <div className="navbarMarket">
@@ -46,15 +50,16 @@ return (
         { logged === '' || logged === undefined?
             <button className="botunMarket" onClick={handleLogin}>Login</button>
         :logged !== ''?
-            <div>
+            <>
             <button className="botunMarket" onClick={handleProfil}>{logged}</button>
             <button className="botunMarket" onClick={handleSignOut}>Log out</button>
             <button className="botunMarket" onClick={handleSell}>Sell</button>
-            </div>
+            </>
         :
             <button className="botunMarket" onClick={handleLogin}>Login</button>
         }
         <button className="botunMarket" onClick={handleMarket}>Market</button>
+        <button className="botunMarket" onClick={handleCart} >{basket}</button>
         <button className="botun1Market" onClick={handleAuti}>Auti</button>
     </div>
 )

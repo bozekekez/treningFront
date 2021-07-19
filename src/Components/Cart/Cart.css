@@ -1,0 +1,21 @@
+.itemCart{
+    border: 1px solid grey;
+    height: 15rem;
+    width: 15rem;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.cartDiv{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+

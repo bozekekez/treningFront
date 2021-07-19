@@ -20,16 +20,18 @@ import Market from './Components/Market/Market';
 import Sell from './Components/Market/Sell';
 import Article from './Components/Article/Article';
 import Profile from './Components/Profile/Profile';
+import Cart from './Components/Cart/Cart';
 
 function App() {
   const [header, setHeader] = useState('auti');
   const [logged, setLogged] = useState('');
   const [isHome, setIsHome] = useState(false);
   const [basket, setBasket] = useState(0);
+  const [cart, setCart] = useState([]);
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div >
-      <ItemContext.Provider value={{basket, setBasket, header, setHeader, logged, setLogged, isHome, setIsHome}}>
+      <ItemContext.Provider value={{cart, setCart, basket, setBasket, header, setHeader, logged, setLogged, isHome, setIsHome}}>
         { header === 'auti' ?
           <Header/>
         : header === 'knjige' ?
@@ -86,6 +88,9 @@ function App() {
         )}/>
         <Route path="/profile" render={() => (
           <Profile/>
+        )}/>
+        <Route exact={true} path="/market/cart" render={() => (
+          <Cart/>
         )}/>
       </ItemContext.Provider>
       </div>
