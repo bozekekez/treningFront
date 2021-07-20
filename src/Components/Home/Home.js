@@ -49,6 +49,10 @@ const Home = () =>{
         setIsHome(true)
     }
 
+    const handleBanka = () =>{
+        history.push('/banka')
+    }
+
     return(
         <div>
         { isHome === false?
@@ -56,6 +60,7 @@ const Home = () =>{
         <button className="landingButton" onClick={handleAuti}><img src={car} className="slika"></img></button>
         <button className="landingButton" onClick={handleKnjige}><img src={books} className="slika"></img></button>
         <button className="landingButton" onClick={handleMarket}><img src={market} className="slika"></img></button>
+        <button onClick={handleBanka}>Banka</button>
         </div>
         :
         <div className="karticeHome">
