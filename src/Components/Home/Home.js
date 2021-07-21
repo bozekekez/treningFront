@@ -5,6 +5,7 @@ import './Home.css'
 import car from './car.png'
 import books from './books.png'
 import market from './market.png'
+import bag from './money.png'
 
 const Home = () =>{
     const {header, setHeader, isHome, setIsHome} = useContext(ItemContext);
@@ -50,6 +51,7 @@ const Home = () =>{
     }
 
     const handleBanka = () =>{
+        setHeader('banka')
         history.push('/banka')
     }
 
@@ -60,7 +62,7 @@ const Home = () =>{
         <button className="landingButton" onClick={handleAuti}><img src={car} className="slika"></img></button>
         <button className="landingButton" onClick={handleKnjige}><img src={books} className="slika"></img></button>
         <button className="landingButton" onClick={handleMarket}><img src={market} className="slika"></img></button>
-        <button onClick={handleBanka}>Banka</button>
+        <button className="landingButton" onClick={handleBanka}><img src={bag} className="slika"></img></button>
         </div>
         :
         <div className="karticeHome">

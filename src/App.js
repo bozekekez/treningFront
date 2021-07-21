@@ -21,6 +21,7 @@ import Sell from './Components/Market/Sell';
 import Article from './Components/Article/Article';
 import Profile from './Components/Profile/Profile';
 import Cart from './Components/Cart/Cart';
+import Bank from './Components/Bank/Bank'
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -39,7 +40,7 @@ function App() {
         : header === 'market' ?
           <HeaderMarket/>
         :
-          <Header/>
+          <></>
         }
         <Route exact={true} path="/search" render={() =>(
           <Search />
@@ -91,6 +92,9 @@ function App() {
         )}/>
         <Route exact={true} path="/market/cart" render={() => (
           <Cart/>
+        )}/>
+        <Route exact={true} path="/banka" render={() => (
+          <Bank/>
         )}/>
       </ItemContext.Provider>
       </div>
