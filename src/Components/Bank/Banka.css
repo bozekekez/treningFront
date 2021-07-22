@@ -1,3 +1,20 @@
 .banka{
     margin-top: 5rem;
 }
+
+.tablica{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 2rem;
+}
+
+.bankaParent{
+    display: flex;
+    flex-direction: row;
+}
+
+.otplata {
+    margin-left: 2rem;
+    border-left: 1px solid lightblue;
+}

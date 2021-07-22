@@ -17,10 +17,10 @@ const Bank = () => {
   const [račun4, setRačun4] = useState(0);
   const [račun5, setRačun5] = useState(1000);
   const [račun6, setRačun6] = useState(1000);
-  const [račun7, setRačun7] = useState(1000);
-  const [račun8, setRačun8] = useState(1000);
-  const [račun9, setRačun9] = useState(1000);
-  const [račun10, setRačun10] = useState(1000);
+  const [račun7, setRačun7] = useState([1]);
+  const [račun8, setRačun8] = useState([1]);
+  const [račun9, setRačun9] = useState([]);
+  const [račun10, setRačun10] = useState([]);
   const [total, setTotal] = useState(
     Number(račun1) + Number(račun2) + Number(račun3) + Number(račun4)
   );
@@ -67,6 +67,8 @@ const Bank = () => {
     setRačun4(10000);
     setRačun5(10000);
     setRačun6(10000);
+    setRačun7([]);
+    setRačun8([]);
     setTotal(40000);
   };
 
@@ -134,14 +136,49 @@ const Bank = () => {
     
   };
 
-  console.log("1", račun1);
-  console.log("2", račun2);
-  console.log("3", račun3);
-  console.log("4", račun4);
-  console.log(total);
+  const handleKredit = (e) =>{
+    e.preventDefault();
+    setRačun7([]);
+    setRačun8([]);
+    let temp = račun5;
+    let tempKamata = kamata;
+    let glavnica = Number(račun5);
+    console.log(glavnica)
+    let anuitet = račun5/trans;
+    let tempArray = [];
+    let tempGlavnica = [];
+    let tempAnui = [];
+    let rata = [];
+    for (let i = 0; i < trans; i++) {
+        temp = Number(glavnica) - (Number(glavnica) * (1 - Number(tempKamata)));
+        tempArray.push(temp.toFixed(2))
+        tempGlavnica.push(glavnica.toFixed(2))
+        tempAnui.push(anuitet.toFixed(2))
+        let zbroj = anuitet + temp;
+        rata.push(zbroj.toFixed(2))
+        glavnica = Number(glavnica) - Number(anuitet);
+        console.log(i)
+        console.log(temp)
+        console.log(glavnica)
+    }
+    setRačun7(račun7 =>[račun7, ...tempArray])
+    setRačun8(račun8 =>[račun8, ...tempGlavnica])
+    setRačun9(račun9 =>[račun9, ...tempAnui])
+    setRačun10(račun10 =>[račun10, ...rata])
+  }
+
+  // console.log("1", račun1);
+  // console.log("2", račun2);
+  // console.log("3", račun3);
+  // console.log("4", račun4);
+  console.log('6', račun5)
+  console.log('5', račun7, račun8)
+  console.log(trans)
+  // console.log(total);
 
   return (
-    <div>
+    <div className="bankaParent">
+      <div>
       <div className="banka">
         <h3>Transakcije:</h3>
         <label>Total: </label>
@@ -208,6 +245,69 @@ const Bank = () => {
           <button onSubmit={handleUkamati}>Start</button>
         </form>
         <button onClick={reset}>Reset</button>
+      </div>
+    </div >
+      <div className="otplata">
+        <h3>Otplata:</h3>
+        <div>
+        <label>Total toFixed(2): </label>
+        {račun5}
+        </div>
+        <label>Total float: </label>
+        {račun6}
+        <form>
+          <label>Iznos:</label>
+          <input type="text" value={račun5} onChange={handle5}></input>
+        </form>
+        <form onSubmit={handleKredit}>
+          <label>Broj godina</label>
+          <input type="text" onChange={handleTrans}></input>
+          <label>Iznos kamate</label>
+          <input type="text" onChange={handleKamateChange}></input>
+          <button onSubmit={handleKredit}>Start</button>
+        </form>
+        <button onClick={reset}>Reset</button>
+        <div className="tablica"> 
+        <div>
+        <label>Preostala glavnica:</label>
+        {
+        račun8.map(member => {
+          return (
+            <h4>{member}</h4>
+          )
+        })
+        }
+        </div>
+        <div>
+        <label>Godišja kamata:</label>
+        { račun7.map(member => {
+          return (
+          <h4>{member}</h4>
+          )
+        })
+        }
+        </div>
+        <div>
+        <label>Godišja glavnica:</label>
+        {
+        račun9.map(member => {
+          return (
+            <h4>{member}</h4>
+          )
+        })
+        }
+        </div>
+        <div>
+        <label>Godišnja rata:</label>
+        {
+        račun10.map(member => {
+          return (
+            <h4>{member}</h4>
+          )
+        })
+        }
+        </div>
+        </div>
       </div>
     </div>
   );
