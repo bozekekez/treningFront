@@ -17,8 +17,8 @@ const Bank = () => {
   const [račun4, setRačun4] = useState(0);
   const [račun5, setRačun5] = useState(1000);
   const [račun6, setRačun6] = useState(1000);
-  const [račun7, setRačun7] = useState([1]);
-  const [račun8, setRačun8] = useState([1]);
+  const [račun7, setRačun7] = useState([]);
+  const [račun8, setRačun8] = useState([]);
   const [račun9, setRačun9] = useState([]);
   const [račun10, setRačun10] = useState([]);
   const [total, setTotal] = useState(
@@ -69,6 +69,8 @@ const Bank = () => {
     setRačun6(10000);
     setRačun7([]);
     setRačun8([]);
+    setRačun9([]);
+    setRačun10([]);
     setTotal(40000);
   };
 
@@ -140,6 +142,8 @@ const Bank = () => {
     e.preventDefault();
     setRačun7([]);
     setRačun8([]);
+    setRačun9([]);
+    setRačun10([]);
     let temp = račun5;
     let tempKamata = kamata;
     let glavnica = Number(račun5);

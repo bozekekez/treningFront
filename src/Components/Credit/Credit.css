@@ -1,0 +1,51 @@
+.celije{
+    border: 1px solid grey;
+    margin: 0;
+    text-align: center;
+    width: 10rem;
+    height: 1.5rem;
+}
+
+.tablicaKredit{
+    display: flex;
+    flex-direction: column;
+}
+
+.kreditParent{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.tablicaKredit{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.tablicaKreditTop{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2rem;
+    
+}
+
+.kreditSearch{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.kreditSearchTable{
+    display: flex;
+    flex-direction: column;
+}
+
+.tablicaKreditTopsSearch{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2rem;
+}

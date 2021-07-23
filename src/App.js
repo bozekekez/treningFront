@@ -22,6 +22,8 @@ import Article from './Components/Article/Article';
 import Profile from './Components/Profile/Profile';
 import Cart from './Components/Cart/Cart';
 import Bank from './Components/Bank/Bank'
+import Credit from './Components/Credit/Credit';
+import CreditSearch from './Components/Credit/CreditSearch';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -95,6 +97,12 @@ function App() {
         )}/>
         <Route exact={true} path="/banka" render={() => (
           <Bank/>
+        )}/>
+         <Route exact={true} path="/credit" render={() => (
+          <Credit/>
+        )}/>
+         <Route exact={true} path="/credit/search" render={() => (
+          <CreditSearch/>
         )}/>
       </ItemContext.Provider>
       </div>
