@@ -1,59 +1,129 @@
-import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
-import React, { useState, useEffect, useContext } from 'react';
-import { ItemContext } from '../Context/Context'
-import './Header.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { ItemContext } from "../Context/Context";
+import "./Header.css";
+import list from './list.png'
 
 const Header = () => {
-    const {header, setHeader} = useContext(ItemContext);
-    let history = useHistory();
+  const { header, setHeader } = useContext(ItemContext);
+  const [meni, setMeni] = useState(false)
+  let history = useHistory();
 
-    const handleClick = () => {
-        history.push('/');
+  const handleClick = () => {
+    history.push("/");
+  };
+
+  const handleSearch = () => {
+    history.push("/search");
+  };
+
+  const handleList = () => {
+    history.push("/list");
+  };
+
+  const handleQuery = () => {
+    history.push("/query");
+  };
+
+  const handleMotori = () => {
+    history.push("/motori");
+  };
+
+  const handleDelete = () => {
+    history.push("/delete");
+  };
+
+  const handleKnjige = () => {
+    setHeader("knjige");
+    document.body.style = "background: rgb(198, 242, 248)";
+    history.push("/books");
+  };
+
+  const handleLogin = () => {
+    setHeader("market");
+    document.body.style = "background: #e6e6ff";
+    history.push("/market");
+  };
+
+  const handleMeni = () => {
+    if(meni === false){
+      setMeni(true)
     }
-
-    const handleSearch = () =>{
-        history.push('/search');
+    if (meni === true) {
+      setMeni(false)
     }
+  }
 
-    const handleList = () =>{
-        history.push('/list');
-    }
+  const handleAuti = () =>{
+    setHeader('auti');
+    document.body.style = 'background: honeydew'; 
+    history.push('/');
+  }
 
-    const handleQuery = () =>{
-        history.push('/query');
-    }
+  const handleBanka = () =>{
+    history.push('banka/');
+  }
 
-    const handleMotori = () =>{
-        history.push('/motori');
-    }
+  const handleKredit = () =>{
+    history.push('/credit');
+  }
 
-    const handleDelete = () =>{
-        history.push('/delete');
-    }
 
-    const handleKnjige = () =>{
-        setHeader('knjige');
-        document.body.style = 'background: rgb(198, 242, 248)';
-        history.push('/books');
-    }
 
-    const handleLogin = () => {
-        setHeader('market');
-        document.body.style = 'background: #e6e6ff';
-        history.push('/market');
-    }
-
-return(
+  return (
+    <div className="headerParent">
     <div className="navbar">
-        <button className="botun2" onClick={handleLogin}>Market</button>
-        <button className="botun" onClick={handleClick}>Home</button>
-        <button className="botun" onClick={handleSearch}>Search</button>
-        <button className="botun" onClick={handleQuery}>Query</button>
-        <button className="botun" onClick={handleList}>List</button>
-        <button className="botun" onClick={handleMotori}>Motori</button>
-        <button className="botun" onClick={handleDelete}>Delete</button>
-        <button className="botun1" onClick={handleKnjige}>Knjige</button>
+      <button className="botun2" onClick={handleMeni}>
+        <img className="meni" src={list}/>
+      </button>
+      
+      {/* <button className="botun2" onClick={handleLogin}>
+        eo
+      </button> */}
+      <button className="botun" onClick={handleClick}>
+        Home
+      </button>
+      <button className="botun" onClick={handleSearch}>
+        Search
+      </button>
+      <button className="botun" onClick={handleQuery}>
+        Query
+      </button>
+      <button className="botun" onClick={handleList}>
+        List
+      </button>
+      <button className="botun" onClick={handleMotori}>
+        Motori
+      </button>
+      <button className="botun" onClick={handleDelete}>
+        Delete
+      </button>
+      {/* <button className="botun1" onClick={handleKnjige}>
+        Knjige
+      </button> */}
     </div>
-)
-}
+    { meni === true ?
+      <div className="meniDeploy">
+        <button className="meniBotun" onClick={handleKnjige}>
+        Knjige
+      </button>
+      <button className="meniBotun" onClick={handleLogin}>
+        Market
+      </button> 
+      <button className="meniBotun" onClick={handleAuti}>Auti</button>
+      <button className="meniBotun" onClick={handleBanka}>Banka</button>
+      <button className="meniBotun" onClick={handleKredit}>Kredit</button>
+      </div>
+      :
+      <></>
+      }
+    </div>
+  );
+};
 export default Header;

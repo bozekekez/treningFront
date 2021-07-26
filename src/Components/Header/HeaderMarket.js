@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-
 import React, { useState, useEffect, useContext } from 'react';
 import { ItemContext } from '../Context/Context'
 import './Header.css'
+import list from './list.png'
 
 const HeaderMarket = () => {
     const {header, setHeader, logged, setLogged, basket} = useContext(ItemContext);
+    const [meni, setMeni] = useState(false)
     let history = useHistory();
 
     const handleLogin = () =>{
@@ -43,10 +45,30 @@ const HeaderMarket = () => {
         history.push('/market/cart')
     }
 
+  const handleMeni = () => {
+    if(meni === false){
+      setMeni(true)
+    }
+    if (meni === true) {
+      setMeni(false)
+    }
+  }
+
+  const handleBanka = () =>{
+    history.push('/banka');
+  }
+
+  const handleKredit = () =>{
+    history.push('/credit');
+  }
+
     console.log(logged)
 return (
+    <div>
     <div className="navbarMarket">
-        <button className="botun2Market" onClick={handleKnjige}>Knjige</button>
+        <button className="botun2" onClick={handleMeni}>
+        <img className="meni" src={list}/>
+      </button>
         { logged === '' || logged === undefined?
             <button className="botunMarket" onClick={handleLogin}>Login</button>
         :logged !== ''?
@@ -60,7 +82,23 @@ return (
         }
         <button className="botunMarket" onClick={handleMarket}>Market</button>
         <button className="botunMarket" onClick={handleCart} >{basket}</button>
-        <button className="botun1Market" onClick={handleAuti}>Auti</button>
+        
+    </div>
+        { meni === true ?
+      <div className="meniDeploy">
+        <button className="meniBotun" onClick={handleKnjige}>
+        Knjige
+      </button>
+      <button className="meniBotun" onClick={handleLogin}>
+        Market
+      </button> 
+      <button className="meniBotun" onClick={handleAuti}>Auti</button>
+      <button className="meniBotun" onClick={handleBanka}>Banka</button>
+      <button className="meniBotun" onClick={handleKredit}>Kredit</button>
+      </div>
+      :
+      <></>
+      }
     </div>
 )
 }

@@ -24,6 +24,7 @@ import Cart from './Components/Cart/Cart';
 import Bank from './Components/Bank/Bank'
 import Credit from './Components/Credit/Credit';
 import CreditSearch from './Components/Credit/CreditSearch';
+import CreditPay from './Components/Credit/CreditPay';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -101,8 +102,11 @@ function App() {
          <Route exact={true} path="/credit" render={() => (
           <Credit/>
         )}/>
-         <Route exact={true} path="/credit/search" render={() => (
+        <Route exact={true} path="/credit/search" render={() => (
           <CreditSearch/>
+        )}/>
+         <Route exact={true} path="/credit/pay" render={() => (
+          <CreditPay/>
         )}/>
       </ItemContext.Provider>
       </div>

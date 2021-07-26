@@ -54,7 +54,8 @@ import {
               kamata: temp.toFixed(2),
               glavnicaGod: anuitet.toFixed(2),
               broj: i + 1,
-              ostatak: glavnica.toFixed(2)
+              ostatak: glavnica.toFixed(2),
+              payed: false
           })
           
           
@@ -64,6 +65,14 @@ import {
       }
       setPlan(tempPlan)
       setGenerate(true)
+    }
+
+    const plati = () =>{
+      history.push('/credit/pay')
+    }
+
+    const pregled = () =>{
+      history.push('/credit/search')
     }
 
     const uzmi = (e) =>{
@@ -101,6 +110,8 @@ import {
           </form>
           <button onClick={reset}>Reset</button>
           <button onClick={uzmi}>Uzmni kredit</button>
+          <button onClick={plati}>Plati kredit</button>
+          <button onClick={pregled}>Pregled kredita</button>
           <div > 
           <div className="tablicaKreditTop">
             <label className="celije">Broj anuiteta:</label>

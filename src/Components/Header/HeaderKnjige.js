@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-
 import React, { useState, useEffect, useContext } from 'react';
 import { ItemContext } from '../Context/Context'
 import './Header.css'
+import list from './list.png'
 
 const Header = () => {
     const {header, setHeader} = useContext(ItemContext);
+    const [meni, setMeni] = useState(false)
     let history = useHistory();
 
     const handleAdd = () =>{
@@ -27,17 +29,65 @@ const Header = () => {
 
     const handleMarket = () => {
         setHeader('market'); 
-        document.body.style = 'background: rgb(248, 244, 250);';
+        document.body.style = 'background: #e6e6ff';
         history.push('/market');
     }
+    const handleKnjige = () => {
+        setHeader("knjige");
+        document.body.style = "background: rgb(198, 242, 248)";
+        history.push("/books");
+      };
+    
+      const handleLogin = () => {
+        setHeader("market");
+        document.body.style = "background: #e6e6ff";
+        history.push("/market");
+      };
+    
+      const handleMeni = () => {
+        if(meni === false){
+          setMeni(true)
+        }
+        if (meni === true) {
+          setMeni(false)
+        }
+      }
+    
+      const handleBanka = () =>{
+        history.push('banka/');
+      }
+
+      const handleKredit = () =>{
+        history.push('/credit');
+      }
+    
 
 return (
+    <div>
     <div className="navbarKnjige">
-        <button className="botun2Knjige" onClick={handleMarket}>Market</button>
+        <button className="botun2" onClick={handleMeni}>
+        <img className="meni" src={list}/>
+      </button>
         <button className="botunKnjige" onClick={handleAdd}>Add Book</button>
         <button className="botunKnjige" onClick={handleAddAuthor}>Add Author</button>
         <button className="botunKnjige" onClick={handleFilter}>Filter</button>
-        <button className="botun1Knjige" onClick={handleAuti}>Auti</button>
+        
+    </div>
+    { meni === true ?
+      <div className="meniDeploy">
+        <button className="meniBotun" onClick={handleKnjige}>
+        Knjige
+      </button>
+      <button className="meniBotun" onClick={handleLogin}>
+        Market
+      </button> 
+      <button className="meniBotun" onClick={handleAuti}>Auti</button>
+      <button className="meniBotun" onClick={handleBanka}>Banka</button>
+      <button className="meniBotun" onClick={handleKredit}>Kredit</button>
+      </div>
+      :
+      <></>
+      }
     </div>
 )
 }
