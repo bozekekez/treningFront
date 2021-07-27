@@ -1,0 +1,129 @@
+.tick{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+.trickParent{
+    margin-top: 3rem;
+    
+}
+
+.tickdva{
+    display: flex;
+    justify-content: center;
+}
+
+.ticktri{
+    display: flex;
+    justify-content: center;
+}
+
+.tick1{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-right: gray 1px solid;
+    border-bottom: gray 1px solid;
+    border-top: transparent;
+    border-left: transparent;
+    cursor: pointer;
+}
+
+.tick2{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-left: gray 1px solid;
+    border-bottom: gray 1px solid;
+    border-top: transparent;
+    border-right: gray 1px solid;
+    cursor: pointer;
+}
+
+.tick3{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-left: gray 1px solid;
+    border-bottom: gray 1px solid;
+    border-top: transparent;
+    border-right: transparent;
+    cursor: pointer;
+}
+
+.tick4{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-left: transparent;
+    border-bottom: gray 1px solid;
+    border-top: gray 1px solid;
+    border-right: gray 1px solid;
+    cursor: pointer;
+}
+
+.tick5{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-left: gray 1px solid;
+    border-bottom: gray 1px solid;
+    border-top: gray 1px solid;
+    border-right: gray 1px solid;
+    cursor: pointer;
+}
+
+.tick6{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-left: gray 1px solid;
+    border-bottom: gray 1px solid;
+    border-top: gray 1px solid;
+    border-right: transparent;
+    cursor: pointer;
+}
+
+.tick7{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-left: transparent;
+    border-bottom: transparent;
+    border-top: gray 1px solid;
+    border-right: gray 1px solid;
+    cursor: pointer;
+}
+
+.tick8{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-left: gray 1px solid;;
+    border-bottom: transparent;
+    border-top: gray 1px solid;;
+    border-right: gray 1px solid;
+    cursor: pointer;
+}
+
+.tick9{
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    /* border: transparent; */
+    border-left: gray 1px solid;
+    border-bottom: transparent;
+    border-top: gray 1px solid;
+    border-right: transparent;
+    cursor: pointer;
+}
