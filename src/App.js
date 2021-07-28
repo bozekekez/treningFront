@@ -26,6 +26,8 @@ import Credit from './Components/Credit/Credit';
 import CreditSearch from './Components/Credit/CreditSearch';
 import CreditPay from './Components/Credit/CreditPay';
 import Tick from './Components/Tick/Tick';
+import TickTack from './Components/Tick/TickTack';
+import TickTackToe from './Components/Tick/TickTackToe';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -111,6 +113,12 @@ function App() {
         )}/>
         <Route exact={true} path="/tick" render={() => (
           <Tick/>
+        )}/>
+        <Route exact={true} path="/ticktack" render={() => (
+          <TickTack/>
+        )}/>
+        <Route exact={true} path="/ticktacktoe" render={() => (
+          <TickTackToe/>
         )}/>
       </ItemContext.Provider>
       </div>
