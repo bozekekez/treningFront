@@ -24,58 +24,95 @@ import {
       const [provjera, setProvjera] = useState(false);
       const [pobjeda, setPobjeda] = useState(false)
       const [pozeti, setPotezi] = useState(0)
-  
-        useEffect(() => { 
-        fetch('http://localhost:3000/tick', {
-        method: 'get',
-        headers: {'Content-Type': 'application/json'}
-        }).then(resopnse => resopnse.json())
-        .then(temporary => {
-            console.log('oe', temporary)
-            if(pozeti > 0){
-            setPrvo(temporary.prvo)
-            setDrugo(temporary.drugo)
-            setTrece(temporary.trece)
-            setCetvrto(temporary.cetvrto)
-            setPeto(temporary.peto)
-            setSesto(temporary.sesto)
-            setSedmo(temporary.sedmo)
-            setOsmo(temporary.osmo)
-            setDeveto(temporary.deveto)
+      const [gameId, setGameIf] = useState()  
+      const [player, setPlayer] = useState()
+      const [games, setGames] = useState([])
+      let url;
+        // useEffect(() => { 
+        // fetch('http://localhost:3000/tick', {
+        // method: 'get',
+        // headers: {'Content-Type': 'application/json'}
+        // }).then(resopnse => resopnse.json())
+        // .then(temporary => {
+        //     console.log('oe', temporary)
+        //     if(pozeti > 0){
+        //     setPrvo(temporary.prvo)
+        //     setDrugo(temporary.drugo)
+        //     setTrece(temporary.trece)
+        //     setCetvrto(temporary.cetvrto)
+        //     setPeto(temporary.peto)
+        //     setSesto(temporary.sesto)
+        //     setSedmo(temporary.sedmo)
+        //     setOsmo(temporary.osmo)
+        //     setDeveto(temporary.deveto)
+        //     }
+        //   })
+        // })
+
+        console.log('game id', gameId, red)
+
+        useEffect(() => {
+            const interval = setInterval(() => {
+               if(gameId !== undefined){
+                console.log('game id', gameId)
+                   console.log('oe svake sekunde')
+                url = new URLSearchParams({ _id: gameId });
+                fetch('http://10.13.246.226:3000/tick?' + url, {
+                method: 'get',
+                headers: {'Content-Type': 'application/json'}
+                }).then(resopnse => resopnse.json())
+                .then(temporary => {
+                console.log('oe me', temporary)
+                setPrvo(temporary.prvo)
+                setDrugo(temporary.drugo)
+                setTrece(temporary.trece)
+                setCetvrto(temporary.cetvrto)
+                setPeto(temporary.peto)
+                setSesto(temporary.sesto)
+                setSedmo(temporary.sedmo)
+                setOsmo(temporary.osmo)
+                setDeveto(temporary.deveto)
+                setRed(temporary.red)
+                })
             }
-          })
-        })
+            }, 2000);
+            return () => clearInterval(interval);
+          }, [gameId]);
 
       const handlePrvo = (e) => {
-          if(!prvo && red === true && pobjeda === false)
+          if(!prvo && red === true && pobjeda === false && player === 1) 
           {
               // setPrvo('x')
-              setRed(false)
+            //   setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
+                        _id: gameId,
                       prvo: 'x',
-                      pozeti: pozeti
+                      pozeti: pozeti,
+                      red: false
                   })
               })
               .then(resopnse => resopnse.json())
       
           }
-          if(!prvo && red === false && pobjeda === false)
+          if(!prvo && red === false && pobjeda === false && player === 2)
           {
               // setPrvo('o')
-              setRed(true)
+             // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
+                _id: gameId,
                       prvo: 'o',
-                      pozeti: pozeti
+                      pozeti: pozeti,
+                      red: true
                   })
               })
               .then(resopnse => resopnse.json())
@@ -83,271 +120,349 @@ import {
           
       }
       const handleDrugo = (e) => {
-          if(!drugo && red === true && pobjeda === false)
+          if(!drugo && red === true && pobjeda === false && player === 1)
           {
               // setDrugo('x')
-              setRed(false)
+             // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
+                _id: gameId,
                       drugo: 'x',
-                      pozeti: pozeti
+                      pozeti: pozeti,
+                      red: false
                   })
               })
               .then(resopnse => resopnse.json())
           }
-          if(!drugo && red === false && pobjeda === false)
+          if(!drugo && red === false && pobjeda === false && player === 2) 
           {
               // setDrugo('o')
-              setRed(true)
+             // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
+                _id: gameId,
                       drugo: 'o',
-                      pozeti: pozeti
+                      pozeti: pozeti,
+                      red: true
                   })
               })
           }
       }
       const handleTrece = (e) => {
-          if(!trece && red === true && pobjeda === false)
+          if(!trece && red === true && pobjeda === false && player === 1)
           {   
               // setTrece('x')
-              setRed(false)
+             // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
+                _id: gameId,
                       trece: 'x',
-                      pozeti: pozeti
+                      pozeti: pozeti,
+                      red: false
                   })
               })
           }
-          if(!trece && red === false && pobjeda === false)
+          if(!trece && red === false && pobjeda === false && player === 2)
           {
               // setTrece('o')
-              setRed(true)
+              //setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
+                _id: gameId,
                       trece: 'o',
-                      pozeti: pozeti
+                      pozeti: pozeti,
+                      red: true
                   })
               })
           }
   
       }
       const handleCetvrto = (e) => {
-          if(!cetvrto && red === true && pobjeda === false)
+          if(!cetvrto && red === true && pobjeda === false && player === 1)
           {   
               // setCetvrto('x')
-              setRed(false)
+             // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
+                _id: gameId,
                       cetvrto: 'x',
-                      pozeti: pozeti
+                      pozeti: pozeti,
+                      red: false
                   })
               })
           }
-          if(!cetvrto && red === false && pobjeda === false)
+          if(!cetvrto && red === false && pobjeda === false && player === 2)
           {
               // setCetvrto('o')
-              setRed(true)
+             // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
+                _id: gameId,
                       cetvrto: 'o',
-                      pozeti: pozeti
+                      pozeti: pozeti,
+                      red: true
                   })
               })
           }
   
       }
       const handlePeto = (e) => {
-          if(!peto && red === true && pobjeda === false)
+          if(!peto && red === true && pobjeda === false && player === 1)
           {   
               // setPeto('x')
-              setRed(false)
+              //setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         peto: 'x',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: false
                     })
                 })
           }
-          if(!peto && red === false && pobjeda === false)
+          if(!peto && red === false && pobjeda === false && player === 2)
           {
               // setPeto('o')
-              setRed(true)
+             // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         peto: 'o',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: true
                     })
                 })
           }
       }
       const handleSesto = (e) => {
-          if(!sesto && red === true && pobjeda === false)
+          if(!sesto && red === true && pobjeda === false && player === 1)
           {   
               // setSesto('x')
-              setRed(false)
+             // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         sesto: 'x',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: false
                     })
                 })
           }
-          if(!sesto && red === false && pobjeda === false)
+          if(!sesto && red === false && pobjeda === false && player === 2)
           {
               // setSesto('o')
-              setRed(true)
+             // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         sesto: 'o',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: true
                     })
                 })
           }
           
       }
       const handleSedmo = (e) => {
-          if(!sedmo && red === true && pobjeda === false)
+          if(!sedmo && red === true && pobjeda === false && player === 1)
           {   
               //setSedmo('x')
-              setRed(false)
+             // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         sedmo: 'x',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: false
                     })
                 })
           }
-          if(!sedmo && red === false && pobjeda === false)
+          if(!sedmo && red === false && pobjeda === false && player === 2)
           {
               // setSedmo('o')
-              setRed(true)
+             // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         sedmo: 'o',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: true
                     })
                 })
           }
       }
       const handleOsmo = (e) => {
-          if(!osmo && red === true && pobjeda === false)
+          if(!osmo && red === true && pobjeda === false && player === 1)
           {   
               // setOsmo('x')
-              setRed(false)
+             // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         osmo: 'x',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: false
                     })
                 })
           }
-          if(!osmo && red === false && pobjeda === false)
+          if(!osmo && red === false && pobjeda === false && player === 2)
           {
               // setOsmo('o')
-              setRed(true)
+             // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         osmo: 'o',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: true
                     })
                 })
           }
           
       }
       const handleDeveto = (e) => {
-          if(!deveto && red === true && pobjeda === false)
+          if(!deveto && red === true && pobjeda === false && player === 1)
           {   
               // setDeveto('x')
-              setRed(false)
+             // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         deveto: 'x',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: false
                     })
                 })
           }
-          if(!deveto && red === false && pobjeda === false)
+          if(!deveto && red === false && pobjeda === false && player === 2)
           {
               // setDeveto('o')
-              setRed(true)
+            //  setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://localhost:3000/tick', {
+              fetch('http://10.13.246.226:3000/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
+                    _id: gameId,
                         deveto: 'o',
-                        pozeti: pozeti
+                        pozeti: pozeti,
+                        red: true
                     })
                 })
           }
       }
       
-      
+      const handleCreate = () => {
+            fetch('http://10.13.246.226:3000/tick', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                    active: true,
+                })
+                 })
+                .then(resopnse => resopnse.json())
+                .then(temporary => {
+                    setGameIf(temporary._id)
+                    setMessage(`${temporary._id} has been created `)
+                    })
+                    setPrvo()
+                    setDrugo()
+                    setTrece()
+                    setCetvrto()
+                    setPeto()
+                    setSesto()
+                    setSedmo()
+                    setOsmo()
+                    setDeveto()
+                    setRed(true)
+                    setPobjeda(false)
+                    setPotezi(0)
+           
+      }
 
       if(provjera === true){
-
+            url = new URLSearchParams({ _id: gameId });
+            console.log('ovdje', url)
+            fetch('http://10.13.246.226:3000/tick?' + url, {
+            method: 'get',
+            headers: {'Content-Type': 'application/json'}
+            }).then(resopnse => resopnse.json())
+            .then(temporary => {
+                console.log('oe', temporary)
+                if(pozeti > 0 && temporary !== null){
+                setPrvo(temporary.prvo)
+                setDrugo(temporary.drugo)
+                setTrece(temporary.trece)
+                setCetvrto(temporary.cetvrto)
+                setPeto(temporary.peto)
+                setSesto(temporary.sesto)
+                setSedmo(temporary.sedmo)
+                setOsmo(temporary.osmo)
+                setDeveto(temporary.deveto)
+                setRed(temporary.red)
+                }
+              })
           if(prvo === 'x' && drugo === 'x' && trece === 'x'){
               setProvjera(false)
               setPobjeda(true)
@@ -441,6 +556,8 @@ import {
           }
       }
   
+      
+
       console.log(prvo, red)
   
       const handleReset = () => {
@@ -458,15 +575,112 @@ import {
           setPotezi(0)
       }
   
+      const handlePlayer1 = () =>{
+          setPlayer(1)
+      }
+
+      
+      const handlePlayer2 = () =>{
+        setPlayer(2)
+      }
+        const  getGames = () =>{
+                fetch('http://10.13.246.226:3000/tick/games', {
+                method: 'get',
+                headers: {'Content-Type': 'application/json'}
+                }).then(resopnse => resopnse.json())
+                .then(temporary => {
+                    console.log('1', temporary)
+                    setGames(temporary)
+                    console.log(games)
+                })
+
+            // fetch('http://10.13.246.226:3000/tick?' + url, {
+            // method: 'get',
+            // headers: {'Content-Type': 'application/json'}
+            // }).then(resopnse => resopnse.json())
+            // .then(temporary => {
+            //     console.log('oe', temporary)
+            //     if(pozeti > 0){
+            //     setPrvo(temporary.prvo)
+            //     setDrugo(temporary.drugo)
+            //     setTrece(temporary.trece)
+            //     setCetvrto(temporary.cetvrto)
+            //     setPeto(temporary.peto)
+            //     setSesto(temporary.sesto)
+            //     setSedmo(temporary.sedmo)
+            //     setOsmo(temporary.osmo)
+            //     setDeveto(temporary.deveto)
+            //     }
+            //   })
+        }
+        const handleGame = (e) =>{
+            setGameIf(e.target.value)
+            if(e.target.value.length > 1){
+                url = new URLSearchParams({ _id: e.target.value });
+            console.log('ovdje', url)
+            fetch('http://10.13.246.226:3000/tick?' + url, {
+            method: 'get',
+            headers: {'Content-Type': 'application/json'}
+            }).then(resopnse => resopnse.json())
+            .then(temporary => {
+                console.log('oe', temporary)
+                if(pozeti > 0){
+                setPrvo(temporary.prvo)
+                setDrugo(temporary.drugo)
+                setTrece(temporary.trece)
+                setCetvrto(temporary.cetvrto)
+                setPeto(temporary.peto)
+                setSesto(temporary.sesto)
+                setSedmo(temporary.sedmo)
+                setOsmo(temporary.osmo)
+                setDeveto(temporary.deveto)
+                setRed(temporary.red)
+                }
+              })
+            }
+            
+        }
+
+        const handleClear = () =>{
+            fetch('http://10.13.246.226:3000/tick/', {
+                method: 'delete',
+                headers: {'Content-Type': 'application/json'}
+                }).then(resopnse => resopnse.json())
+                .then(temporary => {
+                    setMessage('Database was cleared')
+                })
+        }
+      let render;
+
+      render = games.map((member) => {
+        return(
+            <option value={member._id}>{member._id}</option>
+        )
+        })
+
+      
      return (
       <div className="trickParent">
-          {pozeti}
+          <div className="komande">
+            <button onClick={handleReset}>Reset</button>
+            <button onClick={handleClear}>Clear db</button>
+            <button onClick={handleCreate}>Create game</button>
+            <label>Join game:</label>
+            <select name="igre" id="gre" onChange={handleGame} onClick={getGames}>
+            {render}
+             </select>
+            <button onClick={handlePlayer1}>Player 1</button>
+            <button onClick={handlePlayer2}>Player 2</button>
+          <label>Potezi: {pozeti}</label>
+          {red}
           { pobjeda === true?
               <p>{message}</p>
           :
           <></>
           }
-        
+          <label>Game: {gameId}</label>
+          <label>Player: {player}</label>
+        </div>
         <div className="tick">
           <button className="tick1" onClick={handlePrvo}>{prvo}</button>
           <button className="tick2" onClick={handleDrugo}>{drugo}</button>
@@ -482,7 +696,7 @@ import {
             <button className="tick8" onClick={handleOsmo}>{osmo}</button>
             <button className="tick9" onClick={handleDeveto}>{deveto}</button>
           </div>
-        <button onClick={handleReset}>Reset</button>
+        
       </div>
     );
   };

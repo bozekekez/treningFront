@@ -10,6 +10,13 @@
     
 }
 
+.komande{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .tickdva{
     display: flex;
     justify-content: center;
