@@ -74,6 +74,20 @@ const Header = () => {
     history.push('/credit');
   }
 
+  const handleTick1 = () =>{
+    history.push('/tick')
+  }
+
+  const handleTick2 = () =>{
+    history.push('/ticktack')
+  }
+
+  const handleTick3 = () =>{
+    history.push('/ticktacktoe')
+  }
+
+
+
 
 
   return (
@@ -119,6 +133,9 @@ const Header = () => {
       <button className="meniBotun" onClick={handleAuti}>Auti</button>
       <button className="meniBotun" onClick={handleBanka}>Banka</button>
       <button className="meniBotun" onClick={handleKredit}>Kredit</button>
+      <button className="meniBotun" onClick={handleTick1}>TicTackToe v 1</button>
+      <button className="meniBotun" onClick={handleTick2}>TicTackToe v 1</button>
+      <button className="meniBotun" onClick={handleTick3}>TicTackToe pvp</button>
       </div>
       :
       <></>

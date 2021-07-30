@@ -466,97 +466,106 @@ import {
           if(prvo === 'x' && drugo === 'x' && trece === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           if(trece === 'x' && peto === 'x' && sesto === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           if(sedmo === 'x' && osmo === 'x' && deveto === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           if(prvo === 'x' && cetvrto === 'x' && sedmo === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           if(drugo === 'x' && peto === 'x' && osmo === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           if(trece === 'x' && sesto === 'x' && deveto === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           if(prvo === 'x' && peto === 'x' && deveto === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           if(trece === 'x' && peto === 'x' && sedmo === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           if(cetvrto === 'x' && peto === 'x' && sedmo === 'x'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Pobjeda')
+              setMessage('Pobjeda x')
           }
           // AI
           if(cetvrto === 'o' && peto === 'o' && sesto === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
           if(prvo === 'o' && drugo === 'o' && trece === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
           if(trece === 'o' && peto === 'o' && sesto === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
           if(sedmo === 'o' && osmo === 'o' && deveto === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
           if(prvo === 'o' && cetvrto === 'o' && sedmo === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
           if(drugo === 'o' && peto === 'o' && osmo === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
           if(trece === 'o' && sesto === 'o' && deveto === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
           if(prvo === 'o' && peto === 'o' && deveto === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
           if(trece === 'o' && peto === 'o' && sedmo === 'o'){
               setProvjera(false)
               setPobjeda(true)
-              setMessage('Poraz!')
+              setMessage('Pobjeda o')
           }
       }
   
-      
+      if(pobjeda === true){
+            fetch('http://10.13.246.226:3000/tick', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                    _id: gameId,
+                    active: false
+                })
+            })
+      }
 
       console.log(prvo, red)
   
@@ -642,6 +651,19 @@ import {
         }
 
         const handleClear = () =>{
+            setGameIf();
+            setPrvo()
+          setDrugo()
+          setTrece()
+          setCetvrto()
+          setPeto()
+          setSesto()
+          setSedmo()
+          setOsmo()
+          setDeveto()
+          setRed(true)
+          setPobjeda(false)
+          setPotezi(0)
             fetch('http://10.13.246.226:3000/tick/', {
                 method: 'delete',
                 headers: {'Content-Type': 'application/json'}
