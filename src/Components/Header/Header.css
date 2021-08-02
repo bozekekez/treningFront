@@ -124,6 +124,11 @@
   width: 1rem;
 }
 
+.meniTop{
+    display: flex;
+    flex-direction: row;
+}
+
 .meniDeploy{
     margin-left: 1rem;
     margin-top: 2.5rem;
@@ -134,8 +139,61 @@
     flex-direction: column;
 }
 
+.meniDeployPodTick{
+    margin-left: 8rem;
+    margin-top: 8.8rem;
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+}
+
+.meniDeployPodKredit{
+    margin-left: 8rem;
+    margin-top: 7.5rem;
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+}
+
+.meniDeployPodMarket{
+    margin-left: 8rem;
+    margin-top: 5rem;
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+}
+
+.meniDeployPodAuti{
+    margin-left: 8rem;
+    margin-top: 2.5rem;
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+}
+
+.meniDeployPodKnjige{
+    margin-left: 8rem;
+    margin-top: 3.7rem;
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+}
+
 .meniBotun{
-    
+    width: 7rem;
+    background-color: rgb(106, 168, 226);
+    border-radius: 5px;
+    border: 1px solid grey
 }
 
 .headerParent{
