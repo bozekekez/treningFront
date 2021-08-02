@@ -1,6 +1,6 @@
 .navbar{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     position: fixed;
     justify-items: center;
     margin: 0;
@@ -15,15 +15,72 @@
     text-decoration: none;
     margin-bottom: 0;
 }
+.navbar2{
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    justify-items: center;
+    margin: 0;
+    top: 0;
+    overflow: visible;
+    z-index: 9998;
+    background: rgb(155, 233, 178);
+    width: 100%;
+    height: 3rem;
+    text-align: center;
+    border-bottom: rgba(164, 167, 167, 0.959) 2px solid;
+    text-decoration: none;
+    margin-bottom: 0;
+}
 
-.botun{
+.navbar3{
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    justify-items: center;
+    margin: 0;
+    top: 0;
+    overflow: visible;
+    z-index: 9998;
+    background: rgb(127, 193, 238);
+    width: 100%;
+    height: 3rem;
+    text-align: center;
+    border-bottom: rgba(164, 167, 167, 0.959) 2px solid;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+.botunY{
     margin-right: 1rem;
     height: 2rem;
     margin-top: 0.5rem;
-    border-radius: 5px;
+    border-radius: 50%;
     background-color: rgb(196, 231, 140);
     cursor: pointer;
-    width: 5rem;
+    width: 2rem;
+    border: 1px solid grey;
+}
+
+.botunG{
+    margin-right: 1rem;
+    height: 2rem;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    background-color: rgb(118, 207, 145);
+    cursor: pointer;
+    width: 2rem;
+    border: 1px solid grey;
+}
+
+.botunB{
+    margin-right: 1rem;
+    height: 2rem;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    background-color: rgb(106, 168, 226);
+    cursor: pointer;
+    width: 2rem;
+    border: 1px solid grey;
 }
 
 .botun1{
@@ -88,6 +145,46 @@
     width: 5rem;
     left: 1rem;
     position: absolute;
+}
+
+.botun3{
+    margin-right: 1rem;
+    height: 2rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    background-color: rgb(118, 207, 145);
+    cursor: pointer;
+    width: 5rem;
+    left: 1rem;
+    position: absolute;
+}
+
+.botun4{
+    margin-right: 1rem;
+    height: 2rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    background-color: rgb(106, 168, 226);
+    cursor: pointer;
+    width: 5rem;
+    left: 1rem;
+    position: absolute;
+}
+
+.meniBotun2{
+    width: 7rem;
+    background-color: rgb(118, 207, 145);
+    border-radius: 5px;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+
+.meniBotun3{
+    width: 7rem;
+    background-color: rgb(106, 168, 226);
+    border-radius: 5px;
+    border: 1px solid grey;
+    cursor: pointer;
 }
 
 .botun2Knjige{
@@ -189,11 +286,22 @@
     flex-direction: column;
 }
 
+.meniDeployPodBanka{
+    margin-left: 8rem;
+    margin-top: 6.2rem;
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+}
+
 .meniBotun{
     width: 7rem;
-    background-color: rgb(106, 168, 226);
+    background-color: rgb(196, 231, 140);
     border-radius: 5px;
-    border: 1px solid grey
+    border: 1px solid grey;
+    cursor: pointer;
 }
 
 .headerParent{

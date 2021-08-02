@@ -19,6 +19,29 @@ const Header = () => {
   const [marketMeni, setMarketMeni] = useState(false);
   const [autiMeni, setAutiMeni] = useState(false);
   const [booksMeni, setBooksMeni] = useState(false);
+  const [bankaMeni, setBankaMeni] = useState(false)
+  const [style, setStyle] = useState('meniBotun');
+  const [styleMeni, setStyleMeni] = useState('botun2');
+  const [navStyle, setNavStyle] = useState('navbar')
+
+  let change = (color) => {
+    console.log(color)
+    if(color === 'yellow'){
+      setStyle('meniBotun');
+      setStyleMeni('botun2')
+      setNavStyle('navbar')
+    }
+    if(color === 'green'){
+      setStyle('meniBotun2');
+      setStyleMeni('botun3')
+      setNavStyle('navbar2')
+    }
+    if(color === 'blue'){
+      setStyle('meniBotun3');
+      setStyleMeni('botun4')
+      setNavStyle('navbar3')
+    }
+  }
 
   const handleClick = () => {
     history.push("/");
@@ -45,15 +68,13 @@ const Header = () => {
   };
 
   const handleKnjige = () => {
-    // setHeader("knjige");
-    // document.body.style = "background: rgb(198, 242, 248)";
-    // history.push("/books");
     if(booksMeni === false){
       setBooksMeni(true)
       setMarketMeni(false);
       setTick(false);
       setAutiMeni(false);
       setCreditmeni(false);
+      setBankaMeni(false);
     }
     if(booksMeni === true){
       setBooksMeni(false)
@@ -61,9 +82,6 @@ const Header = () => {
   };
 
   const handleLogin = () => {
-    // setHeader("market");
-    // document.body.style = "background: #e6e6ff";
-    // history.push("/market");
     if (marketMeni === true) {
       setMarketMeni(false);
     }
@@ -73,6 +91,7 @@ const Header = () => {
       setAutiMeni(false);
       setCreditmeni(false);
       setBooksMeni(false);
+      setBankaMeni(false);
     }
   };
 
@@ -91,23 +110,41 @@ const Header = () => {
     if (meni === true) {
       setMeni(false);
     }
+      setBooksMeni(false)
+      setMarketMeni(false);
+      setTick(false);
+      setAutiMeni(false);
+      setCreditmeni(false);
+      setBankaMeni(false);
   };
 
   const handleAuti = () => {
-    // setHeader('auti');
-    // document.body.style = 'background: honeydew';
-    // history.push('/');
     if (autiMeni === false) {
       setAutiMeni(true);
       setBooksMeni(false);
       setMarketMeni(false);
       setTick(false);
       setCreditmeni(false);
+      setBankaMeni(false);
     }
     if (autiMeni === true) {
       setAutiMeni(false);
     }
   };
+
+  const handleBankMeni = () =>{
+    if(bankaMeni === false){
+      setBankaMeni(true)
+      setAutiMeni(false);
+      setBooksMeni(false);
+      setMarketMeni(false);
+      setTick(false);
+      setCreditmeni(false);
+    }
+    if(bankaMeni === true){
+      setBankaMeni(false)
+    }
+  }
 
   const handleBanka = () => {
       history.push("/banka");
@@ -120,13 +157,13 @@ const Header = () => {
   };
 
   const handleKredit = () => {
-    // history.push('/credit');
     if (creditMeni === false) {
       setCreditmeni(true);
       setAutiMeni(false);
       setMarketMeni(false);
       setTick(false);
       setBooksMeni(false);
+      setBankaMeni(false);
     }
     if (creditMeni === true) {
       setCreditmeni(false);
@@ -152,6 +189,7 @@ const Header = () => {
       setAutiMeni(false);
       setMarketMeni(false);
       setBooksMeni(false);
+      setBankaMeni(false);
     }
     if (tick === true) {
       setTick(false);
@@ -182,61 +220,67 @@ const handleFilter = () =>{
     history.push('/books/filter');
 }
 
+const handleBooks = () =>{
+  history.push('/books')
+}
+
   return (
     <div className="headerParent">
-      <div className="navbar">
-        <button className="botun2" onClick={handleMeni}>
+      <div className={navStyle}>
+        <button className={styleMeni} onMouseEnter={handleMeni} onClick={handleMeni}>
           <img className="meni" src={list} />
         </button>
-
-        {/* <button className="botun2" onClick={handleLogin}>
-        eo
-      </button> */}
-
-        {/* <button className="botun1" onClick={handleKnjige}>
-        Knjige
-      </button> */}
+        <button onClick={(color) =>change(color = 'yellow')}className="botunY"></button>
+        <button onClick={(color) =>change(color = 'green')} className="botunG"></button>
+        <button onClick={(color) =>change(color = 'blue')} className="botunB"></button>
       </div>
       {meni === true ? (
         <div className="meniTop">
           <div className="meniDeploy">
-            <button className="meniBotun" onMouseEnter={handleAuti} onClick={handleAuti}>
+            <button className={style} onMouseEnter={handleAuti} onClick={handleAuti}>
               Auti
             </button>
-            <button className="meniBotun" onMouseEnter={handleKnjige} onClick={handleKnjige}>
+            <button className={style} onMouseEnter={handleKnjige} onClick={handleKnjige}>
               Knjige
             </button>
-            <button className="meniBotun" onMouseEnter={handleLogin} onClick={handleLogin}>
+            <button className={style} onMouseEnter={handleLogin} onClick={handleLogin}>
               Market
             </button>
-            <button className="meniBotun" onMouseEnter={handleBanka} onClick={handleBanka}>
+            <button className={style} onMouseEnter={handleBankMeni}  onClick={handleBankMeni}>
               Banka
             </button>
-            <button className="meniBotun" onMouseEnter={handleKredit} onClick={handleKredit}>
+            <button className={style} onMouseEnter={handleKredit} onClick={handleKredit}>
               Kredit
             </button>
-            <button className="meniBotun" onMouseEnter={handleTick} onClick={handleTick}>
+            <button className={style} onMouseEnter={handleTick} onClick={handleTick}>
               TicTacToe
             </button>
           </div>
+          { bankaMeni === true?
+            <div className="meniDeployPodBanka">
+            <button className={style} onClick={handleBanka}>Banka</button>
+          </div>
+          :
+            <></>
+          }
           {creditMeni === true ? (
             <div className="meniDeployPodKredit">
-              <button className="meniBotun" onClick={handleIzračun}>Kredit izračun</button>
-              <button className="meniBotun" onClick={handlePlaćanje}>Plaćanje kredita</button>
-              <button className="meniBotun" onClick={handlePregled}>Pregled kredita</button>
-            </div>
+            <button className={style} onClick={handleIzračun}>Kredit izračun</button>
+            <button className={style} onClick={handlePlaćanje}>Plaćanje kredita</button>
+            <button className={style} onClick={handlePregled}>Pregled kredita</button>
+          </div>
           ) : (
             <></>
           )}
           {tick === true ? (
             <div className="meniDeployPodTick">
-              <button className="meniBotun" onClick={handleTick1}>
+              <button className={style} onClick={handleTick1}>
                 TicTackToe v 1
               </button>
-              <button className="meniBotun" onClick={handleTick2}>
+              <button className={style} onClick={handleTick2}>
                 TicTackToe v 2
               </button>
-              <button className="meniBotun" onClick={handleTick3}>
+              <button className={style} onClick={handleTick3}>
                 TicTackToe pvp
               </button>
             </div>
@@ -245,10 +289,10 @@ const handleFilter = () =>{
           )}
           {marketMeni === true ? (
             <div className="meniDeployPodMarket">
-              <button className="meniBotun" onClick={handleMarket}>
+              <button className={style} onClick={handleMarket}>
                 Market
               </button>
-              <button className="meniBotun" onClick={handleLog}>
+              <button className={style} onClick={handleLog}>
                 Login
               </button>
             </div>
@@ -257,22 +301,22 @@ const handleFilter = () =>{
           )}
           {autiMeni === true ? (
             <div className="meniDeployPodAuti">
-              <button className="meniBotun" onClick={handleClick}>
+              <button className={style} onClick={handleClick}>
                 Home
               </button>
-              <button className="meniBotun" onClick={handleSearch}>
+              <button className={style} onClick={handleSearch}>
                 Search
               </button>
-              <button className="meniBotun" onClick={handleQuery}>
+              <button className={style} onClick={handleQuery}>
                 Query
               </button>
-              <button className="meniBotun" onClick={handleList}>
+              <button className={style} onClick={handleList}>
                 List
               </button>
-              <button className="meniBotun" onClick={handleMotori}>
+              <button className={style} onClick={handleMotori}>
                 Motori
               </button>
-              <button className="meniBotun" onClick={handleDelete}>
+              <button className={style} onClick={handleDelete}>
                 Delete
               </button>
             </div>
@@ -281,9 +325,10 @@ const handleFilter = () =>{
           )}
           { booksMeni === true ?
           <div className="meniDeployPodKnjige">
-            <button className="meniBotun" onClick={handleAdd}>Add Book</button>
-            <button className="meniBotun" onClick={handleAddAuthor}>Add Author</button>
-            <button className="meniBotun" onClick={handleFilter}>Filter</button>
+            <button className={style} onClick={handleBooks}>Books</button>
+            <button className={style} onClick={handleAdd}>Add Book</button>
+            <button className={style} onClick={handleAddAuthor}>Add Author</button>
+            <button className={style} onClick={handleFilter}>Filter</button>
           </div>
           :
           <></>
