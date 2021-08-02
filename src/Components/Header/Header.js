@@ -11,7 +11,7 @@ import "./Header.css";
 import list from "./list.png";
 
 const Header = () => {
-  const { header, setHeader } = useContext(ItemContext);
+  const { setBeckground } = useContext(ItemContext);
   const [meni, setMeni] = useState(false);
   let history = useHistory();
   const [creditMeni, setCreditmeni] = useState(false);
@@ -22,7 +22,8 @@ const Header = () => {
   const [bankaMeni, setBankaMeni] = useState(false)
   const [style, setStyle] = useState('meniBotun');
   const [styleMeni, setStyleMeni] = useState('botun2');
-  const [navStyle, setNavStyle] = useState('navbar')
+  const [navStyle, setNavStyle] = useState('navbar');
+  const [zadaci, setZadaci] = useState(false)
 
   let change = (color) => {
     console.log(color)
@@ -30,16 +31,19 @@ const Header = () => {
       setStyle('meniBotun');
       setStyleMeni('botun2')
       setNavStyle('navbar')
+      document.body.style = "background: honeydew"
     }
     if(color === 'green'){
       setStyle('meniBotun2');
       setStyleMeni('botun3')
       setNavStyle('navbar2')
+      document.body.style = "background: rgb(206, 241, 212)"
     }
     if(color === 'blue'){
       setStyle('meniBotun3');
       setStyleMeni('botun4')
       setNavStyle('navbar3')
+      document.body.style = "background: lightcyan"
     }
   }
 
@@ -75,6 +79,7 @@ const Header = () => {
       setAutiMeni(false);
       setCreditmeni(false);
       setBankaMeni(false);
+      setZadaci(false)
     }
     if(booksMeni === true){
       setBooksMeni(false)
@@ -92,6 +97,7 @@ const Header = () => {
       setCreditmeni(false);
       setBooksMeni(false);
       setBankaMeni(false);
+      setZadaci(false)
     }
   };
 
@@ -116,6 +122,7 @@ const Header = () => {
       setAutiMeni(false);
       setCreditmeni(false);
       setBankaMeni(false);
+      setZadaci(false)
   };
 
   const handleAuti = () => {
@@ -126,6 +133,7 @@ const Header = () => {
       setTick(false);
       setCreditmeni(false);
       setBankaMeni(false);
+      setZadaci(false)
     }
     if (autiMeni === true) {
       setAutiMeni(false);
@@ -140,6 +148,7 @@ const Header = () => {
       setMarketMeni(false);
       setTick(false);
       setCreditmeni(false);
+      setZadaci(false)
     }
     if(bankaMeni === true){
       setBankaMeni(false)
@@ -153,7 +162,7 @@ const Header = () => {
       setMarketMeni(false);
       setTick(false);
       setCreditmeni(false);
-
+      setZadaci(false)
   };
 
   const handleKredit = () => {
@@ -164,6 +173,7 @@ const Header = () => {
       setTick(false);
       setBooksMeni(false);
       setBankaMeni(false);
+      setZadaci(false)
     }
     if (creditMeni === true) {
       setCreditmeni(false);
@@ -190,6 +200,7 @@ const Header = () => {
       setMarketMeni(false);
       setBooksMeni(false);
       setBankaMeni(false);
+      setZadaci(false)
     }
     if (tick === true) {
       setTick(false);
@@ -224,6 +235,23 @@ const handleBooks = () =>{
   history.push('/books')
 }
 
+const handleZadatak = () =>{
+  if(zadaci === false){
+    setZadaci(true)
+    setMarketMeni(false);
+      setTick(false);
+      setAutiMeni(false);
+      setCreditmeni(false);
+      setBankaMeni(false);
+  }
+  if(zadaci === true){
+    setZadaci(false)
+  }
+}
+
+const handleClock  = () =>{
+  history.push('/clock')
+}
   return (
     <div className="headerParent">
       <div className={navStyle}>
@@ -254,6 +282,9 @@ const handleBooks = () =>{
             </button>
             <button className={style} onMouseEnter={handleTick} onClick={handleTick}>
               TicTacToe
+            </button>
+            <button className={style} onMouseEnter={handleZadatak} onClick={handleZadatak}>
+              Zadaci
             </button>
           </div>
           { bankaMeni === true?
@@ -329,6 +360,13 @@ const handleBooks = () =>{
             <button className={style} onClick={handleAdd}>Add Book</button>
             <button className={style} onClick={handleAddAuthor}>Add Author</button>
             <button className={style} onClick={handleFilter}>Filter</button>
+          </div>
+          :
+          <></>
+          }
+          { zadaci === true?
+          <div className="meniDeployPodZadaci">
+            <button className={style} onClick={handleClock}>Clock</button>
           </div>
           :
           <></>

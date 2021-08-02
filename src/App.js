@@ -28,6 +28,7 @@ import CreditPay from './Components/Credit/CreditPay';
 import Tick from './Components/Tick/Tick';
 import TickTack from './Components/Tick/TickTack';
 import TickTackToe from './Components/Tick/TickTackToe';
+import Clock from './Components/Clock/Clock';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -35,10 +36,11 @@ function App() {
   const [isHome, setIsHome] = useState(false);
   const [basket, setBasket] = useState(0);
   const [cart, setCart] = useState([]);
+  const [background, setBeckground] = useState('backYellow')
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div >
-      <ItemContext.Provider value={{cart, setCart, basket, setBasket, header, setHeader, logged, setLogged, isHome, setIsHome}}>
+      <ItemContext.Provider value={{setBeckground, cart, setCart, basket, setBasket, header, setHeader, logged, setLogged, isHome, setIsHome}}>
         { header === 'auti' ?
           <Header/>
         : header === 'knjige' ?
@@ -119,6 +121,9 @@ function App() {
         )}/>
         <Route exact={true} path="/ticktacktoe" render={() => (
           <TickTackToe/>
+        )}/>
+        <Route exact={true} path="/clock" render={() => (
+          <Clock/>
         )}/>
       </ItemContext.Provider>
       </div>

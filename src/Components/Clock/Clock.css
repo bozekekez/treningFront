@@ -1,0 +1,38 @@
+.clockParent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5rem;
+    align-items: center;
+    /* border: 1px solid black;
+    border-radius: 50%;
+    width: 11rem;
+    height: 11rem; */
+}
+/* 
+.krug{
+    width: 11rem;
+    height: 11rem;
+    border: 1px black solid;
+    border-radius: 50%;
+    position: absolute;
+} */
+
+.mala{
+    width: 6rem;
+    height: 0.2rem;
+    background-color: rgb(238, 116, 116);
+    transform: rotate(0.5deg);
+    margin-top: 1rem;
+    margin-left: 5rem;
+    position: absolute;
+}
+
+.velika{
+    width: 9rem;
+    height: 0.1rem;
+    background-color: black;
+    transform: rotate(6deg);
+    margin-right: 5rem;
+    position: absolute;
+}

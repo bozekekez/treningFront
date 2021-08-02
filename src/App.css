@@ -1,6 +1,18 @@
+.backYellow{
+  background-color: honeydew;
+}
+
+.backGreen{
+  background-color: rgb(206, 241, 212);
+}
+
+.backBlue{
+  background-color: lightcyan;
+}
+
 .App {
   text-align: center;
-  background-color: honeydew;
+  /* background-color: honeydew; */
 }
 
 .App-logo {
