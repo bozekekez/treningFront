@@ -26,7 +26,7 @@ const Clock = () => {
                if(mala === 360){
                     setMala(0)
                 }
-            }, 300);
+            }, 1000);
             // temp1= velika - mala
             // console.log(temp1)
        }

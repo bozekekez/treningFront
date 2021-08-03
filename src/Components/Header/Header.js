@@ -11,7 +11,7 @@ import "./Header.css";
 import list from "./list.png";
 
 const Header = () => {
-  const { setBeckground } = useContext(ItemContext);
+  const { setBeckground, logged, setLogged, basket } = useContext(ItemContext);
   const [meni, setMeni] = useState(false);
   let history = useHistory();
   const [creditMeni, setCreditmeni] = useState(false);
@@ -24,6 +24,11 @@ const Header = () => {
   const [styleMeni, setStyleMeni] = useState('botun2');
   const [navStyle, setNavStyle] = useState('navbar');
   const [zadaci, setZadaci] = useState(false)
+  const [botunBasket, setBotunBaskert] = useState('botBasketY')
+
+  const user = localStorage.getItem('user')
+
+  console.log('tu', user)
 
   let change = (color) => {
     console.log(color)
@@ -31,18 +36,21 @@ const Header = () => {
       setStyle('meniBotun');
       setStyleMeni('botun2')
       setNavStyle('navbar')
+      setBotunBaskert('botBasketY')
       document.body.style = "background: honeydew"
     }
     if(color === 'green'){
       setStyle('meniBotun2');
       setStyleMeni('botun3')
       setNavStyle('navbar2')
+      setBotunBaskert('botBasketG')
       document.body.style = "background: rgb(206, 241, 212)"
     }
     if(color === 'blue'){
       setStyle('meniBotun3');
       setStyleMeni('botun4')
       setNavStyle('navbar3')
+      setBotunBaskert('botBasketB')
       document.body.style = "background: lightcyan"
     }
   }
@@ -235,6 +243,10 @@ const handleBooks = () =>{
   history.push('/books')
 }
 
+const handleArray = () =>{
+  history.push('/array')
+}
+
 const handleZadatak = () =>{
   if(zadaci === false){
     setZadaci(true)
@@ -249,16 +261,46 @@ const handleZadatak = () =>{
   }
 }
 
+const handleSignOut = () => {
+  setLogged('')
+  localStorage.removeItem('user');
+}
+
+const handleSell = () => {
+  history.push('/market/sell');
+}
+
+
+const handleProfil = () =>{
+  history.push(`/profile/${user}`)
+}
+
+const handleCart = () =>{
+  history.push('/market/cart')
+}
+
+
 const handleClock  = () =>{
   history.push('/clock')
 }
+
+console.log(basket)
   return (
     <div className="headerParent">
       <div className={navStyle}>
         <button className={styleMeni} onMouseEnter={handleMeni} onClick={handleMeni}>
           <img className="meni" src={list} />
         </button>
-        <button onClick={(color) =>change(color = 'yellow')}className="botunY"></button>
+        {  
+          basket === '0' || basket === '0.00' || basket === '-0.00' || basket === '0' ?
+          <></>
+          :
+          basket !== 0?
+          <button className={botunBasket} onClick={handleCart} >{basket}</button>
+          :
+          <></>
+        }
+        <button onClick={(color) =>change(color = 'yellow')} className="botunY"></button>
         <button onClick={(color) =>change(color = 'green')} className="botunG"></button>
         <button onClick={(color) =>change(color = 'blue')} className="botunB"></button>
       </div>
@@ -323,10 +365,21 @@ const handleClock  = () =>{
               <button className={style} onClick={handleMarket}>
                 Market
               </button>
-              <button className={style} onClick={handleLog}>
-                Login
-              </button>
+              <button className={style} onClick={handleCart} >{basket}</button>
+              { user === '' || user === null ?
+                <button className={style} onClick={handleLog}>Login</button>
+                :
+                <>
+                {/* <button className={style} onClick={handleProfil}>{logged}</button> */}
+                <button className={style} onClick={handleProfil}>{user}</button>
+                <button className={style} onClick={handleSell}>Sell</button>
+                <button className={style} onClick={handleSignOut}>Log out</button>
+                </>
+              }
+                
+              
             </div>
+            
           ) : (
             <></>
           )}
@@ -367,6 +420,7 @@ const handleClock  = () =>{
           { zadaci === true?
           <div className="meniDeployPodZadaci">
             <button className={style} onClick={handleClock}>Clock</button>
+            <button className={style} onClick={handleArray}>Array</button>
           </div>
           :
           <></>

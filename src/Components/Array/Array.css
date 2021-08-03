@@ -1,0 +1,12 @@
+.niz{
+    display: flex;
+    flex-direction: row;
+}
+
+.nizMember{
+    margin: 0.5rem;
+}
+
+.nizMember::after{
+    content: ","
+}

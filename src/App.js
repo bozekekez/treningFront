@@ -29,6 +29,7 @@ import Tick from './Components/Tick/Tick';
 import TickTack from './Components/Tick/TickTack';
 import TickTackToe from './Components/Tick/TickTackToe';
 import Clock from './Components/Clock/Clock';
+import Array from './Components/Array/Array';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -124,6 +125,9 @@ function App() {
         )}/>
         <Route exact={true} path="/clock" render={() => (
           <Clock/>
+        )}/>
+        <Route exact={true} path="/array" render={() => (
+          <Array/>
         )}/>
       </ItemContext.Provider>
       </div>

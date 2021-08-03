@@ -43,6 +43,8 @@ const Login = () => {
             else if (article){
                 console.log('1', article)
                 setLogged(article);
+                localStorage.setItem('user', article)
+                console.log(localStorage)
                 history.push('/market');
             }
         })
