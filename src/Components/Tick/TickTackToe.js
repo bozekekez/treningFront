@@ -698,7 +698,7 @@ import {
           { pobjeda === true?
               <p>{message}</p>
           :
-          <></>
+          <div></div>
           }
           <label>Game: {gameId}</label>
           <label>Player: {player}</label>

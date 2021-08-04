@@ -25,6 +25,8 @@ const Header = () => {
   const [navStyle, setNavStyle] = useState('navbar');
   const [zadaci, setZadaci] = useState(false)
   const [botunBasket, setBotunBaskert] = useState('botBasketY')
+  const [colorStyle, setColorStyle] = useState('ActiveY');
+  const [grafMeni, setGrafMeni] = useState(false)
 
   const user = localStorage.getItem('user')
 
@@ -37,6 +39,7 @@ const Header = () => {
       setStyleMeni('botun2')
       setNavStyle('navbar')
       setBotunBaskert('botBasketY')
+      setColorStyle('ActiveY')
       document.body.style = "background: honeydew"
     }
     if(color === 'green'){
@@ -44,6 +47,7 @@ const Header = () => {
       setStyleMeni('botun3')
       setNavStyle('navbar2')
       setBotunBaskert('botBasketG')
+      setColorStyle('ActiveG')
       document.body.style = "background: rgb(206, 241, 212)"
     }
     if(color === 'blue'){
@@ -51,6 +55,7 @@ const Header = () => {
       setStyleMeni('botun4')
       setNavStyle('navbar3')
       setBotunBaskert('botBasketB')
+      setColorStyle('ActiveB')
       document.body.style = "background: lightcyan"
     }
   }
@@ -88,6 +93,7 @@ const Header = () => {
       setCreditmeni(false);
       setBankaMeni(false);
       setZadaci(false)
+      setGrafMeni(false)
     }
     if(booksMeni === true){
       setBooksMeni(false)
@@ -106,6 +112,7 @@ const Header = () => {
       setBooksMeni(false);
       setBankaMeni(false);
       setZadaci(false)
+      setGrafMeni(false)
     }
   };
 
@@ -131,6 +138,7 @@ const Header = () => {
       setCreditmeni(false);
       setBankaMeni(false);
       setZadaci(false)
+      setGrafMeni(false)
   };
 
   const handleAuti = () => {
@@ -142,6 +150,7 @@ const Header = () => {
       setCreditmeni(false);
       setBankaMeni(false);
       setZadaci(false)
+      setGrafMeni(false)
     }
     if (autiMeni === true) {
       setAutiMeni(false);
@@ -157,6 +166,7 @@ const Header = () => {
       setTick(false);
       setCreditmeni(false);
       setZadaci(false)
+      setGrafMeni(false)
     }
     if(bankaMeni === true){
       setBankaMeni(false)
@@ -171,6 +181,7 @@ const Header = () => {
       setTick(false);
       setCreditmeni(false);
       setZadaci(false)
+      setGrafMeni(false)
   };
 
   const handleKredit = () => {
@@ -182,6 +193,7 @@ const Header = () => {
       setBooksMeni(false);
       setBankaMeni(false);
       setZadaci(false)
+      setGrafMeni(false)
     }
     if (creditMeni === true) {
       setCreditmeni(false);
@@ -209,6 +221,7 @@ const Header = () => {
       setBooksMeni(false);
       setBankaMeni(false);
       setZadaci(false)
+      setGrafMeni(false)
     }
     if (tick === true) {
       setTick(false);
@@ -255,6 +268,7 @@ const handleZadatak = () =>{
       setAutiMeni(false);
       setCreditmeni(false);
       setBankaMeni(false);
+      setGrafMeni(false)
   }
   if(zadaci === true){
     setZadaci(false)
@@ -284,6 +298,25 @@ const handleClock  = () =>{
   history.push('/clock')
 }
 
+const handleGraf = () =>{
+  if(grafMeni === false){
+      setGrafMeni(true)
+       setZadaci(false)
+      setMarketMeni(false);
+      setTick(false);
+      setAutiMeni(false);
+      setCreditmeni(false);
+      setBankaMeni(false);
+  }
+  if(grafMeni === true){
+    setGrafMeni(false)
+  }
+}
+
+const handleGrafikon = () =>{
+  history.push('./chart')
+}
+
 console.log(basket)
   return (
     <div className="headerParent">
@@ -293,16 +326,29 @@ console.log(basket)
         </button>
         {  
           basket === '0' || basket === '0.00' || basket === '-0.00' || basket === '0' ?
-          <></>
+          <div/>
           :
           basket !== 0?
           <button className={botunBasket} onClick={handleCart} >{basket}</button>
           :
-          <></>
+          <div/>
         }
+        { colorStyle === 'ActiveY' ?
+        <button onClick={(color) =>change(color = 'yellow')} className="ActiveY"></button>
+        :
         <button onClick={(color) =>change(color = 'yellow')} className="botunY"></button>
+        }
+        { colorStyle === 'ActiveG' ?
+        <button onClick={(color) =>change(color = 'green')} className="ActiveG"></button>
+        :
         <button onClick={(color) =>change(color = 'green')} className="botunG"></button>
+        }
+        { colorStyle === 'ActiveB' ?
+        <button onClick={(color) =>change(color = 'blue')} className="ActiveB"></button>
+        :
         <button onClick={(color) =>change(color = 'blue')} className="botunB"></button>
+        }
+        
       </div>
       {meni === true ? (
         <div className="meniTop">
@@ -328,13 +374,16 @@ console.log(basket)
             <button className={style} onMouseEnter={handleZadatak} onClick={handleZadatak}>
               Zadaci
             </button>
+            <button className={style} onMouseEnter={handleGraf} onClick={handleGraf}>
+              Graf
+            </button>
           </div>
           { bankaMeni === true?
             <div className="meniDeployPodBanka">
             <button className={style} onClick={handleBanka}>Banka</button>
           </div>
           :
-            <></>
+          <div/>
           }
           {creditMeni === true ? (
             <div className="meniDeployPodKredit">
@@ -343,7 +392,7 @@ console.log(basket)
             <button className={style} onClick={handlePregled}>Pregled kredita</button>
           </div>
           ) : (
-            <></>
+            <div/>
           )}
           {tick === true ? (
             <div className="meniDeployPodTick">
@@ -358,7 +407,7 @@ console.log(basket)
               </button>
             </div>
           ) : (
-            <></>
+            <div/>
           )}
           {marketMeni === true ? (
             <div className="meniDeployPodMarket">
@@ -375,13 +424,10 @@ console.log(basket)
                 <button className={style} onClick={handleSell}>Sell</button>
                 <button className={style} onClick={handleSignOut}>Log out</button>
                 </>
-              }
-                
-              
+              }         
             </div>
-            
           ) : (
-            <></>
+            <div/>
           )}
           {autiMeni === true ? (
             <div className="meniDeployPodAuti">
@@ -405,7 +451,7 @@ console.log(basket)
               </button>
             </div>
           ) : (
-            <></>
+            <div/>
           )}
           { booksMeni === true ?
           <div className="meniDeployPodKnjige">
@@ -415,7 +461,7 @@ console.log(basket)
             <button className={style} onClick={handleFilter}>Filter</button>
           </div>
           :
-          <></>
+          <div/>
           }
           { zadaci === true?
           <div className="meniDeployPodZadaci">
@@ -423,11 +469,18 @@ console.log(basket)
             <button className={style} onClick={handleArray}>Array</button>
           </div>
           :
-          <></>
+          <div/>
+          }
+          { grafMeni === true?
+            <div className="meniDeployPodGraf">
+              <button className={style} onClick={handleGrafikon}>Graf</button>
+            </div>
+            :
+            <></>
           }
         </div>
       ) : (
-        <></>
+        <div/>
       )}
     </div>
   );

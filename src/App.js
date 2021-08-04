@@ -30,6 +30,8 @@ import TickTack from './Components/Tick/TickTack';
 import TickTackToe from './Components/Tick/TickTackToe';
 import Clock from './Components/Clock/Clock';
 import Array from './Components/Array/Array';
+import React from 'react'
+import Chart from './Components/Chart/Chart';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -45,11 +47,13 @@ function App() {
         { header === 'auti' ?
           <Header/>
         : header === 'knjige' ?
-          <HeaderKnjige/>
+          // <HeaderKnjige/>
+          <div/>
         : header === 'market' ?
-          <HeaderMarket/>
+          // <HeaderMarket/>
+          <div/>
         :
-          <></>
+          <div/>
         }
         <Route exact={true} path="/search" render={() =>(
           <Search />
@@ -128,6 +132,9 @@ function App() {
         )}/>
         <Route exact={true} path="/array" render={() => (
           <Array/>
+        )}/>
+        <Route exact={true} path="/chart" render={() => (
+          <Chart/>
         )}/>
       </ItemContext.Provider>
       </div>

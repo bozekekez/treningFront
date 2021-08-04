@@ -1,0 +1,9 @@
+.chartParent{
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.message{
+    color: red;
+}

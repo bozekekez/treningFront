@@ -803,7 +803,7 @@ const Tick = () => {
         { pobjeda === true?
             <p>{message}</p>
         :
-        <></>
+        <div></div>
         }
       
       <div className="tick">

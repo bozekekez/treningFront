@@ -94,7 +94,7 @@ return(
     <div className="list">
         {message}
         { register === false ?
-        <>
+        <div>
             <form onSubmit={handleSubmit} className="forma">
             <label>Email</label>
             <input type="email" onChange={handleEmail}></input>
@@ -103,9 +103,9 @@ return(
             <button onClick={handleSubmit}>submit</button>
             </form>
             <button onClick={handleRegiser}>register</button>
-        </>
+        </div>
         :
-        <>
+        <div>
             <form onSubmit={handleSubmit} className="forma">
             <label>Create a new user:</label>
             <label>Username</label>
@@ -117,7 +117,7 @@ return(
             <button onClick={handleRegister}>submit</button>
             </form>
             <button onClick={handleBack}>Back</button>
-        </>
+        </div>
         }
        
     </div>

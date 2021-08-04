@@ -61,7 +61,7 @@ return(
             return <p className="nizMember">{member}</p>
         })
         :
-        <></>
+        <div/>
         }
         </div>
         {/* <p className="niz">{array}</p> */}
@@ -72,7 +72,7 @@ return(
             return <p className="nizMember">{member}</p>
         })
         :
-        <></>
+        <div/>
         }
         </div>
     </div>

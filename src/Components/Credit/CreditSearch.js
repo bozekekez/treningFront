@@ -124,7 +124,7 @@ const CreditSearch = () => {
               );
             })
           ) : (
-            <></>
+            <div/>
           )}
         </div>
       </div>
