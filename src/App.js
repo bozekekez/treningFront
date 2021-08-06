@@ -32,6 +32,7 @@ import Clock from './Components/Clock/Clock';
 import Array from './Components/Array/Array';
 import React from 'react'
 import Chart from './Components/Chart/Chart';
+import Pongo from './Components/Pongo/Pongo';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -135,6 +136,9 @@ function App() {
         )}/>
         <Route exact={true} path="/chart" render={() => (
           <Chart/>
+        )}/>
+        <Route exact={true} path="/pongo" render={() => (
+          <Pongo/>
         )}/>
       </ItemContext.Provider>
       </div>

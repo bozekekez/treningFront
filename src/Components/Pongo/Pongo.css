@@ -1,0 +1,21 @@
+.reket{
+    margin-top: 5rem;
+    height: 5rem;
+    width: 1rem;
+    background-color: cadetblue;
+}
+
+.court{
+    border: 1px solid gray;
+    width: 100rem;
+    height: 40rem;
+}
+
+.balun{
+    border-radius: 50px;
+    height: 1rem;
+    width: 1rem;
+    background-color: indigo;
+    position: absolute;
+    
+}

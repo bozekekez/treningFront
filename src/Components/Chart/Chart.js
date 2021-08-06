@@ -67,7 +67,7 @@ export default function Chart() {
     const handleChange = (e) =>{
         setBrojevi(e.target.value)
         let temp = e.target.value.split(',')
-        setGodine2(temp.filter(member => member !== ',').length)
+        setGodine(temp.filter(member => member !== ',').length)
     }
     
     const handleChange2 = (e) =>{

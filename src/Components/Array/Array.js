@@ -45,7 +45,23 @@ const Array = () => {
     }
 
     console.log(resault)
- 
+    
+    // const seven = () =>{
+    //     return '7'
+    // }
+
+    // const times = () =>{
+    //     return '*'
+    // }
+
+    // const five = () =>{
+    //     return '5'
+    // }
+
+    // let rez = seven(times(five))
+
+    // console.log(rez)
+
 return(
     <div className="clockParent">
         <form onSubmit={handleSubmit}>
