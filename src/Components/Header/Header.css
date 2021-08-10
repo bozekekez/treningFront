@@ -329,6 +329,24 @@
     flex-direction: column;
 }
 
+.meniDeploy2{
+    margin-left: 8rem;
+    margin-top: 2.5rem;
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+}
+
+.none{
+    width: 7rem;
+    /* height: 2rem; */
+    border-radius: 5px;
+    border: 1px solid grey;
+    visibility: hidden
+}
+
 .meniDeployPodTick{
     margin-left: 8rem;
     margin-top: 8.8rem;
@@ -348,6 +366,16 @@
     display: flex;
     flex-direction: column;
 
+}
+
+.meniDeployPodPongo{
+    margin-left: 8rem;
+    margin-top: 12.5rem;
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
 }
 
 .meniDeployPodGraf{ 

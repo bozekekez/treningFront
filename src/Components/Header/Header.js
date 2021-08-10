@@ -25,12 +25,15 @@ const Header = () => {
   const [navStyle, setNavStyle] = useState('navbar');
   const [zadaci, setZadaci] = useState(false)
   const [botunBasket, setBotunBaskert] = useState('botBasketY')
-  const [colorStyle, setColorStyle] = useState('ActiveY');
-  const [grafMeni, setGrafMeni] = useState(false)
+  let boja = localStorage.getItem('color');
+  const [colorStyle, setColorStyle] = useState(boja);
+  const [grafMeni, setGrafMeni] = useState(false);
+  const [pongoMeni, setPongoMeni] = useState(false);
+  const [loaded, setLoaded] = useState(false)
 
   const user = localStorage.getItem('user')
 
-  console.log('tu', user)
+  console.log('tu', boja)
 
   let change = (color) => {
     console.log(color)
@@ -41,6 +44,7 @@ const Header = () => {
       setBotunBaskert('botBasketY')
       setColorStyle('ActiveY')
       document.body.style = "background: honeydew"
+      localStorage.setItem('color', 'ActiveY')
     }
     if(color === 'green'){
       setStyle('meniBotun2');
@@ -49,6 +53,7 @@ const Header = () => {
       setBotunBaskert('botBasketG')
       setColorStyle('ActiveG')
       document.body.style = "background: rgb(206, 241, 212)"
+      localStorage.setItem('color', 'ActiveG')
     }
     if(color === 'blue'){
       setStyle('meniBotun3');
@@ -57,7 +62,35 @@ const Header = () => {
       setBotunBaskert('botBasketB')
       setColorStyle('ActiveB')
       document.body.style = "background: lightcyan"
+      localStorage.setItem('color', 'ActiveB')
     }
+  }
+
+  if(colorStyle === 'ActiveY' && loaded === false){
+    // let temp = (color) => change(color = 'yellow')
+    // temp();
+    setStyle('meniBotun');
+    setStyleMeni('botun2')
+    setNavStyle('navbar')
+    setBotunBaskert('botBasketY')
+    document.body.style = "background: honeydew"
+    setLoaded(true)
+  }
+  if(colorStyle === 'ActiveG' && loaded === false){
+    setStyle('meniBotun2');
+    setStyleMeni('botun3')
+    setNavStyle('navbar2')
+    setBotunBaskert('botBasketG')
+    document.body.style = "background: rgb(206, 241, 212)"
+    setLoaded(true)
+  }
+  if(colorStyle === 'ActiveB' && loaded === false){
+    setStyle('meniBotun3');
+    setStyleMeni('botun4')
+    setNavStyle('navbar3')
+    setBotunBaskert('botBasketB')
+    document.body.style = "background: lightcyan"
+    setLoaded(true)
   }
 
   const handleClick = () => {
@@ -94,6 +127,7 @@ const Header = () => {
       setBankaMeni(false);
       setZadaci(false)
       setGrafMeni(false)
+      setPongoMeni(false);
     }
     if(booksMeni === true){
       setBooksMeni(false)
@@ -113,6 +147,7 @@ const Header = () => {
       setBankaMeni(false);
       setZadaci(false)
       setGrafMeni(false)
+      setPongoMeni(false);
     }
   };
 
@@ -139,6 +174,7 @@ const Header = () => {
       setBankaMeni(false);
       setZadaci(false)
       setGrafMeni(false)
+      setPongoMeni(false);
   };
 
   const handleAuti = () => {
@@ -151,6 +187,7 @@ const Header = () => {
       setBankaMeni(false);
       setZadaci(false)
       setGrafMeni(false)
+      setPongoMeni(false);
     }
     if (autiMeni === true) {
       setAutiMeni(false);
@@ -167,6 +204,7 @@ const Header = () => {
       setCreditmeni(false);
       setZadaci(false)
       setGrafMeni(false)
+      setPongoMeni(false);
     }
     if(bankaMeni === true){
       setBankaMeni(false)
@@ -182,6 +220,7 @@ const Header = () => {
       setCreditmeni(false);
       setZadaci(false)
       setGrafMeni(false)
+      setPongoMeni(false);
   };
 
   const handleKredit = () => {
@@ -194,6 +233,7 @@ const Header = () => {
       setBankaMeni(false);
       setZadaci(false)
       setGrafMeni(false)
+      setPongoMeni(false);
     }
     if (creditMeni === true) {
       setCreditmeni(false);
@@ -222,6 +262,7 @@ const Header = () => {
       setBankaMeni(false);
       setZadaci(false)
       setGrafMeni(false)
+      setPongoMeni(false);
     }
     if (tick === true) {
       setTick(false);
@@ -269,6 +310,7 @@ const handleZadatak = () =>{
       setCreditmeni(false);
       setBankaMeni(false);
       setGrafMeni(false)
+      setPongoMeni(false);
   }
   if(zadaci === true){
     setZadaci(false)
@@ -307,6 +349,7 @@ const handleGraf = () =>{
       setAutiMeni(false);
       setCreditmeni(false);
       setBankaMeni(false);
+      setPongoMeni(false);
   }
   if(grafMeni === true){
     setGrafMeni(false)
@@ -314,9 +357,29 @@ const handleGraf = () =>{
 }
 
 const handleGrafikon = () =>{
-  history.push('./chart')
+  history.push('/chart')
 }
 
+const handlePongo = () =>{
+  if(pongoMeni === false){
+    setPongoMeni(true)
+    setGrafMeni(false)
+    setZadaci(false)
+    setMarketMeni(false);
+    setTick(false);
+    setAutiMeni(false);
+    setCreditmeni(false);
+    setBankaMeni(false);
+    }
+    if(grafMeni === true){
+      setGrafMeni(false)
+    }
+}
+
+const handlePongo1 = () => {
+  history.push('/pongo')
+}
+ 
 console.log(basket)
   return (
     <div className="headerParent">
@@ -377,16 +440,42 @@ console.log(basket)
             <button className={style} onMouseEnter={handleGraf} onClick={handleGraf}>
               Graf
             </button>
+            <button className={style} onMouseEnter={handlePongo} onClick={handlePongo}>
+              Pongo
+            </button>
           </div>
+          { pongoMeni === true?
+          <div className="meniDeploy2">
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            {/*<div className="meniDeployPodPongo"> */}
+            <button className={style} onClick={handlePongo1}>Pongo v1</button>
+          </div>
+            :
+            <></>
+          }
           { bankaMeni === true?
-            <div className="meniDeployPodBanka">
+            <div className="meniDeploy2">
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
             <button className={style} onClick={handleBanka}>Banka</button>
-          </div>
+            </div>
           :
           <div/>
           }
           {creditMeni === true ? (
-            <div className="meniDeployPodKredit">
+            <div className="meniDeploy2">
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
             <button className={style} onClick={handleIzračun}>Kredit izračun</button>
             <button className={style} onClick={handlePlaćanje}>Plaćanje kredita</button>
             <button className={style} onClick={handlePregled}>Pregled kredita</button>
@@ -395,7 +484,12 @@ console.log(basket)
             <div/>
           )}
           {tick === true ? (
-            <div className="meniDeployPodTick">
+            <div className="meniDeploy2">
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
               <button className={style} onClick={handleTick1}>
                 TicTackToe v 1
               </button>
@@ -410,7 +504,9 @@ console.log(basket)
             <div/>
           )}
           {marketMeni === true ? (
-            <div className="meniDeployPodMarket">
+            <div className="meniDeploy2">
+            <button className="none">1</button>
+            <button className="none">1</button>
               <button className={style} onClick={handleMarket}>
                 Market
               </button>
@@ -430,7 +526,7 @@ console.log(basket)
             <div/>
           )}
           {autiMeni === true ? (
-            <div className="meniDeployPodAuti">
+            <div className="meniDeploy2">
               <button className={style} onClick={handleClick}>
                 Home
               </button>
@@ -454,7 +550,8 @@ console.log(basket)
             <div/>
           )}
           { booksMeni === true ?
-          <div className="meniDeployPodKnjige">
+          <div className="meniDeploy2">
+            <button className="none">1</button>
             <button className={style} onClick={handleBooks}>Books</button>
             <button className={style} onClick={handleAdd}>Add Book</button>
             <button className={style} onClick={handleAddAuthor}>Add Author</button>
@@ -464,7 +561,13 @@ console.log(basket)
           <div/>
           }
           { zadaci === true?
-          <div className="meniDeployPodZadaci">
+          <div className="meniDeploy2">
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
+            <button className="none">1</button>
             <button className={style} onClick={handleClock}>Clock</button>
             <button className={style} onClick={handleArray}>Array</button>
           </div>
@@ -472,7 +575,14 @@ console.log(basket)
           <div/>
           }
           { grafMeni === true?
-            <div className="meniDeployPodGraf">
+            <div className="meniDeploy2">
+              <button className="none">1</button>
+              <button className="none">1</button>
+              <button className="none">1</button>
+              <button className="none">1</button>
+              <button className="none">1</button>
+              <button className="none">1</button>
+              <button className="none">1</button>
               <button className={style} onClick={handleGrafikon}>Graf</button>
             </div>
             :

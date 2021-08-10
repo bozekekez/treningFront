@@ -128,7 +128,7 @@ export default function Chart() {
         type="monotone"
         dataKey="prvi"
         stroke="#8884d8"
-        activeDot={{ r: 8 }}
+        activeDot={{ r: 20 }}
         />
       <Line type="monotone" dataKey="drugi" stroke="#82ca9d" />
     </LineChart>
