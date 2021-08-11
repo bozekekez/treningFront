@@ -113,10 +113,10 @@ export default function Chart() {
         height={300}
         data={graf}
         margin={{
-            top: 5,
+            top: 20,
             right: 30,
             left: 20,
-            bottom: 5
+            bottom: 20
         }}
         >
         <CartesianGrid strokeDasharray="3 3" />
@@ -128,7 +128,7 @@ export default function Chart() {
         type="monotone"
         dataKey="prvi"
         stroke="#8884d8"
-        activeDot={{ r: 20 }}
+        activeDot={{ r: 3 }}
         />
       <Line type="monotone" dataKey="drugi" stroke="#82ca9d" />
     </LineChart>

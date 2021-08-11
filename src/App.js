@@ -33,6 +33,7 @@ import Array from './Components/Array/Array';
 import React from 'react'
 import Chart from './Components/Chart/Chart';
 import Pongo from './Components/Pongo/Pongo';
+import Pongo2 from './Components/Pongo/Pongo2';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -139,6 +140,9 @@ function App() {
         )}/>
         <Route exact={true} path="/pongo" render={() => (
           <Pongo/>
+        )}/>
+          <Route exact={true} path="/pongo2" render={() => (
+          <Pongo2/>
         )}/>
       </ItemContext.Provider>
       </div>

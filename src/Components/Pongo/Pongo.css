@@ -19,3 +19,10 @@
     position: absolute;
     
 }
+
+.gameOver{
+    position: fixed;
+    overflow: visible;
+    z-index: 9998;
+    color: red;
+}
