@@ -7,20 +7,31 @@ const Pongo2 = () => {
     const [balunY, setBalunY] = useState(Math.floor(Math.random() * 100) + 10)
     const [balunX, setBalunX] = useState(Math.floor(Math.random() * 100) + 1000)
     const [start, setStart] = useState(false)
-    const [hard, setHard] = useState(1)
+    const [hard, setHard] = useState(5)
     const [message, setMessage] = useState()
     const [go, setGo] = useState(false)
     // let go = false
     let colision = false
 
     const gori = (e) =>{
-        console.log(e.key)
-        if(e.key === 'w' && lokacija > -80){
-            setLokacija(lokacija-10)
+        e.preventDefault();
+        // console.log(e.key)
+        switch(e.key){
+            case ('w'):
+                console.log(e.key)
+                setLokacija(lokacija-10); 
+                break;
+            
+            case ('s'):
+                setLokacija(lokacija-10)
+                break;
         }
-        if(e.key === 's' && lokacija < 480){
-            setLokacija(lokacija+10)
-        }
+        // if(e.key === 'w' && lokacija > -80){
+        //     setLokacija(lokacija-10)
+        // }
+        // if(e.key === 's' && lokacija < 480){
+        //     setLokacija(lokacija+10)
+        // }
     }
     let a = document.getElementById('div1')
     let b = document.getElementById('div2')
@@ -104,7 +115,7 @@ const Pongo2 = () => {
                     setBalunX(tempX)
                 }
                 }
-                if(tempY === 463 || tempY === 464 || tempY === 465 || tempY === 466){
+                if(tempY === 463 || tempY === 464 || tempY === 465 || tempY >= 466 ){
                     bounceBot = true
                     bounceTop = false
                     bounceLeft = false
@@ -205,8 +216,8 @@ const Pongo2 = () => {
             //    console.log('x', tempX)
             // }, 1);
             }
-            inter = setInterval(myTimer, 10)
-            if(start === false){
+            inter = setInterval(myTimer, 5000)
+            if(start === false || go === false){
                 clearInterval(myTimer)
             }
         }
@@ -227,7 +238,6 @@ const Pongo2 = () => {
             console.log('tu sam')
             // go = false
             clearInterval(myTimer)
-            move();
             //clearInterval(myTimer)
         }
     }
@@ -260,7 +270,26 @@ const Pongo2 = () => {
         setLokacija(lokacija+50)
     }
 
-    
+    window.addEventListener('keydown', (e) => { 
+        e.preventDefault();
+        gori(e)
+        // switch (e.key) {
+        // case ('w'):
+        //     setLokacija(lokacija-10);
+        //     console.log('w')
+        //     break;
+        // case ('s'):
+        //     setLokacija(lokacija+10)
+        //     break;
+        // if(e.key === 'w' && lokacija > -80){
+        //     console.log('w')
+        //     setLokacija(lokacija-10)
+        // }
+        // if(e.key === 's' && lokacija < 480){
+        //     setLokacija(lokacija+10)
+        // }
+        // }
+    },)
 return(
     <div className="list">
         <input onKeyPress={gori}/>
@@ -274,8 +303,8 @@ return(
         </select>
         <button onClick={handleRestart}>Restart</button>
         <h1 className="gameOver">{message}</h1>
-        <div className="court">
-        <div id="div1" className="reket" onKeyPress ={gori} style={{
+        <div className="court" >
+        <div id="div1" className="reket" onKeyDown ={gori} style={{
           transform: `translateY(${lokacija}px)`
         }}>
         </div>

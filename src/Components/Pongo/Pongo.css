@@ -17,7 +17,7 @@
     width: 1rem;
     background-color: indigo;
     position: absolute;
-    
+    /* transition: 1s; */
 }
 
 .gameOver{
