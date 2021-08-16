@@ -34,6 +34,7 @@ import React from 'react'
 import Chart from './Components/Chart/Chart';
 import Pongo from './Components/Pongo/Pongo';
 import Pongo2 from './Components/Pongo/Pongo2';
+import Turnir from './Components/Turniri/Turniri';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -141,8 +142,11 @@ function App() {
         <Route exact={true} path="/pongo" render={() => (
           <Pongo/>
         )}/>
-          <Route exact={true} path="/pongo2" render={() => (
+        <Route exact={true} path="/pongo2" render={() => (
           <Pongo2/>
+        )}/>
+        <Route exact={true} path="/turnir" render={() => (
+          <Turnir/>
         )}/>
       </ItemContext.Provider>
       </div>
