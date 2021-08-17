@@ -9,6 +9,8 @@ const Turnir = () =>{
     const [sudionik, setSudionik] = useState()
     const [loaded, setLoaded] = useState(false)
     const [render, setRender] = useState([])
+    const [id, setId] = useState()
+    const [selected, setSelected] = useState('karticaTurnirSelected')
     let history = useHistory();
 
     // let url = new URLSearchParams ({
@@ -44,8 +46,6 @@ const Turnir = () =>{
         setTurnir(e.target.value)
     }
 
-    console.log(turnir)
-
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('http://localhost:3000/turnir', {
@@ -68,23 +68,48 @@ const Turnir = () =>{
     }
     
     const handleAdd = (e) =>{
-        fetch('http://localhost:3000/turnir', {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-                sudionik: sudionik
+        e.preventDefault();
+        if(id && render[id.i].sudionici.length < 16){
+            fetch('http://localhost:3000/turnir/sudionik', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                    _id: id._id,
+                    sudionik: sudionik
+            })
+            })
+            .then(resopnse => resopnse.json())
+            .then(article =>{
+                if (article){
+                        render[id.i].sudionici.push(sudionik)
+                        setMessage(`${article} has been added`)
+                        // console.log(render[id.i])
+                        setSudionik('')
+                    }
+            })
+        }
+        else{
+            setMessage('Odaberi turnir')
+        }
+    }
+
+    const manageSelected = (_id, turnir, i) =>{
+        setId({
+            _id: _id,
+            i: i
         })
-        .then(resopnse => resopnse.json())
-        .then(article =>{
-            if (article){
-                    setMessage(`${article.name} has been listed`)
-                }
-        })
-        })
+        setMessage(`${turnir} selected`)
+        setRender(render)
     }
 
     const handleSudionik = (e) =>{
-        setSudionik(e.target.value)
+        if(e.target.value.length < 8){
+            setSudionik(e.target.value)
+            setMessage()
+        }
+        if(e.target.value.length >= 8){
+            setMessage('Ime predugo')
+        }
     }
 
     const handleKreiraj = () =>{
@@ -94,7 +119,7 @@ const Turnir = () =>{
     }
     const handleJoin = () =>{
         setAkcija('join')
-        setMessage()
+        // setMessage()
     }
 
     const handlePregled = () =>{
@@ -103,7 +128,11 @@ const Turnir = () =>{
         setLoaded(false)
     }
 
-    console.log(render)
+    const startTurnir = () =>{
+
+    }
+
+    console.log('2', id)
 
     return(
         <div className="turniriParent">
@@ -116,12 +145,12 @@ const Turnir = () =>{
             { akcija === 'kreiraj'?
             <form onSubmit={handleSubmit}>
                 <label>Ime turnira</label>
-                <input type ="text" value={turnir} onChange={handleNoviTurnir}/>
+                <input value={turnir} type ="text" value={turnir} onChange={handleNoviTurnir}/>
             </form>
             : akcija === 'join' ?
             <form onSubmit={handleAdd}>
                 <label>Ime sudionika</label>
-                <input type ="text" onChange={handleSudionik}/>
+                <input value={sudionik} type ="text" onChange={handleSudionik}/>
             </form>
             // : akcija === 'pregled' ?
             // <div>1</div>
@@ -129,12 +158,37 @@ const Turnir = () =>{
             <></>
             }
             <div className="turniriKartice">
-            { render.map(element => {
-                return(
-                <div>
-                    <h1>{element.turnir}</h1>
-                </div>
-                )
+            { render.map((element, i) => {
+                if(!id || id._id != element._id){
+                    return(
+                        <div className="karticaTurnir" onClick={() =>{manageSelected(element._id, element.turnir, i)}}>
+                            <h1 className="karticaTop">{element.turnir}</h1>
+                            <button onClick={() =>{startTurnir(element._id)}}>Start</button>
+                            <p>Sudionici:</p>
+                            <div className="turnirSudionici">
+                            { element.sudionici.map(member =>{
+                                return <p className="sudionik">{member}</p>
+                            })
+                            }
+                            </div>
+                        </div>
+                    )
+                }
+                if(element._id == id._id){
+                    return(
+                        <div className="karticaTurnirSelect" onClick={() =>{manageSelected(element._id, element.turnir, i)}}>
+                            <h1 className="karticaTop">{element.turnir}</h1>
+                            <button onClick={() =>{startTurnir(element._id)}}>Start</button>
+                            <p>Sudionici:</p>
+                            <div className="turnirSudionici">
+                            { element.sudionici.map(member =>{
+                                return <p className="sudionik">{member}</p>
+                            })
+                            }
+                            </div>
+                        </div>
+                    )
+                }
             })
             }
             </div>

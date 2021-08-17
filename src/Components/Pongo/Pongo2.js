@@ -3,11 +3,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import './Pongo.css'
 
 const Pongo2 = () => {
-    const [lokacija, setLokacija] = useState(Math.floor(Math.random() * 100) + 100);
+    const [lokacija, setLokacija] = useState(170);
     const [balunY, setBalunY] = useState(Math.floor(Math.random() * 100) + 10)
     const [balunX, setBalunX] = useState(Math.floor(Math.random() * 100) + 1000)
     const [start, setStart] = useState(false)
-    const [hard, setHard] = useState(5)
+    const [hard, setHard] = useState(1)
     const [message, setMessage] = useState()
     const [go, setGo] = useState(false)
     // let go = false
@@ -19,12 +19,30 @@ const Pongo2 = () => {
         switch(e.key){
             case ('w'):
                 console.log(e.key)
-                setLokacija(lokacija-10); 
+                if(lokacija >= -80){
+                    console.log('1')
+                    setLokacija(lokacija-10); 
+                }
+                if(lokacija <= -81){
+                    console.log('2')
+                    setLokacija(-80)
+                }
+                // if(lokacija === -80){
+                //     console.log('3')
+                //     setLokacija(-80)
+                // }
                 break;
-            
             case ('s'):
-                setLokacija(lokacija-10)
+                console.log(e.key)
+                if(lokacija <= 480){
+                    setLokacija(lokacija+10)
+                }
+                if(lokacija >= 481){
+                    setLokacija(480)
+                }
                 break;
+            default:
+                window.removeEventListener('keypress', gori, false)
         }
         // if(e.key === 'w' && lokacija > -80){
         //     setLokacija(lokacija-10)
@@ -32,6 +50,7 @@ const Pongo2 = () => {
         // if(e.key === 's' && lokacija < 480){
         //     setLokacija(lokacija+10)
         // }
+        window.removeEventListener('keypress', gori, false)
     }
     let a = document.getElementById('div1')
     let b = document.getElementById('div2')
@@ -195,7 +214,7 @@ const Pongo2 = () => {
                         colision = false
                     }
                 }
-                if(tempX === 0){
+                if(tempX <= 0){
                     setMessage('Game over')
                 }
                 if(tempY > -160 && tempY < 463 && tempX > 0 && bounceLeft === true ){
@@ -216,7 +235,7 @@ const Pongo2 = () => {
             //    console.log('x', tempX)
             // }, 1);
             }
-            inter = setInterval(myTimer, 5000)
+            inter = setInterval(myTimer, 1)
             if(start === false || go === false){
                 clearInterval(myTimer)
             }
@@ -270,9 +289,11 @@ const Pongo2 = () => {
         setLokacija(lokacija+50)
     }
 
-    window.addEventListener('keydown', (e) => { 
-        e.preventDefault();
-        gori(e)
+    window.addEventListener('keypress', gori
+        // (e) => { 
+        // e.preventDefault();
+        // console.log(e)
+        // gori(e)
         // switch (e.key) {
         // case ('w'):
         //     setLokacija(lokacija-10);
@@ -281,6 +302,7 @@ const Pongo2 = () => {
         // case ('s'):
         //     setLokacija(lokacija+10)
         //     break;
+        // }
         // if(e.key === 'w' && lokacija > -80){
         //     console.log('w')
         //     setLokacija(lokacija-10)
@@ -289,10 +311,12 @@ const Pongo2 = () => {
         //     setLokacija(lokacija+10)
         // }
         // }
-    },)
+    // }, 
+    , false)
+    // window.removeEventListener('keypress', gori, false)
 return(
     <div className="list">
-        <input onKeyPress={gori}/>
+        {/* <input onKeyPress={gori}/> */}
         <button onClick={handleStart}>Start</button>
         <button onClick={handleGo}>Go</button>
         <select onChange={handleHardness}>

@@ -379,6 +379,10 @@ const handlePongo = () =>{
 const handlePongo1 = () => {
   history.push('/pongo')
 }
+
+const handlePongo2 = () =>{
+  history.push('/pongo2')
+}
  
 console.log(basket)
   return (
@@ -456,6 +460,7 @@ console.log(basket)
             <button className="none">1</button>
             {/*<div className="meniDeployPodPongo"> */}
             <button className={style} onClick={handlePongo1}>Pongo v1</button>
+            <button className={style} onClick={handlePongo2}>Pongo v2</button>
           </div>
             :
             <></>
