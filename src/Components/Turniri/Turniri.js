@@ -5,7 +5,8 @@ import './Turniri.css'
 const Turnir = () =>{
     const [turnir, setTurnir] = useState()
     const [message, setMessage] = useState()
-    const [akcija, setAkcija] = useState('aktivni')
+    const [akcija, setAkcija] = useState()
+    const [aktivni, setAktivni] = useState('aktivni')
     const [sudionik, setSudionik] = useState()
     const [loaded, setLoaded] = useState(false)
     const [render, setRender] = useState([])
@@ -19,7 +20,7 @@ const Turnir = () =>{
     // })
 
     useEffect(() => {
-        if(akcija === 'aktivni'){
+        if(aktivni === 'aktivni'){
             fetch('http://localhost:3000/turnir', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
@@ -30,7 +31,7 @@ const Turnir = () =>{
                     setLoaded(true)   
             })
         }
-        if(akcija === 'neaktivni'){
+        if(aktivni === 'neaktivni'){
             fetch('http://localhost:3000/turnir/neaktivni', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
@@ -130,20 +131,25 @@ const Turnir = () =>{
     }
 
     const handlePregled = () =>{
-        if(akcija === 'aktivni'){
-            setAkcija('neaktivni')
+        if(aktivni === 'aktivni'){
+            setAktivni('neaktivni')
             setMessage()
             setLoaded(false)
         }
-        if(akcija === 'neaktivni'){
-            setAkcija('aktivni')
+        if(aktivni === 'neaktivni'){
+            setAktivni('aktivni')
             setMessage()
             setLoaded(false)
         }
     }
 
     const startTurnir = (_id) =>{
-        setStart(_id)
+        if(!start){
+            setStart(_id)
+        }
+        if(start){
+            setStart()
+        }
         setRender(render)
     }
     
@@ -154,8 +160,7 @@ const Turnir = () =>{
         let sudionici4 = render[renderIndex].sudionici4
         let sudionici2 = render[renderIndex].sudionici2
         let sudionici1 = render[renderIndex].sudionici1
-        console.log(sudionici, _id)
-        if(sudionici8[0] === undefined){
+        if(sudionici8[0] === undefined && sudionici.length === 16){
             for (let index = 0; index < 8; index++) {
                if(index === 0){
                    let random = Math.floor(Math.random() * 101)
@@ -231,7 +236,7 @@ const Turnir = () =>{
                 }
             }
             let renderIndex = render.findIndex(element => element._id === _id)
-            render[renderIndex].sudionici8 = sudionici8
+            setRender(() => render[renderIndex].sudionici8 = sudionici8)
     
             fetch('http://localhost:3000/turnir/sudionici8', {
                 method: 'post',
@@ -245,9 +250,8 @@ const Turnir = () =>{
                 .then(article =>{
                     if (article){
                         //render[renderIndex].sudionici8 = sudionici8
-                            setMessage(`${article} has been added`)
-                            // // console.log(render[id.i])
-                            // setSudionik('')
+                            setMessage(`${article.turnir} runda 16 odigrana`)
+                            // setRender(() => render[renderIndex].sudionici8 = sudionici8)
                         }
                 })
                 console.log('ren', renderIndex, render)
@@ -293,7 +297,7 @@ const Turnir = () =>{
                 }
             }
             let renderIndex = render.findIndex(element => element._id === _id)
-            render[renderIndex].sudionici4 = sudionici4
+            setRender(() => render[renderIndex].sudionici4 = sudionici4)
     
             fetch('http://localhost:3000/turnir/sudionici4', {
                 method: 'post',
@@ -307,7 +311,7 @@ const Turnir = () =>{
                 .then(article =>{
                     if (article){
                         
-                            setMessage(`${article} has been added`)
+                            setMessage(`${article.turnir} runda 8 odigrana`)
                             // // console.log(render[id.i])
                             // setSudionik('')
                         }
@@ -337,7 +341,7 @@ const Turnir = () =>{
                }
             }
             let renderIndex = render.findIndex(element => element._id === _id)
-            setRender(render[renderIndex].sudionici2 = sudionici2)
+            setRender(() => render[renderIndex].sudionici2 = sudionici2)
     
             fetch('http://localhost:3000/turnir/sudionici2', {
                 method: 'post',
@@ -351,7 +355,7 @@ const Turnir = () =>{
                 .then(article =>{
                     if (article){
                         // render[renderIndex].sudionici2 = sudionici2
-                            // setMessage(`${article} has been added`)
+                            setMessage(`${article.turnir} runda 4 odigrana`)
                             // // console.log(render[id.i])
                             // setSudionik('')
                         }
@@ -370,7 +374,7 @@ const Turnir = () =>{
                }
             }
             let renderIndex = render.findIndex(element => element._id === _id)
-            setRender(render[renderIndex].sudionici1 = sudionici1)
+            setRender(() => render[renderIndex].sudionici1 = sudionici1)
     
             fetch('http://localhost:3000/turnir/sudionici1', {
                 method: 'post',
@@ -384,17 +388,46 @@ const Turnir = () =>{
                 .then(article =>{
                     if (article){
                         // render[renderIndex].sudionici1 = sudionici1
-                            // setMessage(`${article} has been added`)
+                            setMessage(`${article.turnir} finale odigrano`)
                             // // console.log(render[id.i])
                             // setSudionik('')
                         }
                 })
+        }
+
+        if(sudionici.length < 17){
+            setMessage('Nije prijavljeno dovoljno sudionika')
         }
         console.log('8', sudionici8)
         console.log('4', sudionici4)
         console.log('2', sudionici2)
         console.log('1', sudionici1)
         setRender(render)
+    }
+
+    const handleEnd = (_id) => {
+        let renderIndex = render.findIndex(element => element._id === _id)
+        if(render[renderIndex].sudionici1[0]){
+            fetch('http://localhost:3000/turnir/end', {
+                method: 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                        _id: _id,
+                })
+                })
+                .then(resopnse => resopnse.json())
+                .then(article =>{
+                    if (article){
+                        // render[renderIndex].sudionici1 = sudionici1
+                            setMessage(`${article.turnir} has ended`)
+                            // // console.log(render[id.i])
+                            // setSudionik('')
+                        }
+                })
+        }
+        else{
+            setMessage('Turnir nije odigran do kraja')
+        }
     }
 
     console.log('1', id)
@@ -406,13 +439,17 @@ const Turnir = () =>{
             <div>
             <button onClick={handleKreiraj}>Kreiraj turnir</button>
             <button onClick={handleJoin}>Pridruži se turniru</button>
-            { akcija === 'aktivni' ?
+            { aktivni === 'aktivni' ?
                 <button onClick={handlePregled}>Pregled završenih turnira</button>
-                :
+            :
                 <button onClick={handlePregled}>Pregled aktivnih turnira</button>
             }
             </div>
-            {message}
+            { message ?
+            <p>{message}</p>    
+            :
+            <p>Turniri</p>
+            }
             { akcija === 'kreiraj'?
             <form onSubmit={handleSubmit}>
                 <label>Ime turnira</label>
@@ -426,7 +463,10 @@ const Turnir = () =>{
             // : akcija === 'pregled' ?
             // <div>1</div>
             :
-            <></>
+            <form className="hiddenForm">
+                <label></label>
+                <input />
+            </form>
             }
             <div className="turniriKartice">
             { render.map((element, i) => {
@@ -434,34 +474,62 @@ const Turnir = () =>{
                     return(
                         <div className="karticaTurnir" >
                             <h1 className="karticaTop">{element.turnir}</h1>
+                            <div>
                             <button onClick={() =>{startRound(element.sudionici, element._id)}}>Startaj rundu</button>
+                            <button onClick={() =>{startTurnir(element._id)}}>Povratak</button>
+                            <button onClick={() =>{handleEnd(element._id)}}>Završi turnir</button>
+                            </div>
                             <div className="bracket">
                             <div className="round16">
-                                { element.sudionici.map(element => {
-                                    return <p className="sudionikRound">{element}</p>
+                                { element.sudionici.map(item => {
+                                    if(element.sudionici8.includes(item)){
+                                        return <p className="sudionikRoundWin">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound">{item}</p>
+                                    }
                                 })
                                 }
                             </div>
                             <div className="round8">
-                                { element.sudionici8.map(element => {
-                                    return <p className="sudionikRound8">{element}</p>
+                                { element.sudionici8.map(item => {
+                                    if(element.sudionici4.includes(item)){
+                                        return <p className="sudionikRound8Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound8">{item}</p>
+                                    }
                                 })
                                 }
                             </div>
                             <div className="round4">
-                                { element.sudionici4.map(element => {
-                                    return <p className="sudionikRound4">{element}</p>
+                                { element.sudionici4.map(item => {
+                                    if(element.sudionici2.includes(item)){
+                                        return <p className="sudionikRound4Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound4">{item}</p>
+                                    }
                                 })
                                 }
                             </div>
                             <div className="round2">
-                                { element.sudionici2.map(element => {
-                                    return <p className="sudionikRound2">{element}</p>
+                                { element.sudionici2.map(item => {
+                                    if(element.sudionici1.includes(item)){
+                                        return <p className="sudionikRound2Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound2">{item}</p>
+                                    }
                                 })
                                 }
                             </div>
                             <div className="round1">
-                                <p className="sudionikRound1">{element.sudionici1[0]}</p>
+                                { element.sudionici1[0] ?
+                                <p className="sudionikRound1Win">{element.sudionici1[0]}</p>
+                                :
+                                <p className="sudionikRound1"></p>
+                                }
                             </div>
                             </div>
                         </div>

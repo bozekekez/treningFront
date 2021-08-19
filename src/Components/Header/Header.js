@@ -29,6 +29,7 @@ const Header = () => {
   const [colorStyle, setColorStyle] = useState(boja);
   const [grafMeni, setGrafMeni] = useState(false);
   const [pongoMeni, setPongoMeni] = useState(false);
+  const [turnirMeni, setTurnirMeni] = useState(false);
   const [loaded, setLoaded] = useState(false)
 
   const user = localStorage.getItem('user')
@@ -128,6 +129,7 @@ const Header = () => {
       setZadaci(false)
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
     }
     if(booksMeni === true){
       setBooksMeni(false)
@@ -148,6 +150,7 @@ const Header = () => {
       setZadaci(false)
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
     }
   };
 
@@ -175,6 +178,7 @@ const Header = () => {
       setZadaci(false)
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
   };
 
   const handleAuti = () => {
@@ -188,6 +192,7 @@ const Header = () => {
       setZadaci(false)
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
     }
     if (autiMeni === true) {
       setAutiMeni(false);
@@ -205,6 +210,7 @@ const Header = () => {
       setZadaci(false)
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
     }
     if(bankaMeni === true){
       setBankaMeni(false)
@@ -221,6 +227,7 @@ const Header = () => {
       setZadaci(false)
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
   };
 
   const handleKredit = () => {
@@ -234,6 +241,7 @@ const Header = () => {
       setZadaci(false)
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
     }
     if (creditMeni === true) {
       setCreditmeni(false);
@@ -263,6 +271,7 @@ const Header = () => {
       setZadaci(false)
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
     }
     if (tick === true) {
       setTick(false);
@@ -311,6 +320,7 @@ const handleZadatak = () =>{
       setBankaMeni(false);
       setGrafMeni(false)
       setPongoMeni(false);
+      setTurnirMeni(false);
   }
   if(zadaci === true){
     setZadaci(false)
@@ -350,6 +360,7 @@ const handleGraf = () =>{
       setCreditmeni(false);
       setBankaMeni(false);
       setPongoMeni(false);
+      setTurnirMeni(false);
   }
   if(grafMeni === true){
     setGrafMeni(false)
@@ -370,6 +381,24 @@ const handlePongo = () =>{
     setAutiMeni(false);
     setCreditmeni(false);
     setBankaMeni(false);
+    setTurnirMeni(false);
+    }
+    if(grafMeni === true){
+      setGrafMeni(false)
+    }
+}
+
+const handleTurnir = () => {
+  if(turnirMeni === false){
+    setTurnirMeni(true)
+    setPongoMeni(false)
+    setGrafMeni(false)
+    setZadaci(false)
+    setMarketMeni(false);
+    setTick(false);
+    setAutiMeni(false);
+    setCreditmeni(false);
+    setBankaMeni(false);
     }
     if(grafMeni === true){
       setGrafMeni(false)
@@ -383,7 +412,10 @@ const handlePongo1 = () => {
 const handlePongo2 = () =>{
   history.push('/pongo2')
 }
- 
+
+const handleTurnirRuta = ()=>{
+  history.push('/turnir')
+} 
 console.log(basket)
   return (
     <div className="headerParent">
@@ -447,7 +479,26 @@ console.log(basket)
             <button className={style} onMouseEnter={handlePongo} onClick={handlePongo}>
               Pongo
             </button>
+            <button className={style} onMouseEnter={handleTurnir} onClick={handleTurnir}>
+              Turnir
+            </button>
           </div>
+          { turnirMeni === true ?
+           <div className="meniDeploy2">
+          <button className="none">1</button>
+          <button className="none">1</button>
+          <button className="none">1</button>
+          <button className="none">1</button>
+          <button className="none">1</button>
+          <button className="none">1</button>
+          <button className="none">1</button>
+          <button className="none">1</button>
+          <button className="none">1</button>
+          <button className={style} onClick={handleTurnirRuta}>Turnir</button>
+          </div>
+          :
+            <></>
+          }
           { pongoMeni === true?
           <div className="meniDeploy2">
             <button className="none">1</button>
