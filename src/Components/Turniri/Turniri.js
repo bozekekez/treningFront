@@ -64,6 +64,7 @@ const Turnir = () =>{
                     // history.go(0)
                     setRender(render => [...render, article])
                     setTurnir('')
+                    setAkcija()
                 }
         })
         
@@ -437,12 +438,12 @@ const Turnir = () =>{
     return(
         <div className="turniriParent">
             <div>
-            <button onClick={handleKreiraj}>Kreiraj turnir</button>
-            <button onClick={handleJoin}>Pridruži se turniru</button>
+            <button className="botunTurnir" onClick={handleKreiraj}>Kreiraj turnir</button>
+            <button className="botunTurnir" onClick={handleJoin}>Pridruži se </button>
             { aktivni === 'aktivni' ?
-                <button onClick={handlePregled}>Pregled završenih turnira</button>
+                <button className="botunTurnir" onClick={handlePregled}>Završeni</button>
             :
-                <button onClick={handlePregled}>Pregled aktivnih turnira</button>
+                <button className="botunTurnir" onClick={handlePregled}>Aktivni</button>
             }
             </div>
             { message ?
@@ -475,9 +476,9 @@ const Turnir = () =>{
                         <div className="karticaTurnir" >
                             <h1 className="karticaTop">{element.turnir}</h1>
                             <div>
-                            <button onClick={() =>{startRound(element.sudionici, element._id)}}>Startaj rundu</button>
-                            <button onClick={() =>{startTurnir(element._id)}}>Povratak</button>
-                            <button onClick={() =>{handleEnd(element._id)}}>Završi turnir</button>
+                            <button className="botunTurnir" onClick={() =>{startRound(element.sudionici, element._id)}}>Startaj rundu</button>
+                            <button className="botunTurnir" onClick={() =>{startTurnir(element._id)}}>Povratak</button>
+                            <button className="botunTurnir" onClick={() =>{handleEnd(element._id)}}>Završi turnir</button>
                             </div>
                             <div className="bracket">
                             <div className="round16">
@@ -542,7 +543,7 @@ const Turnir = () =>{
                             <div className="selectContainer">
                             <button className="select" onClick={() =>{manageSelected(element._id, element.turnir, i)}}></button>
                             </div>
-                            <button onClick={() =>{startTurnir(element._id)}}>Start</button>
+                            <button className="botunTurnir" onClick={() =>{startTurnir(element._id)}}>Start</button>
                             <p>Sudionici:</p>
                             <div className="turnirSudionici">
                             { element.sudionici.map(member =>{
@@ -560,7 +561,7 @@ const Turnir = () =>{
                             <div className="selectContainer">
                             <button className="selected" onClick={() =>{manageDeselect(element._id)}}></button>
                             </div>
-                            <button onClick={() =>{startTurnir(element._id)}}>Start</button>
+                            <button className="botunTurnir" onClick={() =>{startTurnir(element._id)}}>Start</button>
                             <p>Sudionici:</p>
                             <div className="turnirSudionici">
                             { element.sudionici.map(member =>{
