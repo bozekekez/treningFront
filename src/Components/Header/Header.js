@@ -416,6 +416,11 @@ const handlePongo2 = () =>{
 const handleTurnirRuta = ()=>{
   history.push('/turnir')
 } 
+
+const handleTurnirTablica = ()=>{
+  history.push('/tablica')
+} 
+
 console.log(basket)
   return (
     <div className="headerParent">
@@ -495,6 +500,7 @@ console.log(basket)
           <button className="none">1</button>
           <button className="none">1</button>
           <button className={style} onClick={handleTurnirRuta}>Turnir</button>
+          <button className={style} onClick={handleTurnirTablica}>Turnir Tablica</button>
           </div>
           :
             <></>

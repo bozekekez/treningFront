@@ -485,10 +485,25 @@
 
 .kocka{
     border: 1px solid grey;
-    width: 5rem;
-    height: 5rem;
+    width: 7rem;
+    height: 3rem;
     align-items: center;
     text-align: center;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.kockaZelena{
+    border: 1px solid grey;
+    width: 7rem;
+    height: 3rem;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 255, 34);
 }
 
 .crta{
@@ -499,35 +514,188 @@
 .crtaGornja{
     border-top: 1px solid black;
     border-right: 1px solid black;
-    width: 3rem;
-    height: 3rem;
-    margin-top: 70%;
+    width: 2rem;
+    height: 1.5rem;
+    /* margin-top: 10%; */
 }
 
 .crtaDonja{
     border-bottom: 1px solid black;
     border-right: 1px solid black;
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 1.5rem;
     /* margin-top: 25%; */
 }
 
-.crtaRavna{
+.crtaRavna1{
     border-bottom: 1px solid black;
-    width: 3rem;
+    width: 2rem;
     /* height: ; */
-    margin-bottom: 31%;
-    padding: 0;
+    /* margin-bottom: 31%;
+    padding: 0; */
+    margin-top: 255%;
+    /* justify-content: space-around; */
+}
+
+.crtaRavna2{
+    border-bottom: 1px solid black;
+    width: 2rem;
+    margin-top: 207%;
+}
+
+.crtaRavna3{
+    border-bottom: 1px solid black;
+    width: 2rem;
+    margin-top: 512%;
+}
+
+.crtaRavna2{
+    border-bottom: 1px solid black;
+    width: 2rem;
+    margin-top: 207%;
+}
+
+.crtaRavna18{
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 4.5rem;
+    width: 2rem;
+    margin-top: 360%;
+    margin-left: -3%;
+}
+
+.crtaRavna28{
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    height: 4.5rem;
+    width: 2rem;
+    margin-bottom: 245%;
+    margin-left: -3%;
+}
+
+.crtaRavna38{
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 4.5rem;
+    width: 2rem;
+    margin-top: 480%;
+    margin-left: -3%;
+}
+
+.crtaFinaleGornja{
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 12rem;
+    width: 2rem;
+    margin-top: 730%;
+    margin-left: -3%;
+}
+
+.crtaFinaleDonja{
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    height: 12rem;
+    width: 2rem;
+    margin-bottom: 730%;
+    margin-left: -3%;
 }
 
 .kocka2{
     border: 1px solid grey;
-    width: 5rem;
-    height: 5rem;
-    margin-top: 2.7rem;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.kocka2Zelena{
+    border: 1px solid grey;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(0, 255, 34);
+}
+
+.turnirSelect{
+    background-color: transparent;
+    border:rgb(155, 111, 196) 2px solid;
+    border-radius: 10px;
+    width: 7rem;
+    color: rgb(117, 51, 179);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.turnirSelect:hover{
+    background-color: rgb(199, 168, 228);
+}
+
+.turnirTablica:hover{
+    background-color: rgb(199, 168, 228);
+}
+.turnirTablica{
+    margin-bottom: 0.5rem;
+    margin-left: 0.2rem;
+    background-color: transparent;
+    border:rgb(155, 111, 196) 2px solid;
+    border-radius: 10px;
+    width: 4rem;
+    color: rgb(117, 51, 179);
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .kockeParent{
     display: flex;
     flex-direction: row;
+    border: 1px solid black;
 }
+
+.runda16{
+    display: flex;
+    flex-direction: column;
+}
+
+.runda8{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.dvokocka{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.dvocrta16{
+    margin-top: 100%;
+}
+
+.dvocrta16N{
+    margin-top: 200%;
+}
+
+.dvokocka8{
+    margin-top: 0%;
+}
+
+.dvokocka2{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+}
+/* .runda16:nth-child(2n){
+    margin-bottom: 1rem;
+} */
+/* .runda16crte{
+
+} */
