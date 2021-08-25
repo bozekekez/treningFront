@@ -77,7 +77,7 @@ import {
 
     const uzmi = (e) =>{
         e.preventDefault();
-        fetch('http://localhost:3000/credit', {
+        fetch('https://trening-88.herokuapp.com/credit', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(plan)

@@ -25,7 +25,7 @@ const AddBook = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/books', {
+        fetch('https://trening-88.herokuapp.com/books', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -46,7 +46,7 @@ const AddBook = () => {
         e.preventDefault();
         if(authorsLoaded === false)
         {
-            fetch('http://localhost:3000/author', {
+            fetch('https://trening-88.herokuapp.com/author', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             }).then(resopnse => resopnse.json())

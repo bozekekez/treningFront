@@ -11,7 +11,7 @@ const Delete = () =>{
     const [selected, setSelected] = useState()
 
     useEffect(() => {
-        fetch('http://localhost:3000/delete', {
+        fetch('https://trening-88.herokuapp.com/delete', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -26,7 +26,7 @@ const Delete = () =>{
         // history.push(`/item/${_id}`);
         let tempList = auti.filter(member => member._id !== _id)
         setAuti(tempList)
-        fetch('http://localhost:3000/delete', {
+        fetch('https://trening-88.herokuapp.com/delete', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

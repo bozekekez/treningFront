@@ -65,7 +65,7 @@ const Search = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/search', {
+        fetch('https://trening-88.herokuapp.com/search', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({

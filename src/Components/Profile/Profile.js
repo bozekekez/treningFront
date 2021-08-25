@@ -47,7 +47,7 @@ const Profile = () =>{
 
     const save = (e) =>{
         e.preventDefault();
-        fetch('http://localhost:3000/profile', {
+        fetch('https://trening-88.herokuapp.com/profile', {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -70,7 +70,7 @@ const Profile = () =>{
 
     const handleDel = (e) =>{
         e.preventDefault();
-        fetch('http://localhost:3000/profile/delete', {
+        fetch('https://trening-88.herokuapp.com/profile/delete', {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

@@ -21,7 +21,7 @@ import {
         e.preventDefault();
         if(loaded === false)
         {
-            fetch('http://localhost:3000/credit/search', {
+            fetch('https://trening-88.herokuapp.com/credit/search', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             }).then(resopnse => resopnse.json())
@@ -40,7 +40,7 @@ import {
 
     const handlePay = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/credit/pay', {
+        fetch('https://trening-88.herokuapp.com/credit/pay', {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

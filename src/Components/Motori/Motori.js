@@ -16,7 +16,7 @@ const Motori = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/motori', {
+        fetch('https://trening-88.herokuapp.com/motori', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

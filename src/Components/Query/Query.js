@@ -99,7 +99,7 @@ const Query = ({location}) => {
                 }
             })
         }
-        fetch('http://localhost:3000/query?' + url, {
+        fetch('https://trening-88.herokuapp.com/query?' + url, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
 		}).then(resopnse => resopnse.json())

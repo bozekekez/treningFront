@@ -20,7 +20,7 @@ const Sell = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/market/sell', {
+        fetch('https://trening-88.herokuapp.com/market/sell', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

@@ -15,7 +15,7 @@ const Home = () =>{
 
     
     useEffect(() => {
-        fetch('http://localhost:3000/', {
+        fetch('https://trening-88.herokuapp.com/', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })

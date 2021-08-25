@@ -24,7 +24,7 @@ const Login = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/market/login', {
+        fetch('https://trening-88.herokuapp.com/market/login', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -69,7 +69,7 @@ const Login = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/market/register', {
+        fetch('https://trening-88.herokuapp.com/market/register', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

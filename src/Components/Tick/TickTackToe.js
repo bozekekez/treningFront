@@ -29,7 +29,7 @@ import {
       const [games, setGames] = useState([])
       let url;
         // useEffect(() => { 
-        // fetch('http://localhost:3000/tick', {
+        // fetch('https://trening-88.herokuapp.com/tick', {
         // method: 'get',
         // headers: {'Content-Type': 'application/json'}
         // }).then(resopnse => resopnse.json())

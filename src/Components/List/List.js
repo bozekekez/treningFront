@@ -76,7 +76,7 @@ const List = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(naziv);
-        fetch('http://localhost:3000/list', {
+        fetch('https://trening-88.herokuapp.com/list', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -106,7 +106,7 @@ const List = () => {
         e.preventDefault();
         if(motoriLoaded === false)
         {
-            fetch('http://localhost:3000/list', {
+            fetch('https://trening-88.herokuapp.com/list', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             }).then(resopnse => resopnse.json())

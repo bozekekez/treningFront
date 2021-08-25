@@ -19,7 +19,7 @@ const CreditSearch = () => {
   const getCredits = (e) => {
     e.preventDefault();
     if (loaded === false) {
-      fetch("http://localhost:3000/credit/search", {
+      fetch("https://trening-88.herokuapp.com/credit/search", {
         method: "get",
         headers: { "Content-Type": "application/json" },
       })
@@ -41,7 +41,7 @@ const CreditSearch = () => {
     if(generate === true) {
         setGenerate(false)
     }
-    fetch("http://localhost:3000/credit/search?" + url, {
+    fetch("https://trening-88.herokuapp.com/credit/search?" + url, {
       method: "get",
       headers: { "Content-Type": "application/json" },
     })

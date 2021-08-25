@@ -21,7 +21,7 @@ const Turnir = () =>{
 
     useEffect(() => {
         if(aktivni === 'aktivni'){
-            fetch('http://localhost:3000/turnir', {
+            fetch('https://trening-88.herokuapp.com/turnir', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -32,7 +32,7 @@ const Turnir = () =>{
             })
         }
         if(aktivni === 'neaktivni'){
-            fetch('http://localhost:3000/turnir/neaktivni', {
+            fetch('https://trening-88.herokuapp.com/turnir/neaktivni', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -50,7 +50,7 @@ const Turnir = () =>{
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/turnir', {
+        fetch('https://trening-88.herokuapp.com/turnir', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -73,7 +73,7 @@ const Turnir = () =>{
     const handleAdd = (e) =>{
         e.preventDefault();
         if(id && render[id.i].sudionici.length < 16){
-            fetch('http://localhost:3000/turnir/sudionik', {
+            fetch('https://trening-88.herokuapp.com/turnir/sudionik', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -239,7 +239,7 @@ const Turnir = () =>{
             let renderIndex = render.findIndex(element => element._id === _id)
             setRender(() => render[renderIndex].sudionici8 = sudionici8)
     
-            fetch('http://localhost:3000/turnir/sudionici8', {
+            fetch('https://trening-88.herokuapp.com/turnir/sudionici8', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -300,7 +300,7 @@ const Turnir = () =>{
             let renderIndex = render.findIndex(element => element._id === _id)
             setRender(() => render[renderIndex].sudionici4 = sudionici4)
     
-            fetch('http://localhost:3000/turnir/sudionici4', {
+            fetch('https://trening-88.herokuapp.com/turnir/sudionici4', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -344,7 +344,7 @@ const Turnir = () =>{
             let renderIndex = render.findIndex(element => element._id === _id)
             setRender(() => render[renderIndex].sudionici2 = sudionici2)
     
-            fetch('http://localhost:3000/turnir/sudionici2', {
+            fetch('https://trening-88.herokuapp.com/turnir/sudionici2', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -377,7 +377,7 @@ const Turnir = () =>{
             let renderIndex = render.findIndex(element => element._id === _id)
             setRender(() => render[renderIndex].sudionici1 = sudionici1)
     
-            fetch('http://localhost:3000/turnir/sudionici1', {
+            fetch('https://trening-88.herokuapp.com/turnir/sudionici1', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -409,7 +409,7 @@ const Turnir = () =>{
     const handleEnd = (_id) => {
         let renderIndex = render.findIndex(element => element._id === _id)
         if(render[renderIndex].sudionici1[0]){
-            fetch('http://localhost:3000/turnir/end', {
+            fetch('https://trening-88.herokuapp.com/turnir/end', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({

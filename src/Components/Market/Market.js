@@ -22,7 +22,7 @@ const Market = () =>{
 
     useEffect(() => {
         if(filter === false){
-            fetch('http://localhost:3000/market', {
+            fetch('https://trening-88.herokuapp.com/market', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -33,7 +33,7 @@ const Market = () =>{
             })
         }
         if(filter === true){
-            fetch('http://localhost:3000/market?' + url, {
+            fetch('https://trening-88.herokuapp.com/market?' + url, {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -64,7 +64,7 @@ const Market = () =>{
         e.preventDefault();
         if(authorsLoaded === false)
         {
-            fetch('http://localhost:3000/market/registered', {
+            fetch('https://trening-88.herokuapp.com/market/registered', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             }).then(resopnse => resopnse.json())
@@ -82,7 +82,7 @@ const Market = () =>{
             let url = new URLSearchParams ({
                 article: e.target.value
             })
-            fetch('http://localhost:3000/market?' + url, {
+            fetch('https://trening-88.herokuapp.com/market?' + url, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
             }).then(resopnse => resopnse.json())
@@ -100,7 +100,7 @@ const Market = () =>{
             url = new URLSearchParams ({
                 price: e.target.value
             })
-            fetch('http://localhost:3000/market?' + url, {
+            fetch('https://trening-88.herokuapp.com/market?' + url, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
             }).then(resopnse => resopnse.json())
@@ -116,7 +116,7 @@ const Market = () =>{
         }
         // if(e.target.value.length > 2)
         // {
-        //     fetch('http://localhost:3000/market?' + url, {
+        //     fetch('https://trening-88.herokuapp.com/market?' + url, {
 		// 	method: 'get',
 		// 	headers: {'Content-Type': 'application/json'},
         //     }).then(resopnse => resopnse.json())

@@ -20,7 +20,7 @@ const Filter = () => {
         url = new URLSearchParams ({
             author: author
         })
-        fetch('http://localhost:3000/filter?' + url, {
+        fetch('https://trening-88.herokuapp.com/filter?' + url, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
 		}).then(resopnse => resopnse.json())
@@ -38,7 +38,7 @@ const Filter = () => {
         e.preventDefault();
         if(authorsLoaded === false)
         {
-            fetch('http://localhost:3000/author', {
+            fetch('https://trening-88.herokuapp.com/author', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             }).then(resopnse => resopnse.json())

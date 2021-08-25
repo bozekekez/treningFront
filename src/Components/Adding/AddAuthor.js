@@ -18,7 +18,7 @@ const AddAuthor = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/author', {
+        fetch('https://trening-88.herokuapp.com/author', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
