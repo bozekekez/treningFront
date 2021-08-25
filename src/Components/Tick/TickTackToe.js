@@ -57,7 +57,7 @@ import {
                 console.log('game id', gameId)
                    console.log('oe svake sekunde')
                 url = new URLSearchParams({ _id: gameId });
-                fetch('http://10.13.246.226:3000/tick?' + url, {
+                fetch('https://trenin-front.herokuapp.com/tick?' + url, {
                 method: 'get',
                 headers: {'Content-Type': 'application/json'}
                 }).then(resopnse => resopnse.json())
@@ -86,7 +86,7 @@ import {
             //   setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -105,7 +105,7 @@ import {
              // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -126,7 +126,7 @@ import {
              // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -144,7 +144,7 @@ import {
              // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -163,7 +163,7 @@ import {
              // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -180,7 +180,7 @@ import {
               //setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -200,7 +200,7 @@ import {
              // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -217,7 +217,7 @@ import {
              // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -237,7 +237,7 @@ import {
               //setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -254,7 +254,7 @@ import {
              // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -273,7 +273,7 @@ import {
              // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -290,7 +290,7 @@ import {
              // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -310,7 +310,7 @@ import {
              // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -327,7 +327,7 @@ import {
              // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -346,7 +346,7 @@ import {
              // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -363,7 +363,7 @@ import {
              // setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -383,7 +383,7 @@ import {
              // setRed(false)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -400,7 +400,7 @@ import {
             //  setRed(true)
               setProvjera(true)
               setPotezi(pozeti + 1)
-              fetch('http://10.13.246.226:3000/tick', {
+              fetch('https://trenin-front.herokuapp.com/tick', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -414,7 +414,7 @@ import {
       }
       
       const handleCreate = () => {
-            fetch('http://10.13.246.226:3000/tick', {
+            fetch('https://trenin-front.herokuapp.com/tick', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -444,7 +444,7 @@ import {
       if(provjera === true){
             url = new URLSearchParams({ _id: gameId });
             console.log('ovdje', url)
-            fetch('http://10.13.246.226:3000/tick?' + url, {
+            fetch('https://trenin-front.herokuapp.com/tick?' + url, {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             }).then(resopnse => resopnse.json())
@@ -557,7 +557,7 @@ import {
       }
   
       if(pobjeda === true){
-            fetch('http://10.13.246.226:3000/tick', {
+            fetch('https://trenin-front.herokuapp.com/tick', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -593,7 +593,7 @@ import {
         setPlayer(2)
       }
         const  getGames = () =>{
-                fetch('http://10.13.246.226:3000/tick/games', {
+                fetch('https://trenin-front.herokuapp.com/tick/games', {
                 method: 'get',
                 headers: {'Content-Type': 'application/json'}
                 }).then(resopnse => resopnse.json())
@@ -627,7 +627,7 @@ import {
             if(e.target.value.length > 1){
                 url = new URLSearchParams({ _id: e.target.value });
             console.log('ovdje', url)
-            fetch('http://10.13.246.226:3000/tick?' + url, {
+            fetch('https://trenin-front.herokuapp.com/tick?' + url, {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             }).then(resopnse => resopnse.json())
@@ -664,7 +664,7 @@ import {
           setRed(true)
           setPobjeda(false)
           setPotezi(0)
-            fetch('http://10.13.246.226:3000/tick/', {
+            fetch('https://trenin-front.herokuapp.com/tick/', {
                 method: 'delete',
                 headers: {'Content-Type': 'application/json'}
                 }).then(resopnse => resopnse.json())
