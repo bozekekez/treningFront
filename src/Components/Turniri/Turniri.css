@@ -699,3 +699,11 @@
 /* .runda16crte{
 
 } */
+
+  
+@media only screen and (max-width: 600px) {
+    .karticaTurnir{
+        width: 90%;
+        height: 32rem;
+    }
+  }

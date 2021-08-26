@@ -127,3 +127,16 @@
     }
   }
   
+  @media only screen and (max-width: 600px) {
+    .view{
+      width: 90%;
+    }
+    .karticeHome{
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+    .landing{
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+  }

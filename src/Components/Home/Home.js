@@ -56,7 +56,7 @@ const Home = () =>{
     }
 
     return(
-        <div>
+        <div className="view">
         { isHome === false?
         <div className="landing">
         <button className="landingButton" onClick={handleAuti}><img src={car} className="slika"></img></button>

@@ -11,7 +11,7 @@ const Article = () =>{
     const params = window.location.pathname;
     
     useEffect(() => {
-        fetch(`https://trening-88.herokuapp.com/${params}`, {
+        fetch(`https://trening-88.herokuapp.com${params}`, {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
