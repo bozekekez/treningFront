@@ -52,13 +52,15 @@ function App() {
         { header === 'auti' ?
           <Header/>
         : header === 'knjige' ?
+          <Header/>
           // <HeaderKnjige/>
-          <div/>
+          // <div/>
         : header === 'market' ?
+          <Header/>
           // <HeaderMarket/>
-          <div/>
+          // <div/>
         :
-          <div/>
+          <Header/>
         }
         <Route exact={true} path="/search" render={() =>(
           <Search />
