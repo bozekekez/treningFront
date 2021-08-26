@@ -540,8 +540,8 @@ const Turnir = () =>{
                     return(
                         <div className="karticaTurnir" >
                             <h1 className="karticaTop">{element.turnir}</h1>
-                            <div className="selectContainer">
-                            <button className="select" onClick={() =>{manageSelected(element._id, element.turnir, i)}}></button>
+                            <div className="selectContainer" onClick={() =>{manageSelected(element._id, element.turnir, i)}}>
+                            <button className="select" ></button>
                             </div>
                             <button className="botunTurnir" onClick={() =>{startTurnir(element._id)}}>Start</button>
                             <p>Sudionici:</p>
@@ -558,8 +558,8 @@ const Turnir = () =>{
                     return(
                         <div className="karticaTurnirSelect" >
                             <h1 className="karticaTop">{element.turnir}</h1>
-                            <div className="selectContainer">
-                            <button className="selected" onClick={() =>{manageDeselect(element._id)}}></button>
+                            <div className="selectContainer" onClick={() =>{manageDeselect(element._id)}}>
+                            <button className="selected" ></button>
                             </div>
                             <button className="botunTurnir" onClick={() =>{startTurnir(element._id)}}>Start</button>
                             <p>Sudionici:</p>
