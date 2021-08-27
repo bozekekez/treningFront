@@ -45,6 +45,7 @@ const Turnir = () =>{
     }, [loaded]);
 
     const handleNoviTurnir = (e) =>{
+        e.preventDefault();
         setTurnir(e.target.value)
     }
 
@@ -72,7 +73,8 @@ const Turnir = () =>{
     
     const handleAdd = (e) =>{
         e.preventDefault();
-        if(id && render[id.i].sudionici.length < 16){
+        console.log(sudionik)
+        if(id && render[id.i].sudionici.length < 16 && sudionik !== undefined && sudionik !== ''){
             fetch('https://trening-88.herokuapp.com/turnir/sudionik', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -90,6 +92,9 @@ const Turnir = () =>{
                         setSudionik('')
                     }
             })
+        }
+        else if(id && render[id.i].sudionici.length === 16){
+            setMessage('Prijavljen maksimalni broj sudionika')
         }
         else{
             setMessage('Odaberi turnir')
@@ -112,6 +117,7 @@ const Turnir = () =>{
     }
 
     const handleSudionik = (e) =>{
+        e.preventDefault();
         if(e.target.value.length < 8){
             setSudionik(e.target.value)
             setMessage()
