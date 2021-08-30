@@ -74,7 +74,7 @@ const Turnir = () =>{
     const handleAdd = (e) =>{
         e.preventDefault();
         console.log(sudionik)
-        if(id && render[id.i].sudionici.length < 16 && sudionik !== undefined && sudionik !== ''){
+        if(id && render[id.i].sudionici.length < 16 && sudionik !== undefined && sudionik !== '' && !render[id.i].sudionici.includes(sudionik)){
             fetch('https://trening-88.herokuapp.com/turnir/sudionik', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -95,6 +95,9 @@ const Turnir = () =>{
         }
         else if(id && render[id.i].sudionici.length === 16){
             setMessage('Prijavljen maksimalni broj sudionika')
+        }
+        else if(render[id.i].sudionici.includes(sudionik)){
+            setMessage('Sudionik je već prijavljen')
         }
         else{
             setMessage('Odaberi turnir')
@@ -427,6 +430,7 @@ const Turnir = () =>{
                     if (article){
                         // render[renderIndex].sudionici1 = sudionici1
                             setMessage(`${article.turnir} has ended`)
+                            setRender(render.filter(element => element !== render[renderIndex]))
                             // // console.log(render[id.i])
                             // setSudionik('')
                         }
@@ -475,6 +479,7 @@ const Turnir = () =>{
                 <input />
             </form>
             }
+            { loaded ?
             <div className="turniriKartice">
             { render.map((element, i) => {
                 if(element._id === start){
@@ -582,6 +587,11 @@ const Turnir = () =>{
             })
             }
             </div>
+            :
+            <div className="spinerTurnir">
+            <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            }
         </div>
         
     )
