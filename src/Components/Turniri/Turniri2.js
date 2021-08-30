@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-
 import React, { useState, useEffect, useContext } from 'react';
 import './Turniri.css'
 
-const Turnir = () =>{
+const Turnir2 = () =>{
     const [turnir, setTurnir] = useState()
     const [message, setMessage] = useState()
     const [akcija, setAkcija] = useState()
@@ -12,6 +12,7 @@ const Turnir = () =>{
     const [render, setRender] = useState([])
     const [id, setId] = useState()
     const [start, setStart] = useState('')
+    const [brojSudionika, setBrojSudionika] = useState(16)
 
     useEffect(() => {
         if(aktivni === 'aktivni'){
@@ -458,6 +459,14 @@ const Turnir = () =>{
             <form onSubmit={handleSubmit}>
                 <label>Ime turnira</label>
                 <input value={turnir} type ="text" value={turnir} onChange={handleNoviTurnir}/>
+                <label>Broj sudionika</label>
+                <select value={brojSudionika}>
+                    <option value={brojSudionika} type ="text">4</option>
+                    <option value={brojSudionika} type ="text">8</option>
+                    <option value={brojSudionika} type ="text">16</option>
+                    <option value={brojSudionika} type ="text">32</option>
+                    <option value={brojSudionika} type ="text">64</option>
+                </select>
             </form>
             : akcija === 'join' ?
             <form onSubmit={handleAdd}>
@@ -590,4 +599,4 @@ const Turnir = () =>{
     )
 }
 
-export default Turnir;
+export default Turnir2;

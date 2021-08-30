@@ -37,6 +37,7 @@ import Pongo2 from './Components/Pongo/Pongo2';
 import Turnir from './Components/Turniri/Turniri';
 import Bracket from './Components/Turniri/Bracket';
 import Tablica from './Components/Turniri/Tablica';
+import Turnir2 from './Components/Turniri/Turniri2';
 
 function App() {
   const [header, setHeader] = useState('auti');
@@ -157,6 +158,9 @@ function App() {
         )}/>
          <Route exact={true} path="/tablica" render={() => (
           <Tablica/>
+        )}/>
+        <Route exact={true} path="/turnir2" render={() => (
+          <Turnir2/>
         )}/>
       </ItemContext.Provider>
       </div>
