@@ -323,6 +323,7 @@ import {
                 )
                 }
             }
+            // test
             if (peto === 'x' && prvo === 'x' && deveto !== 'o'){
                 if(!deveto){
                     return(
