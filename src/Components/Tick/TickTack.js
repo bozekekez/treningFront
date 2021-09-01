@@ -825,7 +825,152 @@ import {
                         }
                     }
                 }  
-                
+                else if(peto === 'x'){
+                        {
+                            if(peto){
+                                let store = Math.floor(Math.random() * 100)
+                                console.log(store)
+                                if(store <= 25){
+                                 if(!prvo){
+                                  return(
+                                  setPrvo('o'),
+                                  setRed(true),
+                                  setProvjera(true)
+                                )}
+                                else if(!trece){
+                                    return(
+                                    setTrece('o'),
+                                    setRed(true),
+                                    setProvjera(true)
+                                  )
+                                }
+                                else if(!sedmo){
+                                    return(
+                                    setSedmo('o'),
+                                    setRed(true),
+                                    setProvjera(true)
+                                  )
+                                }
+                                else if(!deveto){
+                                    return(
+                                    setDeveto('o'),
+                                    setRed(true),
+                                    setProvjera(true)
+                                  )
+                                }
+                                if(store > 25 && store <= 50){
+                                    if(!cetvrto){
+                                      return(
+                                      setCetvrto('o'),
+                                      setRed(true),
+                                      setProvjera(true)
+                                    )
+                                    }else if (!sedmo){
+                                        return(
+                                            setSedmo('o'),
+                                            setRed(true),
+                                            setProvjera(true)
+                                          )
+                                    }
+                                    else if(!trece){
+                                        return(
+                                        setTrece('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                    else if(!prvo){
+                                        return(
+                                        setPrvo('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                    else if(!deveto){
+                                        return(
+                                        setDeveto('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                }
+                                    if(store >50 && store <=75){
+                                    if(!sedmo){
+                                      return(
+                                      setSedmo('o'),
+                                      setRed(true),
+                                      setProvjera(true)
+                                    )
+                                    }else if (!deveto){
+                                        return(
+                                            setDeveto('o'),
+                                            setRed(true),
+                                            setProvjera(true)
+                                          )
+                                    }
+                                    else if(!trece){
+                                        return(
+                                        setTrece('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                    else if(!prvo){
+                                        return(
+                                        setPrvo('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                    else if(!deveto){
+                                        return(
+                                        setDeveto('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                }
+                                if(store >75){
+                                    if(!deveto){
+                                      return(
+                                      setDeveto('o'),
+                                      setRed(true),
+                                      setProvjera(true)
+                                  )
+                                      } else if (!prvo){
+                                        return(
+                                            setPrvo('o'),
+                                            setRed(true),
+                                            setProvjera(true)
+                                          )
+                                    }
+                                    else if(!trece){
+                                        return(
+                                        setTrece('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                    else if(!sedmo){
+                                        return(
+                                        setSedmo('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                    else if(!prvo){
+                                        return(
+                                        setPrvo('o'),
+                                        setRed(true),
+                                        setProvjera(true)
+                                      )
+                                    }
+                                    }
+                                }
+                            }
+                                
+                            }
+                        }
             }
             if(pozeti === 3){
                 if(prvo === 'x' || trece === 'x' || sedmo === 'x' || deveto === 'x'){
