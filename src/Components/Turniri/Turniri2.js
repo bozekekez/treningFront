@@ -13,10 +13,11 @@ const Turnir2 = () =>{
     const [id, setId] = useState()
     const [start, setStart] = useState('')
     const [brojSudionika, setBrojSudionika] = useState(16)
+    const [velicina, setVelicina] = useState()
 
     useEffect(() => {
         if(aktivni === 'aktivni'){
-            fetch('https://trening-88.herokuapp.com/turnir', {
+            fetch('https://trening-88.herokuapp.com/turnirTwo', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -27,7 +28,7 @@ const Turnir2 = () =>{
             })
         }
         if(aktivni === 'neaktivni'){
-            fetch('https://trening-88.herokuapp.com/turnir/neaktivni', {
+            fetch('https://trening-88.herokuapp.com/turnir/neaktivniTwo', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -46,11 +47,31 @@ const Turnir2 = () =>{
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://trening-88.herokuapp.com/turnir', {
+        console.log('++')
+        switch (true) {
+            case (brojSudionika <= 8):
+                setVelicina(8)
+                break;
+            case (brojSudionika > 8 && brojSudionika <= 16):
+                setVelicina(16)
+                break;
+            case (brojSudionika > 16 && brojSudionika <= 32):
+                setVelicina(32)
+                break;
+            case (brojSudionika > 32 && brojSudionika <= 64):
+                setVelicina(64)
+                break;
+            default:
+                break;
+        }
+        console.log(velicina, '++')
+        fetch('https://trening-88.herokuapp.com/turnir/2', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-                turnir: turnir
+                turnir: turnir,
+                broj: brojSudionika,
+                velicina: velicina
         })
         })
         .then(resopnse => resopnse.json())
@@ -69,7 +90,7 @@ const Turnir2 = () =>{
     const handleAdd = (e) =>{
         e.preventDefault();
         console.log(sudionik)
-        if(id && render[id.i].sudionici.length < 16 && sudionik !== undefined && sudionik !== '' && !render[id.i].sudionici.includes(sudionik)){
+        if(id && render[id.i].sudionici.length < render[id.i].broj && sudionik !== undefined && sudionik !== '' && !render[id.i].sudionici.includes(sudionik)){
             fetch('https://trening-88.herokuapp.com/turnir/sudionik', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -148,6 +169,9 @@ const Turnir2 = () =>{
     }
 
     const startTurnir = (_id) =>{
+        if(render[id.i].sudionici.length < render[id.i].velicina){
+
+        }
         if(!start){
             setStart(_id)
         }
@@ -434,10 +458,14 @@ const Turnir2 = () =>{
             setMessage('Turnir nije odigran do kraja')
         }
     }
+  
+    const handleBroj = (e) => {
+        setBrojSudionika(e.target.value)
+    }
 
-    console.log('1', id)
-    console.log('2', start, typeof(start))
-    console.log('3', render)
+    console.log(turnir)
+    console.log('1', brojSudionika)
+    console.log('2', velicina)
 
     return(
         <div className="turniriParent">
@@ -458,15 +486,10 @@ const Turnir2 = () =>{
             { akcija === 'kreiraj'?
             <form onSubmit={handleSubmit}>
                 <label>Ime turnira</label>
-                <input value={turnir} type ="text" value={turnir} onChange={handleNoviTurnir}/>
+                <input type ="text" value={turnir} onChange={handleNoviTurnir}/>
                 <label>Broj sudionika</label>
-                <select value={brojSudionika}>
-                    <option value={brojSudionika} type ="text">4</option>
-                    <option value={brojSudionika} type ="text">8</option>
-                    <option value={brojSudionika} type ="text">16</option>
-                    <option value={brojSudionika} type ="text">32</option>
-                    <option value={brojSudionika} type ="text">64</option>
-                </select>
+                <input value={brojSudionika} type="text" onChange={handleBroj}/>
+                <button onSubmit={handleSubmit}>Submit</button>
             </form>
             : akcija === 'join' ?
             <form onSubmit={handleAdd}>
