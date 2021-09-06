@@ -14,10 +14,11 @@ const Turnir2 = () =>{
     const [start, setStart] = useState('')
     const [brojSudionika, setBrojSudionika] = useState(16)
     const [velicina, setVelicina] = useState()
+    const [fill, setFill] = useState(false)
 
     useEffect(() => {
         if(aktivni === 'aktivni'){
-            fetch('https://trening-88.herokuapp.com/turnirTwo', {
+            fetch('https://trening-88.herokuapp.com/turnir/2', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -28,7 +29,7 @@ const Turnir2 = () =>{
             })
         }
         if(aktivni === 'neaktivni'){
-            fetch('https://trening-88.herokuapp.com/turnir/neaktivniTwo', {
+            fetch('https://trening-88.herokuapp.com/turnir/neaktivni/2', {
             method: 'get',
             headers: {'Content-Type': 'application/json'}
             })
@@ -65,25 +66,27 @@ const Turnir2 = () =>{
                 break;
         }
         console.log(velicina, '++')
-        fetch('https://trening-88.herokuapp.com/turnir/2', {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-                turnir: turnir,
-                broj: brojSudionika,
-                velicina: velicina
-        })
-        })
-        .then(resopnse => resopnse.json())
-        .then(article =>{
-            if (article){
-                    setMessage(`${article.turnir} has been created`)
-                    // history.go(0)
-                    setRender(render => [...render, article])
-                    setTurnir('')
-                    setAkcija()
-                }
-        })
+        if(velicina){
+            fetch('https://trening-88.herokuapp.com/turnir/2', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                    turnir: turnir,
+                    broj: brojSudionika,
+                    velicina: velicina
+            })
+            })
+            .then(resopnse => resopnse.json())
+            .then(article =>{
+                if (article){
+                        setMessage(`${article.turnir} has been created`)
+                        // history.go(0)
+                        setRender(render => [...render, article])
+                        setTurnir('')
+                        setAkcija()
+                    }
+            })
+        }
         
     }
     
@@ -168,9 +171,44 @@ const Turnir2 = () =>{
         }
     }
 
-    const startTurnir = (_id) =>{
-        if(render[id.i].sudionici.length < render[id.i].velicina){
+    // console.log(render[id.i].sudionici, 'start 2')
+    console.log(render, '22')
+    console.log(id, 'oe')
 
+    const startTurnir = (_id) =>{
+        let tempArray = render[id.i].sudionici
+        console.log('kuglica', tempArray, tempArray.length)
+        if(_id === render[id.i]._id &&render[id.i].sudionici.length < render[id.i].velicina){
+            for (let i = 0; i < render[id.i].velicina ; i++) {
+                if(!render[id.i].sudionici[i]){
+                render[id.i].sudionici[i] = ''
+                }
+            }
+            
+            const shuffleArray = () => {
+                for (var i = tempArray.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var temp = tempArray[i];
+                    tempArray[i] = tempArray[j];
+                    render[id.i].sudionici[j] = temp;
+                }
+            }
+            shuffleArray()
+            fetch('https://trening-88.herokuapp.com/turnir/suffle', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                    _id: id._id,
+                    sudionici: render[id.i].sudionici
+                })
+            })
+            .then(resopnse => resopnse.json())
+            .then(article =>{
+                if (article){
+                        setMessage(`${article} has been suffled!`)
+                    }
+            })
+            setFill(true)
         }
         if(!start){
             setStart(_id)
