@@ -176,15 +176,17 @@ const Turnir2 = () =>{
     console.log(id, 'oe')
 
     const startTurnir = (_id) =>{
-        let tempArray = render[id.i].sudionici
+        let tempArray = []
+        if(id){
+            tempArray = render[id.i].sudionici
+        }
         console.log('kuglica', tempArray, tempArray.length)
-        if(_id === render[id.i]._id &&render[id.i].sudionici.length < render[id.i].velicina){
+        if(id && _id === render[id.i]._id &&render[id.i].sudionici.length < render[id.i].velicina){
             for (let i = 0; i < render[id.i].velicina ; i++) {
                 if(!render[id.i].sudionici[i]){
                 render[id.i].sudionici[i] = ''
                 }
             }
-            
             const shuffleArray = () => {
                 for (var i = tempArray.length - 1; i > 0; i--) {
                     var j = Math.floor(Math.random() * (i + 1));
@@ -229,33 +231,76 @@ const Turnir2 = () =>{
         if(sudionici8[0] === undefined && sudionici.length === 16){
             for (let index = 0; index < 8; index++) {
                if(index === 0){
-                   let random = Math.floor(Math.random() * 101)
-                   if(random <=50){
-                       sudionici8[0] = sudionici[0]
-                   }
-                   if(random > 50){
+                   if(!sudionici[0] && sudionici[1]){
                     sudionici8[0] = sudionici[1]
+                   }
+                   else if(!sudionici[1] && sudionici[0]){
+                    sudionici8[0] = sudionici[0]
+                   }
+                   else if(!sudionici[1] && !sudionici[0]){
+                    sudionici8[0] = ''
+                   }
+                   else{
+                       let random = Math.floor(Math.random() * 101)
+                       if(random <=50){
+                           sudionici8[0] = sudionici[0]
+                       }
+                       if(random > 50){
+                        sudionici8[0] = sudionici[1]
+                       }
                    }
                }
                if(index === 1){
-                let random = Math.floor(Math.random() * 101)
-                if(random <=50){
-                    sudionici8[1] = sudionici[2]
-                }
-                if(random > 50){
+                   if(!sudionici[2] && sudionici[3]){
                     sudionici8[1] = sudionici[3]
-                }
+                   }
+                   else if(!sudionici[3] && sudionici[2]){
+                    sudionici8[1] = sudionici[2]
+                   }
+                   else if(!sudionici[3] && !sudionici[2]){
+                    sudionici8[1] = ''
+                   }
+                   else{
+                       let random = Math.floor(Math.random() * 101)
+                        if(random <=50){
+                         sudionici8[1] = sudionici[2]
+                        }
+                        if(random > 50){
+                            sudionici8[1] = sudionici[3]
+                        }
+                   }
                }
                 if(index === 2){
-                    let random = Math.floor(Math.random() * 101)
-                    if(random <=50){
+                    if(!sudionici[4] && sudionici[5]){
+                        sudionici8[2] = sudionici[5]
+                       }
+                    else if(!sudionici[5] && sudionici[4]){
                         sudionici8[2] = sudionici[4]
+                       }
+                    else if(!sudionici[5] && !sudionici[4]){
+                        sudionici8[2] = ''
+                       }
+                    else{
+                        let random = Math.floor(Math.random() * 101)
+                        if(random <=50){
+                            sudionici8[2] = sudionici[4]
+                        }
+                        if(random > 50){
+                        sudionici8[2] = sudionici[5]
                     }
-                    if(random > 50){
-                     sudionici8[2] = sudionici[5]
                     }
                 }
                 if(index === 3){
+                    if(!sudionici[6] && sudionici[7]){
+                        sudionici8[3] = sudionici[7]
+                       }
+                    else if(!sudionici[6] && sudionici[7]){
+                        sudionici8[3] = sudionici[6]
+                       }
+                    else if(!sudionici[6] && !sudionici[7]){
+                        sudionici8[3] = ''
+                       }
+                    else{
                     let random = Math.floor(Math.random() * 101)
                     if(random <=50){
                         sudionici8[3] = sudionici[6]
@@ -264,16 +309,38 @@ const Turnir2 = () =>{
                      sudionici8[3] = sudionici[7]
                     }
                 }
+                }
                 if(index === 4){
-                    let random = Math.floor(Math.random() * 101)
-                    if(random <=50){
+                    if(!sudionici[8] && sudionici[9]){
+                        sudionici8[4] = sudionici[9]
+                       }
+                    else if(!sudionici[9] && sudionici[8]){
                         sudionici8[4] = sudionici[8]
-                    }
-                    if(random > 50){
-                     sudionici8[4] = sudionici[9]
-                    }
+                       }
+                    else if(!sudionici[9] && !sudionici[8]){
+                        sudionici8[4] = ''
+                       }
+                    else{
+                        let random = Math.floor(Math.random() * 101)
+                        if(random <=50){
+                            sudionici8[4] = sudionici[8]
+                        }
+                        if(random > 50){
+                        sudionici8[4] = sudionici[9]
+                        }
+                }
                 }
                 if(index === 5){
+                    if(!sudionici[10] && sudionici[11]){
+                        sudionici8[5] = sudionici[11]
+                       }
+                    else if(!sudionici[11] && sudionici[10]){
+                        sudionici8[5] = sudionici[10]
+                       }
+                    else if(!sudionici[11] && !sudionici[10]){
+                        sudionici8[5] = ''
+                       }
+                    else{
                     let random = Math.floor(Math.random() * 101)
                     if(random <=50){
                         sudionici8[5] = sudionici[10]
@@ -281,23 +348,46 @@ const Turnir2 = () =>{
                     if(random > 50){
                      sudionici8[5] = sudionici[11]
                     }
+                    }
                 }
                 if(index === 6){
-                    let random = Math.floor(Math.random() * 101)
-                    if(random <=50){
+                    if(!sudionici[12] && sudionici[13]){
+                        sudionici8[6] = sudionici[13]
+                       }
+                    else if(!sudionici[13] && sudionici[12]){
                         sudionici8[6] = sudionici[12]
-                    }
-                    if(random > 50){
-                     sudionici8[6] = sudionici[13]
+                       }
+                    else if(!sudionici[13] && !sudionici[12]){
+                        sudionici8[6] = ''
+                       }
+                    else{
+                        let random = Math.floor(Math.random() * 101)
+                        if(random <=50){
+                            sudionici8[6] = sudionici[12]
+                        }
+                        if(random > 50){
+                        sudionici8[6] = sudionici[13]
+                        }
                     }
                 }
                 if(index === 7){
-                    let random = Math.floor(Math.random() * 101)
-                    if(random <=50){
+                    if(!sudionici[14] && sudionici[15]){
+                        sudionici8[7] = sudionici[15]
+                       }
+                    else if(!sudionici[15] && sudionici[14]){
                         sudionici8[7] = sudionici[14]
-                    }
-                    if(random > 50){
-                     sudionici8[7] = sudionici[15]
+                       }
+                    else if(!sudionici[14] && !sudionici[15]){
+                        sudionici8[7] = ''
+                       }
+                    else{
+                        let random = Math.floor(Math.random() * 101)
+                        if(random <=50){
+                            sudionici8[7] = sudionici[14]
+                        }
+                        if(random > 50){
+                        sudionici8[7] = sudionici[15]
+                        }
                     }
                 }
             }
@@ -323,27 +413,59 @@ const Turnir2 = () =>{
                 console.log('ren', renderIndex, render)
         }
 
-        else if(sudionici8[0] && sudionici4[0] === undefined){
+        else if((sudionici8[0] || sudionici8[0] === '') && sudionici4[0] === undefined){
             for (let index = 0; index < 4; index++) {
                if(index === 0){
-                   let random = Math.floor(Math.random() * 101)
-                   if(random <=50){
-                       sudionici4[0] = sudionici8[0]
-                   }
-                   if(random > 50){
+                   if(!sudionici8[0] && sudionici8[1]){
                     sudionici4[0] = sudionici8[1]
                    }
+                   else if(!sudionici8[1] && sudionici8[0]){
+                    sudionici4[0] = sudionici8[0]
+                   }
+                   else if(!sudionici8[1] && !sudionici8[0]){
+                    sudionici4[0] = ''
+                   }
+                   else{
+                       let random = Math.floor(Math.random() * 101)
+                       if(random <=50){
+                           sudionici4[0] = sudionici8[0]
+                       }
+                       if(random > 50){
+                        sudionici4[0] = sudionici8[1]
+                       }
+                   }    
                }
                if(index === 1){
-                let random = Math.floor(Math.random() * 101)
-                if(random <=50){
-                    sudionici4[1] = sudionici8[2]
-                }
-                if(random > 50){
+                if(!sudionici8[2] && sudionici8[3]){
                     sudionici4[1] = sudionici8[3]
-                }
+                   }
+                   else if(!sudionici8[3] && sudionici8[2]){
+                    sudionici4[1] = sudionici8[2]
+                   }
+                   else if(!sudionici8[1] && !sudionici8[0]){
+                    sudionici4[1] = ''
+                   }
+                   else{
+                       let random = Math.floor(Math.random() * 101)
+                       if(random <=50){
+                           sudionici4[1] = sudionici8[2]
+                       }
+                       if(random > 50){
+                           sudionici4[1] = sudionici8[3]
+                       }
+                   }
                }
                 if(index === 2){
+                    if(!sudionici8[4] && sudionici8[5]){
+                        sudionici4[2] = sudionici8[5]
+                       }
+                       else if(!sudionici8[5] && sudionici8[4]){
+                        sudionici4[2] = sudionici8[4]
+                       }
+                       else if(!sudionici8[4] && !sudionici8[5]){
+                        sudionici4[2] = ''
+                       }
+                       else{
                     let random = Math.floor(Math.random() * 101)
                     if(random <=50){
                         sudionici4[2] = sudionici8[4]
@@ -352,7 +474,18 @@ const Turnir2 = () =>{
                      sudionici4[2] = sudionici8[5]
                     }
                 }
+                }
                 if(index === 3){
+                    if(!sudionici8[6] && sudionici8[7]){
+                        sudionici4[3] = sudionici8[7]
+                       }
+                       else if(!sudionici8[7] && sudionici8[6]){
+                        sudionici4[3] = sudionici8[6]
+                       }
+                       else if(!sudionici8[6] && !sudionici8[7]){
+                        sudionici4[3] = ''
+                       }
+                       else{
                     let random = Math.floor(Math.random() * 101)
                     if(random <=50){
                         sudionici4[3] = sudionici8[6]
@@ -360,6 +493,7 @@ const Turnir2 = () =>{
                     if(random > 50){
                      sudionici4[3] = sudionici8[7]
                     }
+                }
                 }
             }
             let renderIndex = render.findIndex(element => element._id === _id)
@@ -385,9 +519,19 @@ const Turnir2 = () =>{
                 console.log('ren', renderIndex, render)
         }
 
-        else if(sudionici4[0] && sudionici2[0] === undefined){
+        else if((sudionici4[0] || sudionici4[0] === '') && sudionici2[0] === undefined){
             for (let index = 0; index < 4; index++) {
-               if(index === 0){
+                if(!sudionici4[0] && sudionici4[1]){
+                    sudionici2[0] = sudionici4[1]
+                   }
+                   else if(!sudionici4[1] && sudionici4[0]){
+                    sudionici2[0] = sudionici4[0]
+                   }
+                   else if(!sudionici4[1] && !sudionici4[0]){
+                    sudionici2[0] = ''
+                   }
+                   else{
+                if(index === 0){
                    let random = Math.floor(Math.random() * 101)
                    if(random <=50){
                        sudionici2[0] = sudionici4[0]
@@ -395,8 +539,19 @@ const Turnir2 = () =>{
                    if(random > 50){
                     sudionici2[0] = sudionici4[1]
                    }
-               }
+                }
+                }
                if(index === 1){
+                if(!sudionici4[2] && sudionici4[3]){
+                    sudionici2[1] = sudionici4[3]
+                   }
+                   else if(!sudionici4[3] && sudionici4[2]){
+                    sudionici2[1] = sudionici4[2]
+                   }
+                   else if(!sudionici4[3] && !sudionici4[2]){
+                    sudionici2[1] = ''
+                   }
+                   else{
                 let random = Math.floor(Math.random() * 101)
                 if(random <=50){
                     sudionici2[1] = sudionici4[2]
@@ -405,6 +560,7 @@ const Turnir2 = () =>{
                     sudionici2[1] = sudionici4[3]
                 }
                }
+            }
             }
             let renderIndex = render.findIndex(element => element._id === _id)
             setRender(() => render[renderIndex].sudionici2 = sudionici2)
@@ -427,7 +583,7 @@ const Turnir2 = () =>{
                         }
                 })
         }
-        else if(sudionici2[0] && sudionici1[0] === undefined){
+        else if((sudionici2[0] || sudionici2[0] === '') && sudionici1[0] === undefined){
             for (let index = 0; index < 4; index++) {
                if(index === 0){
                    let random = Math.floor(Math.random() * 101)
