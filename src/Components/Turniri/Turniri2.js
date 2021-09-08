@@ -43,7 +43,12 @@ const Turnir2 = () =>{
 
     const handleNoviTurnir = (e) =>{
         e.preventDefault();
-        setTurnir(e.target.value)
+        if(e.target.value.length < 11){
+            setTurnir(e.target.value)
+        }
+        else{
+            setMessage('Ime turnira predugo')
+        }
     }
 
     const handleSubmit = (e) => {
@@ -117,6 +122,9 @@ const Turnir2 = () =>{
         else if(render[id.i].sudionici.includes(sudionik)){
             setMessage('Sudionik je već prijavljen')
         }
+        else if(render[id.i].sudionici.length == render[id.i].broj){
+            setMessage('Prijavljeni su svi sudionici')
+        }
         else{
             setMessage('Odaberi turnir')
         }
@@ -151,7 +159,7 @@ const Turnir2 = () =>{
     const handleKreiraj = () =>{
         setAkcija('kreiraj')
         setMessage()
-        setLoaded(false)
+        // setLoaded(false)
     }
     const handleJoin = () =>{
         setAkcija('join')
@@ -181,7 +189,7 @@ const Turnir2 = () =>{
             tempArray = render[id.i].sudionici
         }
         console.log('kuglica', tempArray, tempArray.length)
-        if(id && _id === render[id.i]._id &&render[id.i].sudionici.length < render[id.i].velicina){
+        if(id && _id === render[id.i]._id && render[id.i].sudionici.length < render[id.i].velicina && render[id.i].sudionici[0]){
             for (let i = 0; i < render[id.i].velicina ; i++) {
                 if(!render[id.i].sudionici[i]){
                 render[id.i].sudionici[i] = ''
@@ -228,6 +236,109 @@ const Turnir2 = () =>{
         let sudionici4 = render[renderIndex].sudionici4
         let sudionici2 = render[renderIndex].sudionici2
         let sudionici1 = render[renderIndex].sudionici1
+        if(sudionici.length === 8){
+            console.log('tu smo lafe')
+            for (let index = 0; index < 4; index++) {
+                if(index === 0){
+                    if(!sudionici[0] && sudionici[1]){
+                     sudionici4[0] = sudionici[1]
+                    }
+                    else if(!sudionici[1] && sudionici[0]){
+                     sudionici4[0] = sudionici[0]
+                    }
+                    else if(!sudionici[1] && !sudionici[0]){
+                     sudionici4[0] = ''
+                    }
+                    else{
+                        let random = Math.floor(Math.random() * 101)
+                        if(random <=50){
+                            sudionici4[0] = sudionici[0]
+                        }
+                        if(random > 50){
+                         sudionici4[0] = sudionici[1]
+                        }
+                    }    
+                }
+                if(index === 1){
+                 if(!sudionici[2] && sudionici[3]){
+                     sudionici4[1] = sudionici[3]
+                    }
+                    else if(!sudionici[3] && sudionici[2]){
+                     sudionici4[1] = sudionici[2]
+                    }
+                    else if(!sudionici[3] && !sudionici[2]){
+                     sudionici4[1] = ''
+                    }
+                    else{
+                        let random = Math.floor(Math.random() * 101)
+                        if(random <=50){
+                            sudionici4[1] = sudionici[2]
+                        }
+                        if(random > 50){
+                            sudionici4[1] = sudionici[3]
+                        }
+                    }
+                }
+                 if(index === 2){
+                     if(!sudionici[4] && sudionici[5]){
+                         sudionici4[2] = sudionici8[5]
+                        }
+                        else if(!sudionici[5] && sudionici[4]){
+                         sudionici4[2] = sudionici8[4]
+                        }
+                        else if(!sudionici[4] && !sudionici[5]){
+                         sudionici4[2] = ''
+                        }
+                        else{
+                            let random = Math.floor(Math.random() * 101)
+                            if(random <=50){
+                                sudionici4[2] = sudionici[4]
+                            }
+                            if(random > 50){
+                            sudionici4[2] = sudionici[5]
+                            }
+                     }
+                 }
+                 if(index === 3){
+                     if(!sudionici[6] && sudionici[7]){
+                         sudionici4[3] = sudionici[7]
+                        }
+                        else if(!sudionici[7] && sudionici[6]){
+                         sudionici4[3] = sudionici8[6]
+                        }
+                        else if(!sudionici[6] && !sudionici[7]){
+                         sudionici4[3] = ''
+                        }
+                        else{
+                            let random = Math.floor(Math.random() * 101)
+                            if(random <=50){
+                                sudionici4[3] = sudionici[6]
+                            }
+                            if(random > 50){
+                            sudionici4[3] = sudionici[7]
+                            }
+                        }
+                 }
+             }
+             let renderIndex = render.findIndex(element => element._id === _id)
+             setRender(() => render[renderIndex].sudionici4 = sudionici4)
+     
+             fetch('https://trening-88.herokuapp.com/turnir/sudionici4', {
+                 method: 'post',
+                 headers: {'Content-Type': 'application/json'},
+                 body: JSON.stringify({
+                         _id: _id,
+                         sudionici4: sudionici4
+                 })
+                 })
+                 .then(resopnse => resopnse.json())
+                 .then(article =>{
+                     if (article){
+                            setMessage(`${article.turnir} runda 8 odigrana`)
+                         }
+                 })
+                 console.log('ren', renderIndex, render)
+        }
         if(sudionici8[0] === undefined && sudionici.length === 16){
             for (let index = 0; index < 8; index++) {
                if(index === 0){
@@ -442,7 +553,7 @@ const Turnir2 = () =>{
                    else if(!sudionici8[3] && sudionici8[2]){
                     sudionici4[1] = sudionici8[2]
                    }
-                   else if(!sudionici8[1] && !sudionici8[0]){
+                   else if(!sudionici8[3] && !sudionici8[2]){
                     sudionici4[1] = ''
                    }
                    else{
@@ -657,10 +768,6 @@ const Turnir2 = () =>{
         setBrojSudionika(e.target.value)
     }
 
-    console.log(turnir)
-    console.log('1', brojSudionika)
-    console.log('2', velicina)
-
     return(
         <div className="turniriParent">
             <div>
@@ -704,12 +811,18 @@ const Turnir2 = () =>{
                 if(element._id === start){
                     return(
                         <div className="karticaTurnir" >
-                            <h1 className="karticaTop">{element.turnir}</h1>
+                            <h1 className="karticaNaslov">{element.turnir}</h1>
+                            { element.sudionici.length < element.velicina ?
+                            <h3 className="karticaPrijave">Prijave: {element.sudionici.length}/{element.broj}</h3>
+                            :
+                            <h3 className="karticaPrijave">Format: {element.sudionici.length}/{element.velicina}</h3>
+                            }
                             <div>
                             <button className="botunTurnir" onClick={() =>{startRound(element.sudionici, element._id)}}>Startaj rundu</button>
                             <button className="botunTurnir" onClick={() =>{startTurnir(element._id)}}>Povratak</button>
                             <button className="botunTurnir" onClick={() =>{handleEnd(element._id)}}>Završi turnir</button>
                             </div>
+                            { element.velicina === 18?
                             <div className="bracket">
                             <div className="round16">
                                 { element.sudionici.map(item => {
@@ -763,13 +876,64 @@ const Turnir2 = () =>{
                                 }
                             </div>
                             </div>
+                            : element.velicina === 8 ?
+                            <div className="bracket">
+                            <div className="round8V8">
+                                { element.sudionici.map(item => {
+                                    if(element.sudionici4.includes(item)){
+                                        return <p className="sudionikRound8Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound8">{item}</p>
+                                    }
+                                })
+                                }
+                            </div>
+                            <div className="round4V8">
+                                { element.sudionici4.map(item => {
+                                    if(element.sudionici2.includes(item)){
+                                        return <p className="sudionikRound4Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound4">{item}</p>
+                                    }
+                                })
+                                }
+                            </div>
+                            <div className="round2V8">
+                                { element.sudionici2.map(item => {
+                                    if(element.sudionici1.includes(item)){
+                                        return <p className="sudionikRound2Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound2">{item}</p>
+                                    }
+                                })
+                                }
+                            </div>
+                            <div className="round1V8">
+                                { element.sudionici1[0] ?
+                                <p className="sudionikRound1Win">{element.sudionici1[0]}</p>
+                                :
+                                <p className="sudionikRound1"></p>
+                                }
+                            </div>
+                            </div>
+                            :
+                            <div></div>
+                            }
                         </div>
                     )
                 }
                 if(!id || id._id != element._id){
                     return(
                         <div className="karticaTurnir" >
-                            <h1 className="karticaTop">{element.turnir}</h1>
+                            <h1 className="karticaNaslov">{element.turnir}</h1>
+                            { element.sudionici.length < element.velicina ?
+                            <h3 className="karticaPrijave">Prijave: {element.sudionici.length}/{element.broj}</h3>
+                            :
+                            <h3 className="karticaPrijave">Format: {element.sudionici.length}/{element.velicina}</h3>
+                            }
                             <div className="selectContainer" onClick={() =>{manageSelected(element._id, element.turnir, i)}}>
                             <button className="select" ></button>
                             </div>
@@ -787,7 +951,12 @@ const Turnir2 = () =>{
                 if(element._id == id._id){
                     return(
                         <div className="karticaTurnirSelect" >
-                            <h1 className="karticaTop">{element.turnir}</h1>
+                            <h1 className="karticaNaslov">{element.turnir}</h1>
+                            { element.sudionici.length < element.velicina ?
+                            <h3 className="karticaPrijave">Prijave: {element.sudionici.length}/{element.broj}</h3>
+                            :
+                            <h3 className="karticaPrijave">Format: {element.sudionici.length}/{element.velicina}</h3>
+                            }
                             <div className="selectContainer" onClick={() =>{manageDeselect(element._id)}}>
                             <button className="selected" ></button>
                             </div>
