@@ -236,7 +236,7 @@ const Turnir2 = () =>{
         let sudionici4 = render[renderIndex].sudionici4
         let sudionici2 = render[renderIndex].sudionici2
         let sudionici1 = render[renderIndex].sudionici1
-        if(sudionici.length === 8){
+        if(sudionici4[0] === undefined && sudionici.length === 8){
             console.log('tu smo lafe')
             for (let index = 0; index < 4; index++) {
                 if(index === 0){
@@ -281,10 +281,10 @@ const Turnir2 = () =>{
                 }
                  if(index === 2){
                      if(!sudionici[4] && sudionici[5]){
-                         sudionici4[2] = sudionici8[5]
+                         sudionici4[2] = sudionici[5]
                         }
                         else if(!sudionici[5] && sudionici[4]){
-                         sudionici4[2] = sudionici8[4]
+                         sudionici4[2] = sudionici[4]
                         }
                         else if(!sudionici[4] && !sudionici[5]){
                          sudionici4[2] = ''
@@ -304,7 +304,7 @@ const Turnir2 = () =>{
                          sudionici4[3] = sudionici[7]
                         }
                         else if(!sudionici[7] && sudionici[6]){
-                         sudionici4[3] = sudionici8[6]
+                         sudionici4[3] = sudionici[6]
                         }
                         else if(!sudionici[6] && !sudionici[7]){
                          sudionici4[3] = ''
@@ -406,7 +406,7 @@ const Turnir2 = () =>{
                         sudionici8[3] = sudionici[7]
                        }
                     else if(!sudionici[6] && sudionici[7]){
-                        sudionici8[3] = sudionici[6]
+                        sudionici8[3] = sudionici[7]
                        }
                     else if(!sudionici[6] && !sudionici[7]){
                         sudionici8[3] = ''
@@ -822,7 +822,7 @@ const Turnir2 = () =>{
                             <button className="botunTurnir" onClick={() =>{startTurnir(element._id)}}>Povratak</button>
                             <button className="botunTurnir" onClick={() =>{handleEnd(element._id)}}>Završi turnir</button>
                             </div>
-                            { element.velicina === 18?
+                            { element.velicina === 16?
                             <div className="bracket">
                             <div className="round16">
                                 { element.sudionici.map(item => {
@@ -912,6 +912,71 @@ const Turnir2 = () =>{
                                 }
                             </div>
                             <div className="round1V8">
+                                { element.sudionici1[0] ?
+                                <p className="sudionikRound1Win">{element.sudionici1[0]}</p>
+                                :
+                                <p className="sudionikRound1"></p>
+                                }
+                            </div>
+                            </div>
+                            : element.velicina === 32?
+                            <div className="bracket">
+                            <div className="round32">
+                                { element.sudionici.map(item => {
+                                    if(element.sudionici8.includes(item)){
+                                        return <p className="sudionikRoundWin">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound">{item}</p>
+                                    }
+                                })
+                                }
+                            </div>
+                            <div className="round16V32">
+                                { element.sudionici.map(item => {
+                                    if(element.sudionici8.includes(item)){
+                                        return <p className="sudionikRoundWin">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound">{item}</p>
+                                    }
+                                })
+                                }
+                            </div>
+                            <div className="round8V32">
+                                { element.sudionici8.map(item => {
+                                    if(element.sudionici4.includes(item)){
+                                        return <p className="sudionikRound8Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound8">{item}</p>
+                                    }
+                                })
+                                }
+                            </div>
+                            <div className="round4V32">
+                                { element.sudionici4.map(item => {
+                                    if(element.sudionici2.includes(item)){
+                                        return <p className="sudionikRound4Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound4">{item}</p>
+                                    }
+                                })
+                                }
+                            </div>
+                            <div className="round2V32">
+                                { element.sudionici2.map(item => {
+                                    if(element.sudionici1.includes(item)){
+                                        return <p className="sudionikRound2Win">{item}</p>
+                                    }
+                                    else{
+                                        return <p className="sudionikRound2">{item}</p>
+                                    }
+                                })
+                                }
+                            </div>
+                            <div className="round1V32">
                                 { element.sudionici1[0] ?
                                 <p className="sudionikRound1Win">{element.sudionici1[0]}</p>
                                 :
